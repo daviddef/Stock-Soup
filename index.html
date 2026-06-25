@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASX Stock Watch — Report Archive</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, Arial, sans-serif; background: #f4f6f8; color: #333; }
+  .header { background: #1a2332; color: #fff; padding: 24px 32px; }
+  .header h1 { font-size: 22px; font-weight: bold; }
+  .header p { color: #aabbcc; font-size: 13px; margin-top: 6px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 24px 16px; }
+  .latest { background: #27ae60; color: #fff; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
+  .latest a { color: #fff; font-size: 18px; font-weight: bold; text-decoration: none; display: block; margin-bottom: 6px; }
+  .latest p { color: #a8e6bf; font-size: 12px; }
+  .report-list { background: #fff; border-radius: 8px; border: 1px solid #ddd; overflow: hidden; }
+  .report-list h2 { background: #1a2332; color: #fff; padding: 12px 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
+  .report-item { display: flex; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f0f0f0; }
+  .report-item:last-child { border-bottom: none; }
+  .report-item:hover { background: #f9fafb; }
+  .report-item a { font-weight: bold; color: #1a2332; text-decoration: none; flex: 1; }
+  .report-item a:hover { color: #27ae60; }
+  .report-meta { font-size: 11px; color: #888; margin-left: 12px; }
+  .badge { display: inline-block; background: #e8f5e9; color: #276749; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }
+  .badge.risk-off { background: #fff3f3; color: #c53030; }
+  .footer { text-align: center; color: #aaa; font-size: 11px; margin-top: 32px; padding-bottom: 24px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📈 ASX Stock Watch — Report Archive</h1>
+  <p>Hourly recommendations · ASX + Global markets · Day / Week / Long</p>
+</div>
+<div class="container">
+  <div class="latest" id="latest-report">
+    <a href="#" id="latest-link">⚡ Loading latest report...</a>
+    <p id="latest-meta">Most recent run</p>
+  </div>
+  <div class="report-list">
+    <h2>All Reports</h2>
+    <div id="report-index">
+      <!-- Populated by report-index.json -->
+      <div class="report-item"><span style="color:#888;font-size:13px;padding:8px 0;">Loading reports...</span></div>
+    </div>
+  </div>
+  <div class="footer">
+    Auto-generated · Not financial advice · david.defranceski@gmail.com
+  </div>
+</div>
+<script>
+fetch('reports/report-index.json')
+  .then(r => r.json())
+  .then(reports => {
+    if (!reports.length) return;
+    const latest = reports[0];
+    document.getElementById('latest-link').href = 'reports/' + latest.file;
+    document.getElementById('latest-link').textContent = '⚡ ' + latest.label + ' — View Full Report →';
+    document.getElementById('latest-meta').textContent = latest.timestamp + ' · ' + latest.picks;
+
+    const container = document.getElementById('report-index');
+    container.innerHTML = reports.map((r, i) => `
+      <div class="report-item">
+        <a href="reports/${r.file}">${r.label}</a>
+        <span class="badge${r.riskOff ? ' risk-off' : ''}">${r.riskOff ? '⛔ RISK-OFF' : '✅ NORMAL'}</span>
+        <span class="report-meta">${r.picks}</span>
+      </div>
+    `).join('');
+  })
+  .catch(() => {
+    document.getElementById('report-index').innerHTML =
+      '<div class="report-item"><span style="color:#888;font-size:13px;">No reports yet.</span></div>';
+  });
+</script>
+</body>
+</html>
