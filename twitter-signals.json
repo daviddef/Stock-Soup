@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-06-28T07:15:00Z",
+  "status": "pending_first_run",
+  "note": "GitHub Action has not run yet. Twitter signals will appear after the first scheduled run (Mon 30 Jun 10:00 AEST). To trigger manually: go to github.com/daviddef/Stock-Soup → Actions → Twitter/X Social Signal Collector → Run workflow.",
+  "tickers": {},
+  "broad": {},
+  "summary": {}
+}

@@ -1,0 +1,36 @@
+name: Twitter/X Social Signal Collector
+
+on:
+  schedule:
+    # Runs hourly during ASX + US trading overlap (00:00–08:00 UTC = 10am–6pm AEST)
+    - cron: '0 0-8 * * 1-5'   # Mon–Fri, hourly 10am–6pm AEST
+    - cron: '0 22-23 * * 0,6' # Weekend preview runs
+  workflow_dispatch: {}         # Manual trigger
+
+jobs:
+  fetch-twitter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write           # needed to commit twitter-signals.json
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Twitter fetch
+        env:
+          TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+        run: python3 twitter-fetch.py
+
+      - name: Commit signals file
+        run: |
+          git config user.name  "Stock-Soup Bot"
+          git config user.email "david.defranceski@gmail.com"
+          git add twitter-signals.json
+          git diff --cached --quiet || git commit -m "chore: update twitter-signals.json [skip ci]"
+          git push
