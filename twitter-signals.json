@@ -1,8 +1,31 @@
 {
-  "generated_at": "2026-06-28T07:15:00Z",
-  "status": "pending_first_run",
-  "note": "GitHub Action has not run yet. Twitter signals will appear after the first scheduled run (Mon 30 Jun 10:00 AEST). To trigger manually: go to github.com/daviddef/Stock-Soup → Actions → Twitter/X Social Signal Collector → Run workflow.",
-  "tickers": {},
+  "generated_at": "2026-06-27T23:05:44.222454+00:00",
+  "tickers": {
+    "EOS": {
+      "status": "error",
+      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+    },
+    "4DX": {
+      "status": "error",
+      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+    },
+    "TLX": {
+      "status": "error",
+      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+    },
+    "DRO": {
+      "status": "error",
+      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+    },
+    "PLTR": {
+      "status": "error",
+      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+    },
+    "NVDA": {
+      "status": "error",
+      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+    }
+  },
   "broad": {},
   "summary": {}
 }
