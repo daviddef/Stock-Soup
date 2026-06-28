@@ -20,13 +20,13 @@
   /* Report list */
   .report-list { background: #fff; border-radius: 8px; border: 1px solid #ddd; overflow: hidden; margin-bottom: 24px; }
   .report-list h2 { background: #1a2332; color: #fff; padding: 12px 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
-  .report-item { display: flex; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f0f0f0; }
+  .report-item { display: flex; align-items: center; padding: 12px 20px; border-bottom: 1px solid #f0f0f0; gap: 12px; flex-wrap: nowrap; }
   .report-item:last-child { border-bottom: none; }
   .report-item:hover { background: #f9fafb; }
-  .report-item a { font-weight: bold; color: #1a2332; text-decoration: none; flex: 1; }
+  .report-item a { font-weight: bold; color: #1a2332; text-decoration: none; white-space: nowrap; min-width: 200px; flex-shrink: 0; }
   .report-item a:hover { color: #27ae60; }
-  .report-meta { font-size: 11px; color: #888; margin-left: 12px; }
-  .badge { display: inline-block; background: #e8f5e9; color: #276749; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }
+  .report-meta { font-size: 11px; color: #888; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .badge { display: inline-block; background: #e8f5e9; color: #276749; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
   .badge.risk-off { background: #fff3f3; color: #c53030; }
 
   /* Wishlist panel */
@@ -300,7 +300,7 @@ fetch('reports/report-index.json')
       <div class="report-item">
         <a href="reports/${r.file}">${r.label}</a>
         <span class="badge${r.riskOff ? ' risk-off' : ''}">${r.riskOff ? '⛔ RISK-OFF' : '✅ NORMAL'}</span>
-        <span class="report-meta">${r.picks}</span>
+        <span class="report-meta" title="${r.picks}">${r.picks}</span>
       </div>
     `).join('');
   })
