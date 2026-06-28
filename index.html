@@ -39,32 +39,31 @@
   .wishlist-panel .panel-header span { font-size: 11px; color: #8ab4cc; }
   .wishlist-body { padding: 16px 20px; }
 
+  /* Section divider inside panel */
+  .wl-section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid #f0f0f0; margin-top: 18px; padding-top: 14px;
+    margin-bottom: 10px;
+  }
+  .wl-section-header h3 { font-size: 11px; font-weight: bold; color: #666; text-transform: uppercase; letter-spacing: 1.5px; }
+  .wl-section-header .sync-note { font-size: 10px; color: #aaa; }
+
   /* Add ticker form */
   .add-form { display: flex; gap: 8px; margin-bottom: 16px; }
   .add-form input {
     flex: 1; padding: 10px 14px; border: 2px solid #ddd; border-radius: 6px;
-    font-size: 14px; font-weight: bold; text-transform: uppercase;
-    transition: border-color 0.2s;
+    font-size: 14px; font-weight: bold; text-transform: uppercase; transition: border-color 0.2s;
   }
   .add-form input:focus { outline: none; border-color: #27ae60; }
   .add-form input::placeholder { font-weight: normal; text-transform: none; color: #aaa; }
-  .add-form select {
-    padding: 10px 12px; border: 2px solid #ddd; border-radius: 6px;
-    font-size: 13px; background: #fff; cursor: pointer;
-  }
-  .add-form button {
-    padding: 10px 20px; background: #27ae60; color: #fff; border: none;
-    border-radius: 6px; font-size: 13px; font-weight: bold; cursor: pointer;
-    white-space: nowrap; transition: background 0.2s;
-  }
+  .add-form select { padding: 10px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 13px; background: #fff; cursor: pointer; }
+  .add-form button { padding: 10px 20px; background: #27ae60; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
   .add-form button:hover { background: #1e8449; }
-  .add-form button.secondary {
-    background: #6c757d; padding: 10px 14px; font-size: 12px;
-  }
+  .add-form button.secondary { background: #6c757d; padding: 10px 14px; font-size: 12px; }
   .add-form button.secondary:hover { background: #545b62; }
 
-  /* Watchlist chips */
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; }
+  /* Watchlist chips — shared base */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; min-height: 36px; }
   .chip {
     display: inline-flex; align-items: center; gap: 5px;
     background: #eef6ff; border: 1.5px solid #bee3f8; border-radius: 20px;
@@ -73,37 +72,34 @@
   }
   .chip:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
   .chip .exchange { font-size: 10px; color: #666; font-weight: normal; }
-  .chip .remove {
-    background: none; border: none; color: #bbb; cursor: pointer;
-    font-size: 16px; line-height: 1; padding: 0 2px;
-    transition: color 0.15s;
-  }
+  .chip .remove { background: none; border: none; color: #bbb; cursor: pointer; font-size: 16px; line-height: 1; padding: 0 2px; transition: color 0.15s; }
   .chip .remove:hover { color: #c53030; }
-  .chip.asx  { background: #e8f8f0; border-color: #a3d9b8; color: #1a5c38; }
-  .chip.us   { background: #eef0ff; border-color: #b3b8f5; color: #2a2e80; }
+  .chip.asx    { background: #e8f8f0; border-color: #a3d9b8; color: #1a5c38; }
+  .chip.us     { background: #eef0ff; border-color: #b3b8f5; color: #2a2e80; }
   .chip.global { background: #fef9e7; border-color: #f5deb3; color: #7d5a00; }
 
-  /* Status badge inside chip */
-  .chip-status {
-    font-size: 10px; font-weight: bold;
-    padding: 1px 7px; border-radius: 10px;
-    white-space: nowrap; line-height: 1.6; display: inline-block;
-  }
+  /* eToro chips — slightly muted, read-only */
+  .chip.etoro  { background: #f5f0ff; border-color: #c4b5f5; color: #4a2d8a; padding-right: 14px; }
+  .chip.etoro.asx { background: #edfaf5; border-color: #9dd8bf; color: #1a5c38; }
+  .chip.etoro.us  { background: #f0f2ff; border-color: #b0b8f0; color: #2a2e80; }
 
-  /* Pin icon for fixed tickers */
+  /* Status badge inside chip */
+  .chip-status { font-size: 10px; font-weight: bold; padding: 1px 7px; border-radius: 10px; white-space: nowrap; line-height: 1.6; display: inline-block; }
+
+  /* Pin icon */
   .pinned-icon { font-size: 10px; cursor: default; opacity: 0.45; user-select: none; }
 
   /* Watchlist note */
-  .watchlist-note {
-    margin-top: 12px; font-size: 11px; color: #888;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;
-  }
+  .watchlist-note { margin-top: 12px; font-size: 11px; color: #888; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
   .watchlist-note .run-link { color: #27ae60; text-decoration: none; font-weight: bold; }
   .watchlist-note .run-link:hover { text-decoration: underline; }
 
   .empty-msg { color: #aaa; font-size: 13px; font-style: italic; padding: 8px 0; }
 
-  /* Hidden: request form */
+  /* eToro group label */
+  .etoro-group { margin-bottom: 10px; }
+  .etoro-group-label { font-size: 10px; color: #888; font-style: italic; margin-bottom: 6px; }
+
   .submit-form { display: none; }
 
   .footer { text-align: center; color: #aaa; font-size: 11px; margin-top: 16px; padding-bottom: 24px; }
@@ -130,7 +126,7 @@
   <div class="wishlist-panel">
     <div class="panel-header">
       <h2>📋 My Watchlist</h2>
-      <span>📌 Fixed list · Claude reads these every run · Colour = latest signal</span>
+      <span>📌 Fixed list + eToro · Claude reads all of these every run</span>
     </div>
     <div class="wishlist-body">
 
@@ -148,19 +144,30 @@
         <button class="secondary" onclick="clearUserTickers()" title="Remove your custom additions">🗑 My Adds</button>
       </div>
 
-      <!-- Ticker chips -->
+      <!-- Fixed + user chips -->
       <div class="chips" id="chips-container">
         <span class="empty-msg" id="empty-msg">Loading watchlist…</span>
       </div>
 
       <!-- Status note -->
       <div class="watchlist-note" id="watchlist-note" style="display:none">
-        <span>📌 Fixed tickers = Claude's monitoring list every run &nbsp;·&nbsp; Your additions saved in this browser</span>
+        <span>📌 Fixed tickers researched every run · Your additions saved in this browser</span>
         <span id="last-run-note"></span>
       </div>
 
-      <!-- Request form (hidden) -->
-      <div class="submit-form"></div>
+      <!-- eToro section -->
+      <div id="etoro-section" style="display:none">
+        <div class="wl-section-header">
+          <h3>📊 eToro Watchlists</h3>
+          <span class="sync-note" id="etoro-sync-note">Loading…</span>
+        </div>
+        <div id="etoro-lists">
+          <span class="empty-msg">Loading eToro data…</span>
+        </div>
+        <div style="font-size:10px;color:#aaa;margin-top:8px;">
+          Read-only · Run <code>etoro-watchlist-sync.py --publish</code> to refresh
+        </div>
+      </div>
 
     </div>
   </div>
@@ -177,43 +184,18 @@
   <div class="report-list" style="margin-bottom:24px;">
     <h2>📖 Legend</h2>
     <div style="padding:16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;font-size:12px;">
-
-      <div><span style="font-weight:bold;color:#c53030;">⛔ RISK-OFF</span><br>
-        <span style="color:#555;">BTC dropped &gt;3% or VIX spiked above 25 at time of run. Signals elevated market fear — reduce position sizes 30–50% and tighten stop-losses.</span></div>
-
-      <div><span style="font-weight:bold;color:#276749;">✅ NORMAL</span><br>
-        <span style="color:#555;">No major risk signals detected. Standard position sizing applies.</span></div>
-
-      <div><span style="font-weight:bold;color:#c53030;">⚡ DAY</span><br>
-        <span style="color:#555;">Score ≥ 4.5/5. Fresh catalyst not yet priced in — entry and exit within 1–3 sessions.</span></div>
-
-      <div><span style="font-weight:bold;color:#c05621;">📅 WEEK</span><br>
-        <span style="color:#555;">Score ≥ 4.0/5. Upcoming catalyst within ~1 week. Hold 3–10 sessions.</span></div>
-
-      <div><span style="font-weight:bold;color:#276749;">📈 LONG</span><br>
-        <span style="color:#555;">Score ≥ 3.5/5. Strong structural thesis, no imminent catalyst. Hold weeks to months.</span></div>
-
-      <div><span style="font-weight:bold;color:#1a4a7a;">👁 WATCH</span><br>
-        <span style="color:#555;">On the monitoring list but no actionable signal this run. Worth checking next cycle.</span></div>
-
-      <div><span style="font-weight:bold;color:#333;">🇦🇺 ASX / 🌏 Global</span><br>
-        <span style="color:#555;">Each run picks 3 ASX stocks and 3 international stocks (NYSE/NASDAQ/etc), one per tier.</span></div>
-
-      <div><span style="font-weight:bold;color:#333;">Entry → Target</span><br>
-        <span style="color:#555;">Suggested buy zone and price target based on catalyst size and current technicals. Not a guarantee.</span></div>
-
-      <div><span style="font-weight:bold;color:#333;">R:R (Risk/Reward)</span><br>
-        <span style="color:#555;">Ratio of potential gain to potential loss. A 3:1 R:R means targeting 3× the risk taken. Aim for ≥ 2:1.</span></div>
-
-      <div><span style="font-weight:bold;color:#333;">Score (e.g. 4.5/5)</span><br>
-        <span style="color:#555;">Confluence score. Base 1–5 by catalyst type (ASX announcement = 5, upcoming catalyst = 4, thesis only = 3) plus bonuses for analyst upgrades, multi-source confirmation, and sector momentum.</span></div>
-
-      <div><span style="font-weight:bold;color:#333;">⚠️ EODHD Blocked</span><br>
-        <span style="color:#555;">Live price feed unavailable in sandbox — prices sourced via web search instead. Verify the current price before trading.</span></div>
-
-      <div><span style="font-weight:bold;color:#555;">📌 Pinned chip</span><br>
-        <span style="color:#555;">Tickers from the fixed monitoring list (watchlist.json). Always researched — cannot be permanently removed.</span></div>
-
+      <div><span style="font-weight:bold;color:#c53030;">⛔ RISK-OFF</span><br><span style="color:#555;">BTC dropped &gt;3% or VIX spiked above 25. Reduce position sizes 30–50%, tighten stop-losses.</span></div>
+      <div><span style="font-weight:bold;color:#276749;">✅ NORMAL</span><br><span style="color:#555;">No major risk signals. Standard position sizing applies.</span></div>
+      <div><span style="font-weight:bold;color:#c53030;">⚡ DAY</span><br><span style="color:#555;">Score ≥ 4.5/5. Fresh catalyst not yet priced in — entry and exit within 1–3 sessions.</span></div>
+      <div><span style="font-weight:bold;color:#c05621;">📅 WEEK</span><br><span style="color:#555;">Score ≥ 4.0/5. Upcoming catalyst within ~1 week. Hold 3–10 sessions.</span></div>
+      <div><span style="font-weight:bold;color:#276749;">📈 LONG</span><br><span style="color:#555;">Score ≥ 3.5/5. Strong structural thesis, no imminent catalyst. Hold weeks to months.</span></div>
+      <div><span style="font-weight:bold;color:#1a4a7a;">👁 WATCH</span><br><span style="color:#555;">On monitoring list but no actionable signal this run. Worth checking next cycle.</span></div>
+      <div><span style="font-weight:bold;color:#333;">🇦🇺 ASX / 🌏 Global</span><br><span style="color:#555;">Each run picks 3 ASX stocks and 3 international stocks, one per tier.</span></div>
+      <div><span style="font-weight:bold;color:#333;">Entry → Target</span><br><span style="color:#555;">Suggested buy zone and price target based on catalyst size and current technicals.</span></div>
+      <div><span style="font-weight:bold;color:#333;">R:R (Risk/Reward)</span><br><span style="color:#555;">Ratio of potential gain to loss. Aim for ≥ 2:1.</span></div>
+      <div><span style="font-weight:bold;color:#333;">Score (e.g. 4.5/5)</span><br><span style="color:#555;">Confluence score: catalyst type (1–5) + bonuses for analyst upgrades, multi-source, sector momentum.</span></div>
+      <div><span style="font-weight:bold;color:#333;">⚠️ EODHD Blocked</span><br><span style="color:#555;">Live price feed unavailable in sandbox — prices via web search. Verify before trading.</span></div>
+      <div><span style="font-weight:bold;color:#555;">📌 Pinned / 📊 eToro</span><br><span style="color:#555;">Fixed monitoring list tickers. Always researched. Edit via watchlist.json or eToro sync script.</span></div>
     </div>
     <div style="padding:0 20px 14px 20px;font-size:11px;color:#aaa;border-top:1px solid #f0f0f0;padding-top:12px;margin-top:4px;">
       Picks are auto-generated research, not financial advice. Always verify prices and do your own research before trading.
@@ -226,27 +208,27 @@
 </div>
 
 <script>
-// ── CONFIG ───────────────────────────────────────────────────────
-const USER_KEY = 'stock-watchlist-user-v1';   // user-added tickers (localStorage)
+// ── CONFIG ────────────────────────────────────────────────────────
+const USER_KEY = 'stock-watchlist-user-v1';
 
 const TIER = {
-  day:     { bg: '#fff0f0', border: '#c53030', color: '#c53030', icon: '⚡', label: 'DAY' },
+  day:     { bg: '#fff0f0', border: '#c53030', color: '#c53030', icon: '⚡', label: 'DAY'  },
   week:    { bg: '#fff5ee', border: '#c05621', color: '#c05621', icon: '📅', label: 'WEEK' },
   long:    { bg: '#f0fff4', border: '#276749', color: '#276749', icon: '📈', label: 'LONG' },
-  monitor: { bg: '#eef6ff', border: '#93c5fd', color: '#1a4a7a', icon: '👁', label: 'WATCH' },
+  monitor: { bg: '#eef6ff', border: '#93c5fd', color: '#1a4a7a', icon: '👁', label: 'WATCH'},
   skip:    { bg: '#f5f5f5', border: '#ccc',    color: '#999',    icon: '—',  label: 'SKIP' }
 };
 
 // ── STATE ─────────────────────────────────────────────────────────
-let pinnedList = [];   // from watchlist.json
-let statusMap  = {};   // from watchlist-status.json  { ticker → {tier,score,price,change,note,pick} }
-let statusRun  = null; // run ID e.g. "2026-06-28-1600"
+let pinnedList   = [];
+let statusMap    = {};
+let statusRun    = null;
 let statusReport = null;
+let etoroData    = null;
 
 // ── USER ADDITIONS ────────────────────────────────────────────────
 function loadUser() {
-  try { return JSON.parse(localStorage.getItem(USER_KEY)) || []; }
-  catch { return []; }
+  try { return JSON.parse(localStorage.getItem(USER_KEY)) || []; } catch { return []; }
 }
 function saveUser(list) { localStorage.setItem(USER_KEY, JSON.stringify(list)); }
 
@@ -254,13 +236,15 @@ function addTicker() {
   const t = document.getElementById('ticker-input').value.trim().toUpperCase();
   const e = document.getElementById('exchange-select').value;
   if (!t) return;
-  const pinned = pinnedList.some(p => p.ticker === t && p.exchange === e);
-  if (pinned) { alert(`${t} (${e}) is already in the fixed monitoring list.`); return; }
+  if (pinnedList.some(p => p.ticker === t && p.exchange === e)) {
+    alert(`${t} (${e}) is already in the fixed monitoring list.`); return;
+  }
   const user = loadUser();
-  if (user.some(x => x.ticker === t && x.exchange === e)) { alert(`${t} (${e}) is already in your watchlist.`); return; }
+  if (user.some(x => x.ticker === t && x.exchange === e)) {
+    alert(`${t} (${e}) is already in your watchlist.`); return;
+  }
   user.push({ ticker: t, exchange: e, added: new Date().toISOString() });
-  saveUser(user);
-  render();
+  saveUser(user); renderFixed();
   document.getElementById('ticker-input').value = '';
   document.getElementById('ticker-input').focus();
 }
@@ -268,89 +252,123 @@ function addTicker() {
 function removeTicker(ticker, exchange) {
   const user = loadUser();
   const idx = user.findIndex(x => x.ticker === ticker && x.exchange === exchange);
-  if (idx > -1) { user.splice(idx, 1); saveUser(user); render(); }
+  if (idx > -1) { user.splice(idx, 1); saveUser(user); renderFixed(); }
 }
 
 function clearUserTickers() {
-  if (!confirm('Remove all your custom additions? (Fixed monitoring list stays.)')) return;
-  saveUser([]);
-  render();
+  if (!confirm('Remove all your custom additions? (Fixed + eToro lists stay.)')) return;
+  saveUser([]); renderFixed();
 }
 
 document.getElementById('ticker-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') addTicker();
 });
 
-// ── CHIP RENDERING ────────────────────────────────────────────────
-function exchangeClass(ex) {
+// ── CHIP HELPERS ──────────────────────────────────────────────────
+function exClass(ex) {
   if (ex === 'ASX') return 'asx';
   if (ex === 'NYSE' || ex === 'NASDAQ') return 'us';
   return 'global';
 }
 
-function chipStatusHtml(ticker) {
+function statusBadge(ticker) {
   const st = statusMap[ticker];
   if (!st || !st.tier || !TIER[st.tier]) return '';
   const cfg = TIER[st.tier];
   return `<span class="chip-status" style="background:${cfg.bg};color:${cfg.color};border:1px solid ${cfg.border};">${cfg.icon} ${cfg.label}</span>`;
 }
 
-function chipBorderStyle(ticker) {
+function tierBorder(ticker) {
   const st = statusMap[ticker];
   if (!st || !st.tier || !TIER[st.tier]) return '';
   return `border-color:${TIER[st.tier].border};`;
 }
 
-function chipTooltip(ticker, exchange) {
+function chipTip(ticker, exchange) {
   const st = statusMap[ticker];
   if (!st) return `${ticker} (${exchange}) — not researched yet`;
-  const parts = [`${ticker} ${exchange}`];
-  if (st.price)  parts.push(st.price);
-  if (st.change) parts.push(st.change);
-  if (st.score)  parts.push(`Score: ${st.score}/5`);
-  if (st.note)   parts.push(st.note);
-  return parts.join(' · ');
+  const p = [`${ticker} ${exchange}`];
+  if (st.price)  p.push(st.price);
+  if (st.change) p.push(st.change);
+  if (st.score)  p.push(`Score: ${st.score}/5`);
+  if (st.note)   p.push(st.note);
+  return p.join(' · ');
 }
 
-function render() {
+// ── RENDER: FIXED + USER CHIPS ────────────────────────────────────
+function renderFixed() {
   const userList = loadUser();
   const container = document.getElementById('chips-container');
   const empty  = document.getElementById('empty-msg');
   const note   = document.getElementById('watchlist-note');
   const runEl  = document.getElementById('last-run-note');
 
-  const allItems = [
+  const all = [
     ...pinnedList.map(p => ({ ...p, pinned: true })),
     ...userList
   ];
 
-  if (!allItems.length) {
-    container.innerHTML = '';
-    container.appendChild(empty);
-    empty.style.display = 'block';
-    note.style.display  = 'none';
-    return;
+  if (!all.length) {
+    container.innerHTML = ''; container.appendChild(empty);
+    empty.style.display = 'block'; note.style.display = 'none'; return;
   }
-
   empty.style.display = 'none';
   note.style.display  = 'flex';
 
-  // Last-run note
   if (statusRun && statusReport) {
     runEl.innerHTML = `Last research: <a class="run-link" href="${statusReport}">📄 ${statusRun}</a>`;
   } else if (statusRun) {
     runEl.textContent = `Last research: ${statusRun}`;
   }
 
-  container.innerHTML = allItems.map(item => {
-    const cls    = exchangeClass(item.exchange);
-    const badge  = chipStatusHtml(item.ticker);
-    const title  = chipTooltip(item.ticker, item.exchange);
-    const border = chipBorderStyle(item.ticker);
+  container.innerHTML = all.map(item => {
+    const cls    = exClass(item.exchange);
+    const badge  = statusBadge(item.ticker);
+    const title  = chipTip(item.ticker, item.exchange);
+    const border = tierBorder(item.ticker);
     const action = item.pinned
       ? `<span class="pinned-icon" title="Fixed monitoring list — always researched">📌</span>`
       : `<button class="remove" onclick="removeTicker('${item.ticker}','${item.exchange}')" title="Remove">×</button>`;
     return `<span class="chip ${cls}" style="${border}" title="${title}">${item.ticker}<span class="exchange">${item.exchange}</span>${badge}${action}</span>`;
+  }).join('');
+}
+
+// ── RENDER: ETORO SECTION ─────────────────────────────────────────
+function renderEtoro() {
+  const section = document.getElementById('etoro-section');
+  const listsEl = document.getElementById('etoro-lists');
+  const syncEl  = document.getElementById('etoro-sync-note');
+
+  if (!etoroData || !etoroData.watchlists || !etoroData.watchlists.length) {
+    section.style.display = 'none'; return;
+  }
+
+  section.style.display = 'block';
+
+  // Last synced label
+  if (etoroData.last_synced) {
+    const d = new Date(etoroData.last_synced);
+    const hoursAgo = Math.round((Date.now() - d) / 36e5);
+    const label = hoursAgo < 1 ? 'just now' : hoursAgo === 1 ? '1 hour ago' : `${hoursAgo} hours ago`;
+    syncEl.textContent = `Last synced: ${label} (${d.toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'numeric'})})`;
+  } else {
+    syncEl.textContent = 'Never synced — run etoro-watchlist-sync.py --publish';
+  }
+
+  // Render each watchlist as a group
+  listsEl.innerHTML = etoroData.watchlists.map(wl => {
+    if (!wl.items || !wl.items.length) return '';
+    const chips = wl.items.map(item => {
+      const ex  = item.exchange || 'OTHER';
+      const cls = exClass(ex);
+      const badge = statusBadge(item.ticker);
+      const border = tierBorder(item.ticker);
+      const tip = item.name
+        ? `${item.ticker} (${ex}) · ${item.name}${statusMap[item.ticker] ? ' · ' + chipTip(item.ticker, ex).split(' · ').slice(1).join(' · ') : ''}`
+        : chipTip(item.ticker, ex);
+      return `<span class="chip etoro ${cls}" style="${border}" title="${tip}">${item.ticker}<span class="exchange">${ex}</span>${badge}</span>`;
+    }).join('');
+    return `<div class="etoro-group"><div class="etoro-group-label">${wl.name} (${wl.items.length})</div><div class="chips">${chips}</div></div>`;
   }).join('');
 }
 
@@ -370,8 +388,16 @@ async function loadStatusJson() {
     const data = await r.json();
     statusMap    = data.tickers  || {};
     statusRun    = data.run      || null;
-    statusReport = data.report   ? data.report : null;
+    statusReport = data.report   || null;
   } catch(e) { console.warn('watchlist-status.json unavailable:', e); }
+}
+
+async function loadEtoroJson() {
+  try {
+    const r = await fetch('etoro-watchlist.json?_=' + Date.now());
+    if (!r.ok) return;
+    etoroData = await r.json();
+  } catch(e) { console.warn('etoro-watchlist.json unavailable:', e); }
 }
 
 // ── REPORT INDEX ──────────────────────────────────────────────────
@@ -383,15 +409,12 @@ fetch('reports/report-index.json')
     document.getElementById('latest-link').href = 'reports/' + latest.file;
     document.getElementById('latest-link').textContent = '⚡ ' + latest.label + ' — View Full Report →';
     document.getElementById('latest-meta').textContent = latest.timestamp + ' · ' + latest.picks;
-
-    const container = document.getElementById('report-index');
-    container.innerHTML = reports.map(r => `
+    document.getElementById('report-index').innerHTML = reports.map(r => `
       <div class="report-item">
         <a href="reports/${r.file}">${r.label}</a>
         <span class="badge${r.riskOff ? ' risk-off' : ''}">${r.riskOff ? '⛔ RISK-OFF' : '✅ NORMAL'}</span>
         <span class="report-meta" title="${r.picks}">${r.picks}</span>
-      </div>
-    `).join('');
+      </div>`).join('');
   })
   .catch(() => {
     document.getElementById('report-index').innerHTML =
@@ -400,8 +423,9 @@ fetch('reports/report-index.json')
 
 // ── INIT ──────────────────────────────────────────────────────────
 (async () => {
-  await Promise.all([loadWatchlistJson(), loadStatusJson()]);
-  render();
+  await Promise.all([loadWatchlistJson(), loadStatusJson(), loadEtoroJson()]);
+  renderFixed();
+  renderEtoro();
 })();
 </script>
 </body>
