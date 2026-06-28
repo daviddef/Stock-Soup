@@ -20,12 +20,14 @@
   /* Report list */
   .report-list { background: #fff; border-radius: 8px; border: 1px solid #ddd; overflow: hidden; margin-bottom: 24px; }
   .report-list h2 { background: #1a2332; color: #fff; padding: 12px 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
-  .report-item { display: flex; align-items: center; padding: 12px 20px; border-bottom: 1px solid #f0f0f0; gap: 12px; flex-wrap: nowrap; }
+  .report-item { display: flex; align-items: flex-start; padding: 12px 20px; border-bottom: 1px solid #f0f0f0; gap: 12px; flex-wrap: wrap; }
   .report-item:last-child { border-bottom: none; }
   .report-item:hover { background: #f9fafb; }
   .report-item a { font-weight: bold; color: #1a2332; text-decoration: none; white-space: nowrap; min-width: 200px; flex-shrink: 0; }
   .report-item a:hover { color: #27ae60; }
-  .report-meta { font-size: 11px; color: #888; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .report-meta { font-size: 11px; color: #888; flex: 1; min-width: 0; line-height: 1.5; padding: 1px 0; }
+  .pick-tok { font-weight: 700; }
+  .pick-sep { color: #ccc; margin: 0 5px; }
   .badge { display: inline-block; background: #e8f5e9; color: #276749; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
   .badge.risk-off { background: #fff3f3; color: #c53030; }
 
@@ -400,6 +402,47 @@ async function loadEtoroJson() {
   } catch(e) { console.warn('etoro-watchlist.json unavailable:', e); }
 }
 
+// ── PICKS FORMATTER ──────────────────────────────────────────────
+function formatPicks(raw) {
+  if (!raw) return '';
+  // Tier emoji → color
+  const TIER_CLR = {
+    '⚡': '#c53030',   // DAY  — red
+    '📅': '#c05621',   // WEEK — orange
+    '📈': '#276749',   // LONG — green
+  };
+  // Words that look like tickers but aren't
+  const SKIP = new Set(['ASX','NYSE','NASDAQ','GLOBAL','AU','US','AUD','USD',
+                        'DAY','WEEK','LONG','ETF','BTC','VIX','RSI','SMA',
+                        'A','B','BB','AM','IV','IT']);
+
+  // Split on | pipe — renders each section separately
+  const sections = raw.split('|');
+  const rendered = sections.map(sec => {
+    sec = sec.trim();
+    if (!sec) return '';
+
+    // Replace emoji+ticker patterns first  e.g. ⚡GGP or ⚡ GGP
+    sec = sec.replace(/(⚡|📅|📈)\s*([A-Z][A-Z0-9]{1,4})/g, (_, emoji, ticker) => {
+      const clr = TIER_CLR[emoji] || '#1a2332';
+      return `${emoji}<strong class="pick-tok" style="color:${clr}">${ticker}</strong>`;
+    });
+
+    // Then bold remaining bare tickers (2-5 uppercase, not in skip list)
+    sec = sec.replace(/([A-Z][A-Z0-9]{1,4})/g, (match) => {
+      if (SKIP.has(match)) return match;
+      if (match.length < 2) return match;
+      // Already wrapped? skip
+      return `<strong class="pick-tok" style="color:#1a2332">${match}</strong>`;
+    });
+
+    return sec;
+  });
+
+  // Join with styled separator
+  return rendered.filter(Boolean).join('<span class="pick-sep">|</span>');
+}
+
 // ── REPORT INDEX ──────────────────────────────────────────────────
 fetch('reports/report-index.json')
   .then(r => r.json())
@@ -413,7 +456,7 @@ fetch('reports/report-index.json')
       <div class="report-item">
         <a href="reports/${r.file}">${r.label}</a>
         <span class="badge${r.riskOff ? ' risk-off' : ''}">${r.riskOff ? '⛔ RISK-OFF' : '✅ NORMAL'}</span>
-        <span class="report-meta" title="${r.picks}">${r.picks}</span>
+        <span class="report-meta" title="${r.picks}">${formatPicks(r.picks)}</span>
       </div>`).join('');
   })
   .catch(() => {
