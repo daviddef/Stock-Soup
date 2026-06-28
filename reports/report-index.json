@@ -1,5 +1,12 @@
 [
   {
+    "file": "2026-06-29T10:00:00+10:00.html",
+    "timestamp": "2026-06-29T10:00:00+10:00",
+    "label": "2026-06-29T10:00:00+10:00",
+    "picks": "ASX: 4DX A$4.05\u2192$4.80 | EOS A$9.20\u2192$11.00 | TLX A$14.20\u2192$18.00 | Global: NVDA $190\u2192$205 | PLTR $115\u2192$124 | MSFT $365\u2192$415",
+    "riskOff": true
+  },
+  {
     "file": "2026-06-28-0945.html",
     "timestamp": "Sun 28 Jun 2026 09:45 AEST",
     "label": "Sun 28 Jun 2026 09:45 AEST",
