@@ -301,7 +301,6 @@ function chipTip(ticker, exchange) {
 function renderFixed() {
   const userList = loadUser();
   const container = document.getElementById('chips-container');
-  const empty  = document.getElementById('empty-msg');
   const note   = document.getElementById('watchlist-note');
   const runEl  = document.getElementById('last-run-note');
 
@@ -310,17 +309,21 @@ function renderFixed() {
     ...userList
   ];
 
+  // Always write via innerHTML — avoids null-ref crash when empty-msg was
+  // previously removed from DOM by an earlier innerHTML overwrite.
   if (!all.length) {
-    container.innerHTML = ''; container.appendChild(empty);
-    empty.style.display = 'block'; note.style.display = 'none'; return;
+    container.innerHTML = '<span class="empty-msg">No tickers — add one above or wait for watchlist to load.</span>';
+    if (note) note.style.display = 'none';
+    return;
   }
-  empty.style.display = 'none';
-  note.style.display  = 'flex';
 
-  if (statusRun && statusReport) {
-    runEl.innerHTML = `Last research: <a class="run-link" href="${statusReport}">📄 ${statusRun}</a>`;
-  } else if (statusRun) {
-    runEl.textContent = `Last research: ${statusRun}`;
+  if (note) note.style.display = 'flex';
+  if (runEl) {
+    if (statusRun && statusReport) {
+      runEl.innerHTML = `Last research: <a class="run-link" href="${statusReport}">📄 ${statusRun}</a>`;
+    } else if (statusRun) {
+      runEl.textContent = `Last research: ${statusRun}`;
+    }
   }
 
   container.innerHTML = all.map(item => {
@@ -405,42 +408,50 @@ async function loadEtoroJson() {
 // ── PICKS FORMATTER ──────────────────────────────────────────────
 function formatPicks(raw) {
   if (!raw) return '';
-  // Tier emoji → color
+
   const TIER_CLR = {
     '⚡': '#c53030',   // DAY  — red
     '📅': '#c05621',   // WEEK — orange
     '📈': '#276749',   // LONG — green
   };
-  // Words that look like tickers but aren't
+  // Words that look like tickers but are not stocks
   const SKIP = new Set(['ASX','NYSE','NASDAQ','GLOBAL','AU','US','AUD','USD',
                         'DAY','WEEK','LONG','ETF','BTC','VIX','RSI','SMA',
-                        'A','B','BB','AM','IV','IT']);
+                        'A','AM','IV','IT','THE','AND','FOR']);
 
-  // Split on | pipe — renders each section separately
+  // Bold bare tickers in TEXT NODES only — skips content inside HTML tags
+  // so already-wrapped <strong>TICKER</strong> is never double-wrapped.
+  function boldTickers(str) {
+    return str.split(/(<[^>]+>)/g).map((part, idx) => {
+      if (idx % 2 === 1) return part; // HTML tag — leave unchanged
+      // Match ASX digit-prefix tickers (4DX, 29M) OR standard tickers (EOS, PLTR)
+      return part.replace(/\b(\d[A-Z]{1,3}|[A-Z][A-Z0-9]{1,4})\b/g, m => {
+        if (SKIP.has(m)) return m;
+        return `<strong class="pick-tok" style="color:#1a2332">${m}</strong>`;
+      });
+    }).join('');
+  }
+
   const sections = raw.split('|');
   const rendered = sections.map(sec => {
     sec = sec.trim();
     if (!sec) return '';
 
-    // Replace emoji+ticker patterns first  e.g. ⚡GGP or ⚡ GGP
-    sec = sec.replace(/(⚡|📅|📈)\s*([A-Z][A-Z0-9]{1,4})/g, (_, emoji, ticker) => {
-      const clr = TIER_CLR[emoji] || '#1a2332';
-      return `${emoji}<strong class="pick-tok" style="color:${clr}">${ticker}</strong>`;
+    // Step 1: emoji+ticker → tier colour (handles 4DX and EOS, with or without space)
+    sec = sec.replace(/(⚡|📅|📈)\s*(\d[A-Z]{1,3}|[A-Z][A-Z0-9]{1,4})/g, (_, em, tkr) => {
+      return `${em}<strong class="pick-tok" style="color:${TIER_CLR[em]||'#1a2332'}">${tkr}</strong>`;
     });
 
-    // Then bold remaining bare tickers (2-5 uppercase, not in skip list)
-    sec = sec.replace(/([A-Z][A-Z0-9]{1,4})/g, (match) => {
-      if (SKIP.has(match)) return match;
-      if (match.length < 2) return match;
-      // Already wrapped? skip
-      return `<strong class="pick-tok" style="color:#1a2332">${match}</strong>`;
-    });
+    // Step 2: remaining bare tickers → bold dark navy (text nodes only, no double-wrap)
+    sec = boldTickers(sec);
+
+    // Step 3: style middle-dot separators
+    sec = sec.replace(/·/g, '<span class="pick-sep">·</span>');
 
     return sec;
   });
 
-  // Join with styled separator
-  return rendered.filter(Boolean).join('<span class="pick-sep">|</span>');
+  return rendered.filter(Boolean).join('<span class="pick-sep"> | </span>');
 }
 
 // ── REPORT INDEX ──────────────────────────────────────────────────
