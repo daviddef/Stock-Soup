@@ -185,6 +185,7 @@
     <a href="#email">Email Guide</a>
     <a href="#risk">Risk Rules</a>
     <a href="#architecture">Architecture</a>
+    <a href="#watchlists">Watchlists</a>
     <a href="#glossary">Glossary</a>
   </div>
 </div>
@@ -605,6 +606,138 @@
 
     <div style="margin-top:16px;padding:14px 16px;background:#e8f5e9;border-radius:6px;font-size:13px;">
       <strong>Why email-builder.py?</strong> Every run that writes its own HTML produces a different layout — breaking formatting for recipients. One locked template, substituted each run via JSON data. The structure is physically impossible to drift between runs.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════ WATCHLISTS ═══════════════════════════════ -->
+<div class="card" id="watchlists">
+  <div class="card-header"><span class="icon">📋</span><h2>Watchlists — Three Layers Explained</h2></div>
+  <div class="card-body">
+    <p style="margin-bottom:20px;font-size:13px;color:#555;">The system uses three separate watchlist layers. They serve different purposes and are fetched in different ways — none of them automatically override the signal-first discovery process.</p>
+
+    <!-- Layer 1 -->
+    <div style="border:1px solid #a3d9b8;border-radius:8px;overflow:hidden;margin-bottom:18px;">
+      <div style="background:#1a2332;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:15px;">1️⃣</span>
+        <div>
+          <div style="font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">Fixed Monitoring List — checked every run</div>
+          <div style="font-size:11px;color:#8ab4cc;margin-top:2px;">Hardcoded in SKILL.md · EODHD + Yahoo Finance + smallcaps.com.au</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px;font-size:13px;">
+        <p style="color:#555;margin-bottom:12px;">A curated list of tickers David holds or actively monitors. Every run, the system fetches live prices, RSI/SMA technicals, and recent news for each. They enter the scoring pool on equal footing with newly discovered candidates — no automatic pick priority.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+          <span class="badge green">VTM</span><span class="badge green">PDN</span><span class="badge green">IEL</span><span class="badge green">TLX</span><span class="badge green">EOS</span><span class="badge green">NTU</span><span class="badge green">DYL</span><span class="badge green">DRO</span><span class="badge green">A2M</span><span class="badge green">SGH</span><span class="badge green">WTC</span><span class="badge blue">PLTR</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;">
+          <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
+            <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">What's fetched each run</div>
+            <div style="color:#555;line-height:1.8;">
+              ✅ Live price via EODHD batch API<br>
+              ✅ RSI + SMA50/200 via Yahoo Finance chart API<br>
+              ✅ Recent news via EODHD news API<br>
+              ✅ Smallcaps.com.au page (RSI, volume, narrative)<br>
+              ✅ SimplyWallSt discount % (daily)
+            </div>
+          </div>
+          <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
+            <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">How they become picks</div>
+            <div style="color:#555;line-height:1.8;">
+              They compete on score — same 0–7+ model as every other candidate.<br><br>
+              A watchlist stock with no catalyst scores ~2/5 and won't be picked.<br>
+              A watchlist stock with a fresh upgrade scores 4.5+ and wins a slot.
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:#fffbf0;border-left:3px solid #f39c12;border-radius:0 6px 6px 0;font-size:12px;color:#555;">
+          <strong>To add a ticker to the fixed list permanently:</strong> use the "Request Ticker for Research Queue" form on the <a href="index.html" style="color:#c77d00;">archive page</a> — it opens a GitHub issue that David can approve and add to SKILL.md.
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 2 -->
+    <div style="border:1px solid #bee3f8;border-radius:8px;overflow:hidden;margin-bottom:18px;">
+      <div style="background:#1b2d40;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:15px;">2️⃣</span>
+        <div>
+          <div style="font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">eToro Watchlist Sync — run manually to update</div>
+          <div style="font-size:11px;color:#8ab4cc;margin-top:2px;">etoro-watchlist-sync.py · eToro public API · maps instrument IDs to tickers</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px;font-size:13px;">
+        <p style="color:#555;margin-bottom:12px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">etoro-watchlist-sync.py</code> connects to the eToro public API and pulls every watchlist from David's eToro account — including all instruments, their internal eToro IDs, live ask/bid/last prices, and which watchlist they belong to.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;margin-bottom:12px;">
+          <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
+            <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">What it outputs</div>
+            <div style="color:#555;line-height:1.8;">
+              • Full instrument list per watchlist<br>
+              • eToro internal instrument ID for each ticker<br>
+              • Live ask / bid / last price snapshot<br>
+              • Asset type (Stock, ETF, Forex, Crypto…)<br>
+              • A ready-to-paste SKILL.md instrument ID table
+            </div>
+          </div>
+          <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
+            <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">Why the IDs matter</div>
+            <div style="color:#555;line-height:1.8;">
+              eToro's API identifies instruments by a numeric ID, not a ticker symbol. The sync script maps e.g. <code style="background:#f0f0f0;padding:1px 4px;border-radius:3px;font-size:10px;">NVDA → 1081</code> so Claude can call the eToro rates endpoint directly for live prices during each run.
+            </div>
+          </div>
+        </div>
+        <div style="padding:10px 14px;background:#eef6ff;border-left:3px solid #2980b9;border-radius:0 6px 6px 0;font-size:12px;color:#555;">
+          <strong>When to re-run it:</strong> Whenever you add or remove instruments from your eToro watchlists. Run <code style="background:#f0f0f0;padding:1px 4px;border-radius:3px;font-size:10px;">python3 etoro-watchlist-sync.py</code> locally, then paste the output table into SKILL.md's "Feed 21" section.
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 3 -->
+    <div style="border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;">
+      <div style="background:#2c3e50;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:15px;">3️⃣</span>
+        <div>
+          <div style="font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">Browser Watchlist — personal reminder layer</div>
+          <div style="font-size:11px;color:#8ab4cc;margin-top:2px;">Saved in browser localStorage · visible on the archive page · not read by Claude</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px;font-size:13px;">
+        <p style="color:#555;margin-bottom:12px;">The chip UI on the <a href="index.html" style="color:#2980b9;">archive page</a> lets you save tickers locally in your browser. These are stored in <code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">localStorage</code> — they persist across page refreshes and app restarts but are not synced anywhere or read by Claude.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;">
+          <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
+            <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">What it does</div>
+            <div style="color:#555;line-height:1.8;">
+              ✅ Visual reminder of tickers you're watching<br>
+              ✅ Survives browser refresh and app restart<br>
+              ✅ Colour-coded by exchange (ASX / US / Global)<br>
+              ✅ Add / remove instantly, no login needed
+            </div>
+          </div>
+          <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
+            <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">What it doesn't do</div>
+            <div style="color:#555;line-height:1.8;">
+              ❌ Not sent to Claude automatically<br>
+              ❌ Not fetched for prices or news<br>
+              ❌ Not synced across devices or browsers<br>
+              ❌ Won't influence pick selection
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:#f8f8f8;border-left:3px solid #aaa;border-radius:0 6px 6px 0;font-size:12px;color:#666;">
+          To get Claude to actually research a ticker, use the <strong>Request Ticker for Research Queue</strong> form — that creates a GitHub issue and gets the ticker added to the Layer 1 fixed list in SKILL.md.
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary table -->
+    <div style="margin-top:20px;">
+      <p style="font-size:12px;font-weight:bold;color:#1a2332;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Summary</p>
+      <table class="nice">
+        <tr><th>Layer</th><th>Where stored</th><th>Fetched by Claude?</th><th>Influences picks?</th><th>How to update</th></tr>
+        <tr><td><strong>1 — Fixed list</strong></td><td>SKILL.md</td><td>✅ Every run</td><td>✅ Competes equally</td><td>GitHub issue → edit SKILL.md</td></tr>
+        <tr><td><strong>2 — eToro sync</strong></td><td>SKILL.md (Feed 21 IDs)</td><td>✅ Via eToro rates API</td><td>✅ If catalyst exists</td><td>Run etoro-watchlist-sync.py</td></tr>
+        <tr><td><strong>3 — Browser chips</strong></td><td>Browser localStorage</td><td>❌ Not read</td><td>❌ No</td><td>Add/remove on archive page</td></tr>
+      </table>
     </div>
   </div>
 </div>
