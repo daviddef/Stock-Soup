@@ -628,12 +628,23 @@ function hoverCard(ticker, exchange) {
   const newsHtml = (st.news && st.news.length)
     ? `<div class="hc-news">${st.news.map(h=>`<div class="hc-news-item">· ${h}</div>`).join('')}</div>` : '';
 
-  const noteHtml = (!rsiHtml && !sigsHtml && !newsHtml && st.note && st.note !== 'Not researched this run')
-    ? `<div class="hc-note">${st.note}</div>` : '';
+  // Entry / Target / Stop row
+  const hasEts = st.entry || st.target || st.stop;
+  const etsHtml = hasEts
+    ? `<div class="hc-ets">
+        ${st.entry  ? `<div class="hc-ets-item"><span class="hc-ets-lbl">Entry</span>${st.entry}</div>`  : ''}
+        ${st.target ? `<div class="hc-ets-item"><span class="hc-ets-lbl">Target</span>${st.target}</div>` : ''}
+        ${st.stop   ? `<div class="hc-ets-item hc-stop"><span class="hc-ets-lbl">Stop</span>${st.stop}</div>` : ''}
+      </div>` : '';
+
+  // Narrative — prefer st.narrative, fall back to st.note
+  const narrative = st.narrative || (st.note && st.note !== 'Not researched this run' ? st.note : '');
+  const narrativeHtml = narrative
+    ? `<div class="hc-note" style="margin-top:4px;font-size:11px;color:#555;line-height:1.4;">${narrative}</div>` : '';
 
   const tvSym = toTvSym(ticker, exchange);
   const chartHtml = `<div class="hc-chart" data-symbol="${tvSym}" style="height:140px;border-radius:6px;overflow:hidden;margin:6px 0 4px;background:#f8f9fa;"></div>`;
-  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}${chartHtml}<div class="hc-footer">Last researched this run · click for live chart</div></div>`;
+  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${etsHtml}${sigsHtml}${newsHtml}${narrativeHtml}${chartHtml}<div class="hc-footer">Last researched this run · click for live chart</div></div>`;
 }
 
 // ── RENDER: FIXED + USER CHIPS ────────────────────────────────────
