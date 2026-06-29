@@ -119,10 +119,10 @@
   .hover-card {
     display: none; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
     width: 272px; background: #fff; border: 1px solid #ccc; border-radius: 12px;
-    padding: 12px 14px 10px; z-index: 999; pointer-events: none;
+    padding: 12px 14px 10px; z-index: 999;
     box-shadow: 0 4px 20px rgba(0,0,0,.15); text-align: left; font-weight: normal; line-height: 1.4;
   }
-  .chip-wrap:hover .hover-card { display: block; }
+  .chip-wrap.hovered .hover-card { display: block; }
   .hover-card::after  { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#ccc; }
   .hover-card::before { content:''; position:absolute; top:calc(100% - 1px); left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#fff; z-index:1; }
   .hc-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:8px; gap:8px; }
@@ -155,6 +155,9 @@
   .hc-news-item:first-child { border-top:none; }
   .hc-note { font-size:11px; color:#555; border-top:1px solid #f0f0f0; padding-top:6px; margin-top:2px; }
   .hc-footer { font-size:10px; color:#bbb; margin-top:6px; padding-top:6px; border-top:1px solid #f0f0f0; }
+  /* Mini chart inside hover card */
+  .hc-chart { margin:8px -14px -10px -14px; border-top:1px solid #eee; border-radius:0 0 12px 12px; overflow:hidden; height:140px; background:#f8f9fb; }
+  .hc-chart iframe { width:100%; height:140px; border:0; display:block; }
 
 
 
@@ -583,9 +586,10 @@ function tlDot(ticker) {
   return `<span class="tl-dot ${cls}"></span>`;
 }
 
-function hoverCard(ticker, exchange) {
+function hoverCard(ticker, exchange, etoroName) {
   const st = statusMap[ticker];
-  if (!st) return `<div class="hover-card"><div class="hc-name">${ticker} · ${exchange}</div><div style="font-size:11px;color:#888;margin-top:4px;">Not yet researched — check back after the next run.</div><div class="hc-footer">click chip for live chart</div></div>`;
+  const tvSymUnresearched = toTvSym(ticker, exchange);
+  if (!st) return `<div class="hover-card"><div class="hc-top"><div>${etoroName ? `<div class="hc-name">${etoroName}</div>` : ''}<div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment" style="background:#f1f5f9;color:#94a3b8;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;">● WATCHLIST</div></div><div class="hc-chart" data-symbol="${tvSymUnresearched}"></div><div class="hc-footer">click chip for full chart</div></div>`;
 
   const sentCls   = (st.sentiment || 'hold').replace(/_/g,'-');
   const sentLabels = {strong_buy:'STRONG BUY', buy:'BUY', hold:'HOLD', reduce:'REDUCE', sell:'SELL'};
@@ -619,7 +623,7 @@ function hoverCard(ticker, exchange) {
   const noteHtml = (!rsiHtml && !sigsHtml && !newsHtml && st.note && st.note !== 'Not researched this run')
     ? `<div class="hc-note">${st.note}</div>` : '';
 
-  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}<div class="hc-footer">Last researched this run · click for live chart</div></div>`;
+  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}${`<div class="hc-chart" data-symbol="${toTvSym(ticker,exchange)}"></div>`}<div class="hc-footer">Last researched this run · click for full chart</div></div>`;
 }
 
 // ── RENDER: FIXED + USER CHIPS ────────────────────────────────────
@@ -695,7 +699,7 @@ function renderEtoro() {
       const tip = item.name
         ? `${item.ticker} (${ex}) · ${item.name}`
         : `${item.ticker} · ${ex}`;
-      return `<div class="chip-wrap"><span class="chip etoro ${cls}" style="${border}" onclick="showTicker('${item.ticker}','${ex}',event)">${tlDot(item.ticker)}${item.ticker}<span class="exchange">${ex}</span>${badge}</span>${hoverCard(item.ticker,ex)}</div>`;
+      return `<div class="chip-wrap"><span class="chip etoro ${cls}" style="${border}" onclick="showTicker('${item.ticker}','${ex}',event)">${tlDot(item.ticker)}${item.ticker}<span class="exchange">${ex}</span>${badge}</span>${hoverCard(item.ticker,ex,item.name||"")}</div>`;
     }).join('');
     return `<div class="etoro-group"><div class="etoro-group-label">${wl.name} (${wl.items.length})</div><div class="chips">${chips}</div></div>`;
   }).join('');
@@ -903,6 +907,72 @@ fetch('reports/report-index.json')
   // Re-render picks banner now that statusMap is populated
   // (report-index fetch may have already set _latestReport)
   if (_latestReport) renderPicksCards(_latestReport);
+})();
+
+// ── HOVER MANAGER — JS-driven show/hide with smart repositioning + lazy chart ──
+(function() {
+  let hideTimer = null;
+
+  function showCard(wrap) {
+    clearTimeout(hideTimer);
+    // Hide any other open card first
+    document.querySelectorAll('.chip-wrap.hovered').forEach(w => { if (w !== wrap) w.classList.remove('hovered'); });
+    wrap.classList.add('hovered');
+
+    // Smart repositioning: reset, measure, shift if out-of-bounds
+    const card = wrap.querySelector('.hover-card');
+    if (!card) return;
+    card.style.left = '';
+    card.style.right = '';
+    card.style.transform = '';
+    // Default centering
+    card.style.left = '50%';
+    card.style.transform = 'translateX(-50%)';
+
+    requestAnimationFrame(() => {
+      const rect = card.getBoundingClientRect();
+      const vw = window.innerWidth || document.documentElement.clientWidth;
+      const margin = 8;
+      if (rect.left < margin) {
+        // Overflowing left edge — pin left
+        card.style.left = '0';
+        card.style.transform = 'none';
+      } else if (rect.right > vw - margin) {
+        // Overflowing right edge — pin right
+        card.style.left = 'auto';
+        card.style.right = '0';
+        card.style.transform = 'none';
+      }
+
+      // Lazy-inject TradingView chart iframe on first hover
+      const chartDiv = card.querySelector('.hc-chart[data-symbol]');
+      if (chartDiv && !chartDiv.querySelector('iframe')) {
+        const enc = encodeURIComponent(chartDiv.dataset.symbol);
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.tradingview.com/widgetembed/?symbol=${enc}&interval=D&theme=light&style=1&locale=en&toolbar_bg=f8f9fa&enable_publishing=false&hide_top_toolbar=1&hide_legend=1&save_image=false&hotlist=false&calendar=false&hide_side_toolbar=1`;
+        iframe.setAttribute('width', '100%');
+        iframe.setAttribute('height', '140');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('scrolling', 'no');
+        chartDiv.appendChild(iframe);
+      }
+    });
+  }
+
+  function hideCard(wrap) {
+    hideTimer = setTimeout(() => wrap.classList.remove('hovered'), 180);
+  }
+
+  // Event delegation — mouseover/mouseout on entire document
+  document.addEventListener('mouseover', function(e) {
+    const wrap = e.target.closest('.chip-wrap');
+    if (wrap) showCard(wrap);
+  }, true);
+
+  document.addEventListener('mouseout', function(e) {
+    const wrap = e.target.closest('.chip-wrap');
+    if (wrap && !wrap.contains(e.relatedTarget)) hideCard(wrap);
+  }, true);
 })();
 </script>
 </body>
