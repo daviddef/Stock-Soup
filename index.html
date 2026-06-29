@@ -242,6 +242,9 @@
   .pc-change { font-size:12px; font-weight:bold; margin-left:4px; }
   .pc-change.pos { color:#27ae60; }
   .pc-change.neg { color:#c53030; }
+  .pc-name { font-size:11px; color:#888; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .pc-ticker-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:2px; }
+  .pc-price-pill { display:inline-flex; align-items:baseline; gap:4px; background:#f1f5f9; border-radius:20px; padding:2px 9px; font-size:12px; font-weight:600; color:#1a2332; white-space:nowrap; }
   .pc-note { font-size:11px; color:#666; margin-top:4px; line-height:1.4; }
   .picks-banner-ft { padding:8px 16px; font-size:10px; color:#bbb; text-align:center; border-top:1px solid #f0f0f0; }
 
@@ -884,14 +887,21 @@ function renderPicksCards(report) {
     const changeEl = p.change ? `<span class="pc-change ${changeNeg?'neg':'pos'}">${p.change}</span>` : '';
     const score = st.score ? `<span class="pc-score">${st.score}/5</span>` : '';
     const note = (() => {
-      const raw = st.note || '';
+      const raw = st.note || st.narrative || '';
       if (!raw || raw.includes('pick this run') || raw.includes('Not researched')) return '';
-      return raw.length > 90 ? raw.slice(0,90)+'…' : raw;
+      return raw.length > 100 ? raw.slice(0,100)+'…' : raw;
     })();
+    const name = st.name || p.company || '';
+    const pricePill = p.price
+      ? `<span class="pc-price-pill">${p.price}${changeEl}</span>`
+      : '';
     return `<div class="pick-card ${cfg.cls} chip-wrap" onclick="showTicker('${p.ticker}','${exch}',event)">
       <div class="pc-tier-row"><span class="pc-badge ${cfg.cls}">${cfg.icon} ${cfg.label}</span>${score}</div>
-      <div class="pc-ticker">${p.ticker}<span class="pc-market">${flag} ${p.market}</span></div>
-      <div class="pc-price">${p.price||''}${changeEl}</div>
+      ${name ? `<div class="pc-name">${name}</div>` : ''}
+      <div class="pc-ticker-row">
+        <span class="pc-ticker">${p.ticker}<span class="pc-market">${flag} ${exch}</span></span>
+        ${pricePill}
+      </div>
       ${note ? `<div class="pc-note">${note}</div>` : ''}
       ${hoverCard(p.ticker, exch)}
     </div>`;
