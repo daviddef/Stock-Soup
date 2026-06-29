@@ -240,17 +240,7 @@
   .pc-change.neg { color:#c53030; }
   .pc-note { font-size:11px; color:#666; margin-top:4px; line-height:1.4; }
   .picks-banner-ft { padding:8px 16px; font-size:10px; color:#bbb; text-align:center; border-top:1px solid #f0f0f0; }
-  .aw-table { width:100%; border-collapse:collapse; font-size:12px; }
-  .aw-table th { background:#f8fafc; padding:6px 10px; text-align:left; font-size:10px; font-weight:700; color:#666; text-transform:uppercase; letter-spacing:0.5px; border-bottom:2px solid #e2e8f0; }
-  .aw-table td { padding:7px 10px; border-bottom:1px solid #f0f0f0; vertical-align:middle; }
-  .aw-table tr:last-child td { border-bottom:none; }
-  .aw-table tr:hover td { background:#fafbfc; }
-  .aw-sent { display:inline-block; padding:2px 7px; border-radius:10px; font-size:10px; font-weight:700; white-space:nowrap; }
-  .aw-sent.strong_buy{background:#dcfce7;color:#166534;} .aw-sent.buy{background:#dbeafe;color:#1e40af;}
-  .aw-sent.hold{background:#fef9c3;color:#854d0e;} .aw-sent.reduce{background:#fee2e2;color:#991b1b;} .aw-sent.sell{background:#fce7f3;color:#9d174d;}
-  .aw-tier { display:inline-block; font-size:10px; font-weight:700; padding:1px 5px; border-radius:4px; }
-  .aw-tier.day{background:#fff0f0;color:#c53030;border:1px solid #fecaca;} .aw-tier.week{background:#fff7ed;color:#c05621;border:1px solid #fed7aa;}
-  .aw-tier.long{background:#f0fdf4;color:#276749;border:1px solid #bbf7d0;} .aw-tier.monitor{background:#f8fafc;color:#64748b;border:1px solid #e2e8f0;}
+
 </style>
 </head>
 <body>
@@ -325,13 +315,21 @@
         </div>
       </div>
 
-    </div>
-  </div>
+      <!-- Analyst Watchlist section (research status for all tickers) -->
+      <div id="aw-section" style="display:none">
+        <div class="wl-section-header" onclick="toggleAW()">
+          <h3>🔬 Analyst Research Status <span class="etoro-chevron" id="aw-chevron">▶</span></h3>
+          <span class="sync-note" id="aw-sync-note">Loading…</span>
+        </div>
+        <div id="aw-chips" style="display:none">
+          <span class="empty-msg">Loading research data…</span>
+        </div>
+        <div id="aw-footer" style="font-size:10px;color:#aaa;margin-top:8px;display:none;">
+          Auto-generated research · Not financial advice · Updated each run
+        </div>
+      </div>
 
-  <!-- Analyst Watchlist -->
-  <div class="report-list" id="analyst-watchlist-panel" style="margin-bottom:24px;display:none;">
-    <h2>📊 Analyst Watchlist</h2>
-    <div id="analyst-watchlist-body"><div style="padding:16px 20px;color:#888;font-size:13px;">Loading...</div></div>
+    </div>
   </div>
 
   <!-- Report archive -->
@@ -467,6 +465,14 @@ function toggleEtoro() {
   listsEl.style.display  = etoroExpanded ? 'block' : 'none';
   footerEl.style.display = etoroExpanded ? 'block' : 'none';
   chevron.classList.toggle('open', etoroExpanded);
+}
+
+let awExpanded = false;
+function toggleAW() {
+  awExpanded = !awExpanded;
+  document.getElementById('aw-chips').style.display  = awExpanded ? 'block' : 'none';
+  document.getElementById('aw-footer').style.display = awExpanded ? 'block' : 'none';
+  document.getElementById('aw-chevron').classList.toggle('open', awExpanded);
 }
 
 // ── TICKER MODAL ──────────────────────────────────────────────────
@@ -908,35 +914,54 @@ fetch('reports/report-index.json')
 
 // ── INIT ──────────────────────────────────────────────────────────
 function renderAnalystWatchlist() {
-  const panel = document.getElementById('analyst-watchlist-panel');
-  const body  = document.getElementById('analyst-watchlist-body');
-  if (!panel || !body || !Object.keys(statusMap).length) return;
-  const SENT_LABEL = {strong_buy:'STRONG BUY',buy:'BUY',hold:'HOLD',reduce:'REDUCE',sell:'SELL'};
-  const TIER_ICON  = {day:'⚡',week:'📅',long:'📈',monitor:'👁'};
-  const SENT_ORDER = {strong_buy:0,buy:1,hold:2,reduce:3,sell:4};
-  const TIER_ORDER = {day:0,week:1,long:2,monitor:3};
-  const sorted = Object.entries(statusMap).slice().sort(([,a],[,b]) => {
+  const section = document.getElementById('aw-section');
+  const chipsEl = document.getElementById('aw-chips');
+  const syncEl  = document.getElementById('aw-sync-note');
+  const footerEl= document.getElementById('aw-footer');
+  if (!section || !chipsEl) return;
+
+  const entries = Object.entries(statusMap);
+  if (!entries.length) return;
+
+  // Sort: picks first (day→week→long), then monitor; within group by sentiment
+  const SENT_ORDER = {strong_buy:0, buy:1, hold:2, reduce:3, sell:4};
+  const TIER_ORDER = {day:0, week:1, long:2, monitor:3};
+  const sorted = entries.slice().sort(([,a],[,b]) => {
     const td = (TIER_ORDER[a.tier]||3)-(TIER_ORDER[b.tier]||3);
     return td !== 0 ? td : (SENT_ORDER[a.sentiment]||2)-(SENT_ORDER[b.sentiment]||2);
   });
-  const rows = sorted.map(([ticker,st]) => {
-    const sent=st.sentiment||'hold', sl=SENT_LABEL[sent]||sent.toUpperCase(), tier=st.tier||'monitor';
-    const chgNeg=st.change&&(st.change[0]==='-'||st.change[0]==='−');
-    const chgEl=st.change&&st.change!=='—'?`<span style="color:${chgNeg?'#c53030':'#276749'};margin-left:3px">${st.change}</span>`:'';
-    const note=(st.note||'').replace(/pick this run/,'').trim();
-    const sigs=Array.isArray(st.signals)&&st.signals.length?`<div style="margin-top:2px">${st.signals.slice(0,2).map(s=>`<span style="background:#f1f5f9;border-radius:3px;padding:1px 5px;font-size:10px;color:#475569;margin-right:3px">${s}</span>`).join('')}</div>`:'';
-    return `<tr><td><span class="aw-tier ${tier}">${TIER_ICON[tier]||'👁'} ${tier.toUpperCase()}</span></td>
-      <td><strong style="font-size:13px">${ticker}</strong>${st.name?`<br><span style="color:#888;font-size:11px">${st.name}</span>`:''}</td>
-      <td>${st.price&&st.price!=='—'?`<strong>${st.price}</strong>`:'-'}${chgEl}</td>
-      <td><span class="aw-sent ${sent}">${sl}</span></td>
-      <td style="font-size:11px;color:#555">${st.entry||'—'}</td>
-      <td style="font-size:11px;color:#555">${st.target||'—'}</td>
-      <td style="font-size:11px;color:#b91c1c;font-weight:600">${st.stop||'—'}</td>
-      <td style="max-width:180px;font-size:11px;color:#666">${note}${sigs}</td></tr>`;
-  }).join('');
-  body.innerHTML=`<table class="aw-table"><thead><tr><th>Tier</th><th>Ticker</th><th>Price</th><th>Sentiment</th><th>Entry</th><th>Target</th><th>Stop</th><th>Notes</th></tr></thead><tbody>${rows}</tbody></table><div style="padding:8px 16px;font-size:10px;color:#bbb;border-top:1px solid #f0f0f0;">Auto-generated research · Not financial advice</div>`;
-  panel.style.display='block';
+
+  // Group by tier for labels
+  const groups = {day:[], week:[], long:[], monitor:[]};
+  sorted.forEach(([ticker, st]) => {
+    const tier = st.tier || 'monitor';
+    (groups[tier] || groups.monitor).push([ticker, st]);
+  });
+
+  const TIER_LABEL = {day:'⚡ Day Picks', week:'📅 Week Picks', long:'📈 Long Picks', monitor:'👁 Monitor'};
+
+  let html_out = '';
+  for (const [tier, items] of Object.entries(groups)) {
+    if (!items.length) continue;
+    const chips = items.map(([ticker, st]) => {
+      // Reuse the same chip+hover card pattern as the fixed watchlist
+      const ex = st.exchange || (ticker.length <= 4 && !/[^A-Z]/.test(ticker) ? 'ASX' : 'GLOBAL');
+      // Determine chip border colour from sentiment
+      const SENT_BORDER = {strong_buy:'#15803d', buy:'#2563eb', hold:'#ca8a04', reduce:'#ea580c', sell:'#dc2626'};
+      const border = SENT_BORDER[st.sentiment] ? `border-color:${SENT_BORDER[st.sentiment]}` : '';
+      return `<div class="chip-wrap"><span class="chip etoro" style="${border}" onclick="showTicker('${ticker}','${ex}',event)">${tlDot(ticker)}${ticker}<span class="exchange">${ex}</span></span>${hoverCard(ticker,ex)}</div>`;
+    }).join('');
+    html_out += `<div class="etoro-group"><div class="etoro-group-label">${TIER_LABEL[tier]} (${items.length})</div><div class="chips">${chips}</div></div>`;
+  }
+
+  chipsEl.innerHTML = html_out;
+  const total = entries.length;
+  const researched = entries.filter(([,st]) => st.sentiment && st.sentiment !== 'hold').length;
+  syncEl.textContent = `${total} tickers · ${researched} researched this run`;
+  section.style.display = 'block';
+  footerEl.style.display = 'none'; // shown on expand
 }
+
 
 (async () => {
   await Promise.all([loadWatchlistJson(), loadStatusJson(), loadEtoroJson()]);
