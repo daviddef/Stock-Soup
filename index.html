@@ -943,36 +943,30 @@ fetch('reports/report-index.json')
     const card = wrap.querySelector('.hover-card');
     if (!card) { wrap.classList.add('hovered'); return; }
 
-    // Show off-screen first to measure height, then position using fixed coords
-    card.style.display = 'block';
-    card.style.visibility = 'hidden';
-    card.style.top = '-9999px';
-    card.style.left = '0';
+    // Position synchronously — no async needed.
+    // Read wrap bounds BEFORE display:block to avoid layout shift.
+    const wRect = wrap.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const margin = 8;
+    const cardW = 272;
+    // Estimate card height (researched ~220px, unresearched ~170px).
+    // Prefer above; fall to below if not enough room above.
+    const estH = 220;
+    let top = wRect.top - estH - 10;
+    if (top < margin) top = wRect.bottom + 10;
+
+    // Centre on wrap, clamp to viewport edges
+    let left = wRect.left + wRect.width / 2 - cardW / 2;
+    left = Math.max(margin, Math.min(left, vw - cardW - margin));
+
+    card.style.top       = top  + 'px';
+    card.style.left      = left + 'px';
     card.style.transform = 'none';
-
-    setTimeout(() => {
-      const wRect = wrap.getBoundingClientRect();
-      const cardH = card.offsetHeight;
-      const cardW = card.offsetWidth || 272;
-      const vw = window.innerWidth || document.documentElement.clientWidth;
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const margin = 8;
-
-      // Prefer above; fall to below if not enough room
-      let top = wRect.top - cardH - 10;
-      if (top < margin) top = wRect.bottom + 10;
-      if (top + cardH > vh - margin) top = vh - cardH - margin;
-
-      // Centre on wrap, clamp to viewport edges
-      let left = wRect.left + wRect.width / 2 - cardW / 2;
-      left = Math.max(margin, Math.min(left, vw - cardW - margin));
-
-      card.style.top  = top  + 'px';
-      card.style.left = left + 'px';
-      card.style.visibility = 'visible';
-      wrap.classList.add('hovered');
-      loadChart(card);
-    });
+    card.style.display   = 'block';
+    card.style.visibility = 'visible';
+    wrap.classList.add('hovered');
+    loadChart(card);
   }
 
   function hideCard() {
