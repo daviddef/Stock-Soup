@@ -623,10 +623,16 @@
       <div class="arch-detail"><strong>Phase 8 — Publish:</strong> Reads /tmp/email-data.json → email-builder.py fills email-template.html → Gmail draft → publish-report.py pushes HTML to GitHub Pages → writes watchlist-status.json → SMS (paused). Can be re-run independently to retry a failed send. <em>~148 lines.</em></div>
       <div class="arch-label">👁️ watchlist-monitor</div>
       <div class="arch-detail"><strong>Anytime — Quick check:</strong> Fetches live prices, RSI, SMA position, volume, and last-researched tier for every ticker in watchlist.json + etoro-watchlist.json. No pick generation. Runs in under 3 minutes. Use when you say "how is my watchlist doing?" <em>~178 lines.</em></div>
+      <div class="arch-label" style="background:#1b2d40;color:#8ab4cc;">🔄 etoro-watchlist-sync.py — run manually to update</div>
+      <div class="arch-detail" style="background:#f5f9ff;border-left:3px solid #2980b9;">
+        <strong>Not a Claude skill — a local Python script.</strong> Run it whenever you add or remove instruments in your eToro account.<br><br>
+        <code style="background:#eef2ff;padding:2px 7px;border-radius:4px;font-size:11px;">python3 etoro-watchlist-sync.py --publish</code><br><br>
+        Connects to the eToro public API → pulls all your watchlists → maps eToro numeric instrument IDs to ticker symbols → writes <code style="background:#f0f0f0;padding:1px 5px;border-radius:3px;font-size:11px;">etoro-watchlist.json</code> directly to the Stock-Soup GitHub repo. The hourly skill reads this file during Phase 1 (INIT) — no live eToro API calls happen during automated runs (the eToro API blocks automated requests).
+      </div>
     </div>
     <div style="margin-top:14px;background:#f8f9fa;border-radius:6px;padding:14px 16px;font-size:12px;">
       <strong style="color:#1a2332;">Supporting files:</strong>
-      <span style="color:#555;"> &nbsp;email-template.html (locked layout) · report-template.md (report structure, on GitHub) · email-builder.py (fills template from JSON) · publish-report.py (pushes to GitHub) · watchlist.json (monitoring tickers, GitHub) · etoro-watchlist.json (eToro positions, GitHub) · watchlist-status.json (per-ticker tier/score, written each run)</span>
+      <span style="color:#555;"> &nbsp;email-template.html (locked layout) · report-template.md (report structure, on GitHub) · email-builder.py (fills template from JSON) · publish-report.py (pushes to GitHub) · etoro-watchlist-sync.py (manual sync script) · watchlist.json (monitoring tickers, GitHub) · etoro-watchlist.json (eToro positions, GitHub) · watchlist-status.json (per-ticker tier/score, written each run)</span>
     </div>
 
     <div style="margin-top:16px;padding:14px 16px;background:#e8f5e9;border-radius:6px;font-size:13px;">
