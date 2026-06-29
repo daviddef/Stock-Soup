@@ -77,16 +77,18 @@
       "price": "A$10.46",
       "change": "\u2014",
       "score": "4.0",
-      "note": "\ud83d\udc41 MONITOR \u2014 AUKUS; runner-up Long pick",
-      "sentiment": "hold"
+      "note": "EOS surged +14% Friday on MARSS acquisition advancement (\u20ac140M earnout, \u00a385M Tha",
+      "sentiment": "hold",
+      "name": "Electro Optic Systems"
     },
     "TLX": {
       "tier": "monitor",
       "price": "A$14.20",
       "change": "\u2014",
       "score": "3.5",
-      "note": "\ud83d\udc41 MONITOR \u2014 Healthcare sector momentum",
-      "sentiment": "hold"
+      "note": "TLX is the quality defensive long. Healthcare sector rotation confirmed by 3 ind",
+      "sentiment": "hold",
+      "name": "Telix Pharmaceuticals"
     },
     "DRO": {
       "tier": "monitor",
@@ -101,8 +103,9 @@
       "price": "\u2014",
       "change": "\u2014",
       "score": "3.0",
-      "note": "\ud83d\udc41 MONITOR \u2014 Near stop $112; verify at broker",
-      "sentiment": "hold"
+      "note": "PLTR pulled back \u20132.34% in risk-off session. Confirmed Finnhub price $116.70. An",
+      "sentiment": "hold",
+      "name": "Palantir Technologies"
     },
     "IEL": {
       "tier": "monitor",
