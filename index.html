@@ -25,7 +25,9 @@
   .report-item:hover { background: #f9fafb; }
   .report-item a { font-weight: bold; color: #1a2332; text-decoration: none; white-space: nowrap; min-width: 200px; flex-shrink: 0; }
   .report-item a:hover { color: #27ae60; }
-  .report-meta { font-size: 11px; color: #888; flex: 1; min-width: 0; line-height: 1.5; padding: 1px 0; }
+  .report-meta { font-size: 11px; color: #888; flex: 1 1 100%; min-width: 0; line-height: 1.6; padding: 1px 0; }
+  .report-meta-row { display: flex; align-items: baseline; gap: 6px; }
+  .report-meta-label { font-size: 10px; font-weight: bold; color: #bbb; white-space: nowrap; }
   .pick-tok { font-weight: 700; }
   .pick-sep { color: #ccc; margin: 0 5px; }
   .badge { display: inline-block; background: #e8f5e9; color: #276749; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
@@ -450,7 +452,8 @@ function statusBadge(ticker) {
   const st = statusMap[ticker];
   if (!st || !st.tier || !TIER[st.tier]) return '';
   const cfg = TIER[st.tier];
-  return `<span class="chip-status" style="background:${cfg.bg};color:${cfg.color};border:1px solid ${cfg.border};">${cfg.icon} ${cfg.label}</span>`;
+  // Icon-only badge — tooltip shows full label
+  return `<span class="chip-status" style="background:${cfg.bg};color:${cfg.color};border:1px solid ${cfg.border};padding:1px 5px;" title="${cfg.label}">${cfg.icon}</span>`;
 }
 
 function tierBorder(ticker) {
@@ -578,6 +581,21 @@ async function loadEtoroJson() {
   } catch(e) { console.warn('etoro-watchlist.json unavailable:', e); }
 }
 
+// ── PICKS ROWS (two-row archive display) ─────────────────────────
+function picksRows(raw) {
+  if (!raw) return '';
+  const parts = raw.split(' | ');
+  if (parts.length === 1) {
+    return `<span class="report-meta">${formatPicks(raw)}</span>`;
+  }
+  const asxPart = parts[0];
+  const glbPart = parts.slice(1).join(' | ');
+  return `<span class="report-meta">
+    <span class="report-meta-row"><span class="report-meta-label">🇦🇺 ASX</span>${formatPicks(asxPart)}</span>
+    <span class="report-meta-row"><span class="report-meta-label">🌏 GLB</span>${formatPicks(glbPart)}</span>
+  </span>`;
+}
+
 // ── PICKS FORMATTER ──────────────────────────────────────────────
 function formatPicks(raw) {
   if (!raw) return '';
@@ -640,7 +658,7 @@ fetch('reports/report-index.json')
       <div class="report-item">
         <a href="reports/${r.file}">${r.label}</a>
         <span class="badge${r.riskOff ? ' risk-off' : ''}">${r.riskOff ? '⛔ RISK-OFF' : '✅ NORMAL'}</span>
-        <span class="report-meta" title="${r.picks}">${formatPicks(r.picks)}</span>
+        ${picksRows(r.picks)}
       </div>`).join('');
   })
   .catch(() => {
