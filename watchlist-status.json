@@ -7,42 +7,48 @@
       "price": "A$5.39",
       "change": "+4.6%",
       "score": "5",
-      "note": "\u26a1 DAY \u2014 Gold +1.2% sector surge"
+      "note": "\u26a1 DAY \u2014 Gold +1.2% sector surge",
+      "market": "ASX"
     },
     "RMS": {
       "tier": "week",
       "price": "A$3.22",
       "change": "-3.01% (pullback)",
       "score": "4.5",
-      "note": "\ud83d\udcc5 WEEK \u2014 Gold momentum + top coverage"
+      "note": "\ud83d\udcc5 WEEK \u2014 Gold momentum + top coverage",
+      "market": "ASX"
     },
     "MP1": {
       "tier": "long",
       "price": "A$20.94",
       "change": "Near 52-wk high A$21.16",
       "score": "4.5",
-      "note": "\ud83d\udcc8 LONG \u2014 BofA upgrade A$22.57 + AI pivot"
+      "note": "\ud83d\udcc8 LONG \u2014 BofA upgrade A$22.57 + AI pivot",
+      "market": "ASX"
     },
     "NEM": {
       "tier": "day",
       "price": "$94-97",
       "change": "est +1.5%",
       "score": "5",
-      "note": "\u26a1 DAY \u2014 Gold +1.2% + 18 Buy analysts"
+      "note": "\u26a1 DAY \u2014 Gold +1.2% + 18 Buy analysts",
+      "market": "GLOBAL"
     },
     "WDAY": {
       "tier": "week",
       "price": "$120-124",
       "change": "+9.2% Jun 26",
       "score": "4.5",
-      "note": "\ud83d\udcc5 WEEK \u2014 Buy upgrade, $150 target"
+      "note": "\ud83d\udcc5 WEEK \u2014 Buy upgrade, $150 target",
+      "market": "GLOBAL"
     },
     "MU": {
       "tier": "long",
       "price": "$1,133.50",
       "change": "-6.7% from ATH",
       "score": "4.5",
-      "note": "\ud83d\udcc8 LONG \u2014 AI chip earnings beat; ATH pullback entry"
+      "note": "\ud83d\udcc8 LONG \u2014 AI chip earnings beat; ATH pullback entry",
+      "market": "GLOBAL"
     },
     "VTM": {
       "tier": "monitor",
