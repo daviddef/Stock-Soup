@@ -366,8 +366,8 @@ function toTvSym(ticker, exchange) {
     DASH:'BINANCE:DASHUSDT',ETC:'BINANCE:ETCUSDT',MIOTA:'BINANCE:IOTAUSDT'};
   if (CRYPTO_TV[ticker]) return CRYPTO_TV[ticker];
   if (exchange === 'ASX') return 'ASX:' + ticker;
-  if (exchange === 'NYSE') return 'NYSE:' + ticker;
-  if (exchange === 'NASDAQ') return 'NASDAQ:' + ticker;
+  // US stocks: bare ticker — TradingView widget resolves NYSE/NASDAQ automatically
+  if (exchange === 'NYSE' || exchange === 'NASDAQ') return ticker;
   if (exchange === 'LSE') return 'LSE:' + ticker;
   return ticker;
 }
@@ -398,7 +398,9 @@ async function showTicker(ticker, exchange, event) {
   // Yahoo Finance price fetch
   const ySym = toYahooSym(ticker, exchange);
   try {
-    const res  = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ySym)}?interval=1d&range=1d`);
+    // Try query2 first (better CORS from GitHub Pages), fall back to query1
+    let res = await fetch(`https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ySym)}?interval=1d&range=1d`).catch(() => null);
+    if (!res || !res.ok) res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ySym)}?interval=1d&range=1d`);
     const json = await res.json();
     const meta = json?.chart?.result?.[0]?.meta;
     if (!meta) throw new Error('no meta');
