@@ -20,14 +20,19 @@
   /* Report list */
   .report-list { background: #fff; border-radius: 8px; border: 1px solid #ddd; overflow: hidden; margin-bottom: 24px; }
   .report-list h2 { background: #1a2332; color: #fff; padding: 12px 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
-  .report-item { display: flex; align-items: flex-start; padding: 12px 20px; border-bottom: 1px solid #f0f0f0; gap: 12px; flex-wrap: wrap; }
+  /* Report archive — one-row grid: date | badge | ASX picks | GLB picks */
+  .report-item {
+    display: grid;
+    grid-template-columns: minmax(170px, max-content) auto 1fr 1fr;
+    align-items: center;
+    padding: 9px 20px; border-bottom: 1px solid #f0f0f0; gap: 6px 12px;
+  }
   .report-item:last-child { border-bottom: none; }
   .report-item:hover { background: #f9fafb; }
-  .report-item a { font-weight: bold; color: #1a2332; text-decoration: none; white-space: nowrap; min-width: 200px; flex-shrink: 0; }
-  .report-item a:hover { color: #27ae60; }
-  .report-meta { font-size: 11px; color: #888; flex: 1 1 100%; min-width: 0; line-height: 1.6; padding: 1px 0; }
-  .report-meta-row { display: flex; align-items: baseline; gap: 6px; }
-  .report-meta-label { font-size: 10px; font-weight: bold; color: #bbb; white-space: nowrap; }
+  .rp-date { font-weight: bold; color: #1a2332; text-decoration: none; font-size: 13px; white-space: nowrap; }
+  .rp-date:hover { color: #27ae60; }
+  .rp-picks { font-size: 11px; color: #777; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rp-label { font-size: 10px; color: #bbb; font-weight: bold; margin-right: 4px; }
   .pick-tok { font-weight: 700; }
   .pick-sep { color: #ccc; margin: 0 5px; }
   .badge { display: inline-block; background: #e8f5e9; color: #276749; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
@@ -581,19 +586,15 @@ async function loadEtoroJson() {
   } catch(e) { console.warn('etoro-watchlist.json unavailable:', e); }
 }
 
-// ── PICKS ROWS (two-row archive display) ─────────────────────────
-function picksRows(raw) {
-  if (!raw) return '';
+// ── PICKS COLUMNS (grid cells: ASX | GLB) ────────────────────────
+function picksColumns(raw) {
+  if (!raw) return '<span class="rp-picks"></span><span class="rp-picks"></span>';
   const parts = raw.split(' | ');
-  if (parts.length === 1) {
-    return `<span class="report-meta">${formatPicks(raw)}</span>`;
-  }
-  const asxPart = parts[0];
-  const glbPart = parts.slice(1).join(' | ');
-  return `<span class="report-meta">
-    <span class="report-meta-row"><span class="report-meta-label">🇦🇺 ASX</span>${formatPicks(asxPart)}</span>
-    <span class="report-meta-row"><span class="report-meta-label">🌏 GLB</span>${formatPicks(glbPart)}</span>
-  </span>`;
+  const asx = formatPicks(parts[0] || '');
+  const glb = formatPicks(parts.slice(1).join(' | ') || '');
+  const asxTip = (parts[0] || '').replace(/"/g, '&quot;');
+  const glbTip = (parts.slice(1).join(' | ') || '').replace(/"/g, '&quot;');
+  return `<span class="rp-picks" title="${asxTip}"><span class="rp-label">🇦🇺</span>${asx}</span><span class="rp-picks" title="${glbTip}"><span class="rp-label">🌏</span>${glb}</span>`;
 }
 
 // ── PICKS FORMATTER ──────────────────────────────────────────────
@@ -656,9 +657,9 @@ fetch('reports/report-index.json')
     document.getElementById('latest-meta').textContent = latest.timestamp + ' · ' + latest.picks;
     document.getElementById('report-index').innerHTML = reports.map(r => `
       <div class="report-item">
-        <a href="reports/${r.file}">${r.label}</a>
-        <span class="badge${r.riskOff ? ' risk-off' : ''}">${r.riskOff ? '⛔ RISK-OFF' : '✅ NORMAL'}</span>
-        ${picksRows(r.picks)}
+        <a href="reports/${r.file}" class="rp-date">${r.label}</a>
+        <span class="badge${r.riskOff ? ' risk-off' : ''}">${r.riskOff ? '⛔' : '✅'}</span>
+        ${picksColumns(r.picks)}
       </div>`).join('');
   })
   .catch(() => {
