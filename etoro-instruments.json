@@ -14,6 +14,12 @@
       "type": "Stock/ETF",
       "watchlist": "My Watchlist"
     },
+    "ADA": {
+      "id": 100017,
+      "displayName": "Cardano",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
     "AI.PA": {
       "id": 1233,
       "displayName": "Air Liquide SA",
@@ -32,10 +38,22 @@
       "type": "Stock/ETF",
       "watchlist": "Recently Invested"
     },
+    "AUDUSD": {
+      "id": 7,
+      "displayName": "AUD/USD",
+      "type": "Forex/Index/Commodity",
+      "watchlist": "My Watchlist"
+    },
     "BAC": {
       "id": 1011,
       "displayName": "Bank of America Corp",
       "type": "Stock/ETF",
+      "watchlist": "Recently Invested"
+    },
+    "BCH": {
+      "id": 100002,
+      "displayName": "Bitcoin Cash",
+      "type": "Crypto",
       "watchlist": "Recently Invested"
     },
     "BIDU": {
@@ -48,6 +66,12 @@
       "id": 6194,
       "displayName": "BioNano Genomics Inc",
       "type": "Stock/ETF",
+      "watchlist": "Recently Invested"
+    },
+    "BTC": {
+      "id": 100000,
+      "displayName": "Bitcoin",
+      "type": "Crypto",
       "watchlist": "Recently Invested"
     },
     "BTG.US": {
@@ -80,10 +104,22 @@
       "type": "Stock/ETF",
       "watchlist": "Recently Invested"
     },
+    "DASH": {
+      "id": 100004,
+      "displayName": "Dash",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
     "DDOG": {
       "id": 6414,
       "displayName": "Datadog Inc",
       "type": "Stock/ETF",
+      "watchlist": "Recently Invested"
+    },
+    "DOGE": {
+      "id": 100043,
+      "displayName": "Dogecoin",
+      "type": "Crypto",
       "watchlist": "Recently Invested"
     },
     "ECHO": {
@@ -92,11 +128,29 @@
       "type": "Stock/ETF",
       "watchlist": "2026 New DJ"
     },
+    "ETC": {
+      "id": 100007,
+      "displayName": "Ethereum Classic",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
+    "ETH": {
+      "id": 100001,
+      "displayName": "Ethereum",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
     "GDOT": {
       "id": 6711,
       "displayName": "Green Dot Corp",
       "type": "Stock/ETF",
       "watchlist": "Tempting"
+    },
+    "GOLD": {
+      "id": 18,
+      "displayName": "Gold (Non Expiry)",
+      "type": "Forex/Index/Commodity",
+      "watchlist": "Recently Invested"
     },
     "GRWG": {
       "id": 5074,
@@ -146,6 +200,24 @@
       "type": "Stock/ETF",
       "watchlist": "My Watchlist"
     },
+    "LTC": {
+      "id": 100005,
+      "displayName": "Litecoin",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
+    "MANA": {
+      "id": 100048,
+      "displayName": "Decentraland",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
+    "MIOTA": {
+      "id": 100018,
+      "displayName": "IOTA",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
     "MNDY": {
       "id": 9271,
       "displayName": "Monday.com",
@@ -164,6 +236,12 @@
       "type": "Stock/ETF",
       "watchlist": "2026 New DJ"
     },
+    "NEO": {
+      "id": 100023,
+      "displayName": "NEO",
+      "type": "Crypto",
+      "watchlist": "Recently Invested"
+    },
     "NFLX": {
       "id": 1127,
       "displayName": "Netflix, Inc.",
@@ -176,11 +254,23 @@
       "type": "Stock/ETF",
       "watchlist": "My Watchlist"
     },
+    "NSDQ100": {
+      "id": 28,
+      "displayName": "NASDAQ100 Index (Non Expiry)",
+      "type": "Forex/Index/Commodity",
+      "watchlist": "My Watchlist"
+    },
     "OCGN": {
       "id": 6258,
       "displayName": "Ocugen Inc",
       "type": "Stock/ETF",
       "watchlist": "Recently Invested"
+    },
+    "OIL": {
+      "id": 17,
+      "displayName": "Oil (Non Expiry)",
+      "type": "Forex/Index/Commodity",
+      "watchlist": "My Watchlist"
     },
     "PLTR": {
       "id": 7991,
@@ -218,16 +308,34 @@
       "type": "Stock/ETF",
       "watchlist": "Recently Invested"
     },
+    "SILVER": {
+      "id": 19,
+      "displayName": "Silver (Non Expiry)",
+      "type": "Forex/Index/Commodity",
+      "watchlist": "Recently Invested"
+    },
     "SNOW": {
       "id": 7999,
       "displayName": "Snowflake Inc.",
       "type": "Stock/ETF",
       "watchlist": "2026 New DJ"
     },
+    "SOL": {
+      "id": 100063,
+      "displayName": "Solana",
+      "type": "Crypto",
+      "watchlist": "My Watchlist"
+    },
     "TEAM": {
       "id": 4286,
       "displayName": "Atlassian Corp PLC A",
       "type": "Stock/ETF",
+      "watchlist": "Recently Invested"
+    },
+    "TRX": {
+      "id": 100026,
+      "displayName": "TRON",
+      "type": "Crypto",
       "watchlist": "Recently Invested"
     },
     "TSLA": {
@@ -248,90 +356,6 @@
       "type": "Stock/ETF",
       "watchlist": "Recently Invested"
     },
-    "ZS": {
-      "id": 4403,
-      "displayName": "Zscaler Inc",
-      "type": "Stock/ETF",
-      "watchlist": "2026 New DJ"
-    },
-    "ADA": {
-      "id": 100017,
-      "displayName": "Cardano",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "BCH": {
-      "id": 100002,
-      "displayName": "Bitcoin Cash",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "BTC": {
-      "id": 100000,
-      "displayName": "Bitcoin",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "DASH": {
-      "id": 100004,
-      "displayName": "Dash",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "DOGE": {
-      "id": 100043,
-      "displayName": "Dogecoin",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "ETC": {
-      "id": 100007,
-      "displayName": "Ethereum Classic",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "ETH": {
-      "id": 100001,
-      "displayName": "Ethereum",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "LTC": {
-      "id": 100005,
-      "displayName": "Litecoin",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "MANA": {
-      "id": 100048,
-      "displayName": "Decentraland",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "MIOTA": {
-      "id": 100018,
-      "displayName": "IOTA",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "NEO": {
-      "id": 100023,
-      "displayName": "NEO",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
-    "SOL": {
-      "id": 100063,
-      "displayName": "Solana",
-      "type": "Crypto",
-      "watchlist": "My Watchlist"
-    },
-    "TRX": {
-      "id": 100026,
-      "displayName": "TRON",
-      "type": "Crypto",
-      "watchlist": "Recently Invested"
-    },
     "XLM": {
       "id": 100020,
       "displayName": "Stellar",
@@ -344,35 +368,11 @@
       "type": "Crypto",
       "watchlist": "Recently Invested"
     },
-    "AUDUSD": {
-      "id": 7,
-      "displayName": "AUD/USD",
-      "type": "Forex/Index/Commodity",
-      "watchlist": "My Watchlist"
-    },
-    "GOLD": {
-      "id": 18,
-      "displayName": "Gold (Non Expiry)",
-      "type": "Forex/Index/Commodity",
-      "watchlist": "Recently Invested"
-    },
-    "NSDQ100": {
-      "id": 28,
-      "displayName": "NASDAQ100 Index (Non Expiry)",
-      "type": "Forex/Index/Commodity",
-      "watchlist": "My Watchlist"
-    },
-    "OIL": {
-      "id": 17,
-      "displayName": "Oil (Non Expiry)",
-      "type": "Forex/Index/Commodity",
-      "watchlist": "My Watchlist"
-    },
-    "SILVER": {
-      "id": 19,
-      "displayName": "Silver (Non Expiry)",
-      "type": "Forex/Index/Commodity",
-      "watchlist": "Recently Invested"
+    "ZS": {
+      "id": 4403,
+      "displayName": "Zscaler Inc",
+      "type": "Stock/ETF",
+      "watchlist": "2026 New DJ"
     }
   },
   "not_on_etoro": [
