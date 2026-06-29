@@ -108,21 +108,15 @@
   .tl-dot.reduce      { background: #f97316; }
   .tl-dot.sell        { background: #dc2626; }
   .tl-dot.unresearched { background: #cbd5e1; }
-  /* Traffic-light legend */
-  .tl-legend { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center;
-               background:#f8f9fb; border:1px solid #e5e7eb; border-radius:8px;
-               padding:8px 12px; margin:10px 0 4px 0; font-size:11px; color:#444; }
-  .tl-legend-item { display:flex; align-items:center; gap:5px; white-space:nowrap; }
-  .tl-legend-label { font-size:11px; font-weight:600; color:#555; margin-right:6px; }
 
   /* Research hover card */
   .hover-card {
-    display: none; position: fixed;
+    display: none; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
     width: 272px; background: #fff; border: 1px solid #ccc; border-radius: 12px;
-    padding: 12px 14px 10px; z-index: 9999;
+    padding: 12px 14px 10px; z-index: 999; pointer-events: none;
     box-shadow: 0 4px 20px rgba(0,0,0,.15); text-align: left; font-weight: normal; line-height: 1.4;
   }
-  .chip-wrap.hovered .hover-card { display: block; }
+  .chip-wrap:hover .hover-card { display: block; }
   .hover-card::after  { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#ccc; }
   .hover-card::before { content:''; position:absolute; top:calc(100% - 1px); left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#fff; z-index:1; }
   .hc-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:8px; gap:8px; }
@@ -134,10 +128,6 @@
   .hc-sentiment.hold       { background:#fef9c3; color:#854d0e; }
   .hc-sentiment.reduce     { background:#ffedd5; color:#9a3412; }
   .hc-sentiment.sell       { background:#fee2e2; color:#991b1b; }
-  .hc-ets { display:flex; gap:6px; margin:4px 0 2px 0; }
-  .hc-ets-item { flex:1; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:3px 6px; font-size:11px; color:#333; text-align:center; }
-  .hc-ets-item.hc-stop { border-color:#fecaca; background:#fff5f5; color:#b91c1c; }
-  .hc-ets-lbl { display:block; font-size:9px; color:#888; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; }
   .hc-price-row { display:flex; align-items:baseline; gap:8px; margin-bottom:8px; }
   .hc-price { font-size:16px; font-weight:600; color:#1a2332; }
   .hc-chg   { font-size:12px; font-weight:600; }
@@ -159,9 +149,6 @@
   .hc-news-item:first-child { border-top:none; }
   .hc-note { font-size:11px; color:#555; border-top:1px solid #f0f0f0; padding-top:6px; margin-top:2px; }
   .hc-footer { font-size:10px; color:#bbb; margin-top:6px; padding-top:6px; border-top:1px solid #f0f0f0; }
-  /* Mini chart inside hover card */
-  .hc-chart { margin:8px -14px -10px -14px; border-top:1px solid #eee; border-radius:0 0 12px 12px; overflow:hidden; height:140px; background:#f8f9fb; }
-  .hc-chart iframe { width:100%; height:140px; border:0; display:block; }
 
 
 
@@ -229,7 +216,7 @@
   .picks-row:last-child { border-bottom:none; }
   .pick-card { padding:12px 14px; border-right:1px solid #eee; }
   .pick-card:nth-child(3n) { border-right:none; }
-  .pick-card:hover { box-shadow: inset 0 0 60px rgba(0,0,0,0.04); }
+  .pick-card:hover { filter:brightness(0.97); }
   .pick-card.day  { background:#fff8f8; }
   .pick-card.week { background:#fffaf5; }
   .pick-card.long { background:#f5fff8; }
@@ -246,7 +233,6 @@
   .pc-change.pos { color:#27ae60; }
   .pc-change.neg { color:#c53030; }
   .pc-note { font-size:11px; color:#666; margin-top:4px; line-height:1.4; }
-  .pc-name { font-size:11px; color:#888; margin:1px 0 3px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .picks-banner-ft { padding:8px 16px; font-size:10px; color:#bbb; text-align:center; border-top:1px solid #f0f0f0; }
 </style>
 </head>
@@ -285,7 +271,7 @@
 
       <!-- Add ticker -->
       <div class="add-form">
-        <input type="text" id="ticker-input" placeholder="Add ticker e.g. BHP, TSLA" maxlength="10">
+        <input type="text" id="ticker-input" placeholder="Add tickers e.g. BHP, TSLA, EOS" maxlength="200">
         <select id="exchange-select">
           <option value="ASX">ASX</option>
           <option value="NYSE">NYSE</option>
@@ -303,17 +289,6 @@
       </div>
 
       <!-- Status note -->
-      <!-- Traffic-light legend (always visible) -->
-      <div class="tl-legend">
-        <span class="tl-legend-label">Traffic light key</span>
-        <span class="tl-legend-item"><span class="tl-dot strong-buy"></span> Strong buy</span>
-        <span class="tl-legend-item"><span class="tl-dot buy"></span> Buy</span>
-        <span class="tl-legend-item"><span class="tl-dot hold"></span> Hold</span>
-        <span class="tl-legend-item"><span class="tl-dot reduce"></span> Reduce</span>
-        <span class="tl-legend-item"><span class="tl-dot sell"></span> Sell</span>
-        <span class="tl-legend-item"><span class="tl-dot unresearched"></span> Not yet researched</span>
-      </div>
-
       <div class="watchlist-note" id="watchlist-note" style="display:none">
         <span>📌 Fixed tickers researched every run · Your additions saved in this browser</span>
         <span id="last-run-note"></span>
@@ -424,20 +399,25 @@ function loadUser() {
 function saveUser(list) { localStorage.setItem(USER_KEY, JSON.stringify(list)); }
 
 function addTicker() {
-  const t = document.getElementById('ticker-input').value.trim().toUpperCase();
+  const raw = document.getElementById('ticker-input').value;
   const e = document.getElementById('exchange-select').value;
-  if (!t) return;
-  if (pinnedList.some(p => p.ticker === t && p.exchange === e)) {
-    alert(`${t} (${e}) is already in the fixed monitoring list.`); return;
-  }
+  const tickers = raw.split(/[,\s]+/).map(s => s.trim().toUpperCase()).filter(Boolean);
+  if (!tickers.length) return;
   const user = loadUser();
-  if (user.some(x => x.ticker === t && x.exchange === e)) {
-    alert(`${t} (${e}) is already in your watchlist.`); return;
-  }
-  user.push({ ticker: t, exchange: e, added: new Date().toISOString() });
+  const skipped = [];
+  tickers.forEach(t => {
+    if (pinnedList.some(p => p.ticker === t && p.exchange === e)) {
+      skipped.push(`${t} already in fixed list`); return;
+    }
+    if (user.some(x => x.ticker === t && x.exchange === e)) {
+      skipped.push(`${t} already added`); return;
+    }
+    user.push({ ticker: t, exchange: e, added: new Date().toISOString() });
+  });
   saveUser(user); renderFixed();
   document.getElementById('ticker-input').value = '';
   document.getElementById('ticker-input').focus();
+  if (skipped.length) alert(skipped.join('\n'));
 }
 
 function removeTicker(ticker, exchange) {
@@ -591,10 +571,9 @@ function tlDot(ticker) {
   return `<span class="tl-dot ${cls}"></span>`;
 }
 
-function hoverCard(ticker, exchange, etoroName) {
+function hoverCard(ticker, exchange) {
   const st = statusMap[ticker];
-  const tvSymUnresearched = toTvSym(ticker, exchange);
-  if (!st) return `<div class="hover-card"><div class="hc-top"><div>${etoroName ? `<div class="hc-name">${etoroName}</div>` : ''}<div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment" style="background:#f1f5f9;color:#94a3b8;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;">● WATCHLIST</div></div><div class="hc-chart" data-symbol="${tvSymUnresearched}"></div><div class="hc-footer">click chip for full chart</div></div>`;
+  if (!st) return `<div class="hover-card"><div class="hc-name">${ticker} · ${exchange}</div><div style="font-size:11px;color:#888;margin-top:4px;">Not yet researched — check back after the next run.</div><div class="hc-footer">click chip for live chart</div></div>`;
 
   const sentCls   = (st.sentiment || 'hold').replace(/_/g,'-');
   const sentLabels = {strong_buy:'STRONG BUY', buy:'BUY', hold:'HOLD', reduce:'REDUCE', sell:'SELL'};
@@ -612,10 +591,6 @@ function hoverCard(ticker, exchange, etoroName) {
     rsiHtml = `<div class="rsi-wrap"><div class="rsi-label"><span>RSI 14</span><span>${rsi} — ${rsiLbl}</span></div><div class="rsi-track"><div class="rsi-fill" style="width:${rsiPct}%;background:${rsiColor};"></div><div class="rsi-m30"></div><div class="rsi-m70"></div></div></div>`;
   }
 
-  const etsHtml = (st.entry || st.target || st.stop)
-    ? `<div class="hc-ets"><span class="hc-ets-item" title="Entry zone"><span class="hc-ets-lbl">Entry</span>${st.entry||'—'}</span><span class="hc-ets-item" title="Target"><span class="hc-ets-lbl">Target</span>${st.target||'—'}</span><span class="hc-ets-item hc-stop" title="Stop loss"><span class="hc-ets-lbl">Stop</span>${st.stop||'—'}</span></div>`
-    : '';
-
   let trendHtml = '';
   if (st.trend || st.score) {
     const trendMap = {above_200sma:'Above 200-day SMA', above_50sma:'Above 50-day SMA', below_50sma:'Below 50-day SMA', below_200sma:'Below 200-day SMA'};
@@ -623,18 +598,16 @@ function hoverCard(ticker, exchange, etoroName) {
     trendHtml = `<div class="hc-trend">${st.trend ? `Trend <span class="hc-trend-badge ${tCls}">${trendMap[st.trend]||st.trend}</span>` : ''}${st.score ? ` &nbsp;Score <strong>${st.score}/5</strong>` : ''}</div>`;
   }
 
-  const _sigArr = Array.isArray(st.signals) ? st.signals : (st.signals ? String(st.signals).split(/\s*\+\s*/).map(s=>s.trim()).filter(Boolean) : []);
-  const sigsHtml = _sigArr.length
-    ? `<div class="hc-signals">${_sigArr.map(s=>`<span class="hc-sig">${s}</span>`).join('')}</div>` : '';
+  const sigsHtml = (st.signals && st.signals.length)
+    ? `<div class="hc-signals">${st.signals.map(s=>`<span class="hc-sig">${s}</span>`).join('')}</div>` : '';
 
-  const _newsArr = Array.isArray(st.news) ? st.news : (st.news ? [String(st.news)] : []);
-  const newsHtml = _newsArr.length
-    ? `<div class="hc-news">${_newsArr.map(h=>`<div class="hc-news-item">· ${h}</div>`).join('')}</div>` : '';
+  const newsHtml = (st.news && st.news.length)
+    ? `<div class="hc-news">${st.news.map(h=>`<div class="hc-news-item">· ${h}</div>`).join('')}</div>` : '';
 
   const noteHtml = (!rsiHtml && !sigsHtml && !newsHtml && st.note && st.note !== 'Not researched this run')
     ? `<div class="hc-note">${st.note}</div>` : '';
 
-  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${etsHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}${`<div class="hc-chart" data-symbol="${toTvSym(ticker,exchange)}"></div>`}<div class="hc-footer">Last researched this run · click for full chart</div></div>`;
+  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}<div class="hc-footer">Last researched this run · click for live chart</div></div>`;
 }
 
 // ── RENDER: FIXED + USER CHIPS ────────────────────────────────────
@@ -710,7 +683,7 @@ function renderEtoro() {
       const tip = item.name
         ? `${item.ticker} (${ex}) · ${item.name}`
         : `${item.ticker} · ${ex}`;
-      return `<div class="chip-wrap"><span class="chip etoro ${cls}" style="${border}" onclick="showTicker('${item.ticker}','${ex}',event)">${tlDot(item.ticker)}${item.ticker}<span class="exchange">${ex}</span>${badge}</span>${hoverCard(item.ticker,ex,item.name||"")}</div>`;
+      return `<div class="chip-wrap"><span class="chip etoro ${cls}" style="${border}" onclick="showTicker('${item.ticker}','${ex}',event)">${tlDot(item.ticker)}${item.ticker}<span class="exchange">${ex}</span>${badge}</span>${hoverCard(item.ticker,ex)}</div>`;
     }).join('');
     return `<div class="etoro-group"><div class="etoro-group-label">${wl.name} (${wl.items.length})</div><div class="chips">${chips}</div></div>`;
   }).join('');
@@ -863,17 +836,14 @@ function renderPicksCards(report) {
     const changeNeg = p.change && (p.change[0]==='-'||p.change[0]==='−');
     const changeEl = p.change ? `<span class="pc-change ${changeNeg ? 'neg' : 'pos'}">${p.change}</span>` : '';
     const exch = p.market === 'ASX' ? 'ASX' : 'NYSE';
-    const companyName = st.name || '';
-    return `<div class="pick-card chip-wrap ${cfg.cls}" onclick="showTicker('${p.ticker}','${exch}',event)" style="cursor:pointer;position:relative">
+    return `<div class="pick-card ${cfg.cls}" onclick="showTicker('${p.ticker}','${exch}',event)" style="cursor:pointer">
       <div class="pc-tier-row">
         <span class="pc-badge ${cfg.cls}">${cfg.icon} ${cfg.label}</span>
         <span class="pc-score">${score}</span>
       </div>
       <div class="pc-ticker">${p.ticker}<span class="pc-market">${flag} ${p.market}</span></div>
-      ${companyName ? `<div class="pc-name">${companyName}</div>` : ''}
       <div class="pc-price">${p.price || ''}${changeEl}</div>
       ${note ? `<div class="pc-note">${note}</div>` : ''}
-      ${hoverCard(p.ticker, exch, companyName)}
     </div>`;
   }
 
@@ -921,98 +891,6 @@ fetch('reports/report-index.json')
   // Re-render picks banner now that statusMap is populated
   // (report-index fetch may have already set _latestReport)
   if (_latestReport) renderPicksCards(_latestReport);
-})();
-
-// ── HOVER MANAGER — JS-driven show/hide with smart repositioning + lazy chart ──
-(function() {
-  let hideTimer = null;
-  let activeWrap = null;
-
-  function loadChart(card) {
-    const chartDiv = card.querySelector('.hc-chart[data-symbol]');
-    if (chartDiv && !chartDiv.querySelector('iframe')) {
-      const enc = encodeURIComponent(chartDiv.dataset.symbol);
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.tradingview.com/widgetembed/?symbol=${enc}&interval=D&theme=light&style=1&locale=en&toolbar_bg=f8f9fa&enable_publishing=false&hide_top_toolbar=1&hide_legend=1&save_image=false&hotlist=false&calendar=false&hide_side_toolbar=1`;
-      iframe.setAttribute('width', '100%');
-      iframe.setAttribute('height', '140');
-      iframe.setAttribute('frameborder', '0');
-      iframe.setAttribute('scrolling', 'no');
-      chartDiv.appendChild(iframe);
-    }
-  }
-
-  function showCard(wrap) {
-    clearTimeout(hideTimer);
-    if (activeWrap && activeWrap !== wrap) {
-      const prev = activeWrap.querySelector('.hover-card');
-      if (prev) prev.style.display = 'none';
-      activeWrap.classList.remove('hovered');
-    }
-    activeWrap = wrap;
-    const card = wrap.querySelector('.hover-card');
-    if (!card) { wrap.classList.add('hovered'); return; }
-
-    // Position synchronously — no async needed.
-    // Read wrap bounds BEFORE display:block to avoid layout shift.
-    const wRect = wrap.getBoundingClientRect();
-    const vw = window.innerWidth || document.documentElement.clientWidth;
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    const margin = 8;
-    const cardW = 272;
-    // Estimate card height (researched ~220px, unresearched ~170px).
-    // Prefer above; fall to below if not enough room above.
-    const estH = 220;
-    let top = wRect.top - estH - 10;
-    if (top < margin) top = wRect.bottom + 10;
-
-    // Centre on wrap, clamp to viewport edges
-    let left = wRect.left + wRect.width / 2 - cardW / 2;
-    left = Math.max(margin, Math.min(left, vw - cardW - margin));
-
-    card.style.top       = top  + 'px';
-    card.style.left      = left + 'px';
-    card.style.transform = 'none';
-    card.style.display   = 'block';
-    card.style.visibility = 'visible';
-    wrap.classList.add('hovered');
-    loadChart(card);
-  }
-
-  function hideCard() {
-    hideTimer = setTimeout(() => {
-      if (activeWrap) {
-        const card = activeWrap.querySelector('.hover-card');
-        if (card) card.style.display = 'none';
-        activeWrap.classList.remove('hovered');
-        activeWrap = null;
-      }
-    }, 180);
-  }
-
-  // Mouseover: trigger on chip-wrap OR keep alive when over the card itself
-  document.addEventListener('mouseover', function(e) {
-    const wrap = e.target.closest('.chip-wrap');
-    if (wrap) { showCard(wrap); return; }
-    if (e.target.closest('.hover-card')) { clearTimeout(hideTimer); return; }
-  }, true);
-
-  // Mouseout: hide unless moving to hover-card or back to chip-wrap
-  document.addEventListener('mouseout', function(e) {
-    const wrap = e.target.closest('.chip-wrap');
-    if (wrap) {
-      if (e.relatedTarget && e.relatedTarget.closest('.hover-card')) { clearTimeout(hideTimer); return; }
-      if (!wrap.contains(e.relatedTarget)) hideCard();
-      return;
-    }
-    const card = e.target.closest('.hover-card');
-    if (card) {
-      if (e.relatedTarget && (e.relatedTarget.closest('.chip-wrap') || e.relatedTarget.closest('.hover-card'))) {
-        clearTimeout(hideTimer); return;
-      }
-      hideCard();
-    }
-  }, true);
 })();
 </script>
 </body>
