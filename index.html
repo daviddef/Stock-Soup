@@ -594,7 +594,10 @@ function tlDot(ticker) {
 
 function hoverCard(ticker, exchange) {
   const st = statusMap[ticker];
-  if (!st) return `<div class="hover-card"><div class="hc-name">${ticker} · ${exchange}</div><div style="font-size:11px;color:#888;margin-top:4px;">Not yet researched — check back after the next run.</div><div class="hc-footer">click chip for live chart</div></div>`;
+  if (!st) {
+    const tvSym0 = toTvSym(ticker, exchange);
+    return `<div class="hover-card"><div class="hc-name">${ticker} · ${exchange}</div><div style="font-size:11px;color:#888;margin-top:4px;">Not yet researched — check back after the next run.</div><div class="hc-chart" data-symbol="${tvSym0}" style="height:140px;border-radius:6px;overflow:hidden;margin-top:8px;background:#f8f9fa;"></div><div class="hc-footer">click chip for live chart</div></div>`;
+  }
 
   const sentCls   = (st.sentiment || 'hold').replace(/_/g,'-');
   const sentLabels = {strong_buy:'STRONG BUY', buy:'BUY', hold:'HOLD', reduce:'REDUCE', sell:'SELL'};
@@ -628,7 +631,9 @@ function hoverCard(ticker, exchange) {
   const noteHtml = (!rsiHtml && !sigsHtml && !newsHtml && st.note && st.note !== 'Not researched this run')
     ? `<div class="hc-note">${st.note}</div>` : '';
 
-  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}<div class="hc-footer">Last researched this run · click for live chart</div></div>`;
+  const tvSym = toTvSym(ticker, exchange);
+  const chartHtml = `<div class="hc-chart" data-symbol="${tvSym}" style="height:140px;border-radius:6px;overflow:hidden;margin:6px 0 4px;background:#f8f9fa;"></div>`;
+  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}${chartHtml}<div class="hc-footer">Last researched this run · click for live chart</div></div>`;
 }
 
 // ── RENDER: FIXED + USER CHIPS ────────────────────────────────────
