@@ -521,10 +521,17 @@ function renderPicksPanel() {
   panel.style.display = 'block';
   if (statusRun) runLbl.textContent = statusRun;
 
-  // Sort: ASX day, ASX week, ASX long, Global day, Global week, Global long
+  // Sort all picks by tier (day → week → long), then by market (ASX first, then global).
+  // market field is optional — if absent, ASX tickers are ≤4 chars, global are ≥4 all-caps.
   const order = { day:0, week:1, long:2 };
-  const asxPicks = picks.filter(([t,v]) => v.market === 'ASX' || (!v.market && t.length <= 4 && !t.match(/^[A-Z]{3,5}$/))).sort(([,a],[,b]) => order[a.tier]-order[b.tier]);
-  const glbPicks = picks.filter(([t,v]) => v.market === 'US' || v.market === 'NYSE' || v.market === 'NASDAQ').sort(([,a],[,b]) => order[a.tier]-order[b.tier]);
+  function isASX(ticker, v) {
+    if (v.market) return v.market === 'ASX';
+    // Heuristic: ASX tickers are 2-4 chars and often contain digits (MP1, ZIP) or are short (VTM, EOS)
+    // US tickers are 4-5 all-caps letters (WDAY, NVDA, QBTS)
+    return !(ticker.length >= 4 && /^[A-Z]{4,5}$/.test(ticker));
+  }
+  const asxPicks = picks.filter(([t,v]) => isASX(t,v)).sort(([,a],[,b]) => order[a.tier]-order[b.tier]);
+  const glbPicks = picks.filter(([t,v]) => !isASX(t,v)).sort(([,a],[,b]) => order[a.tier]-order[b.tier]);
   const allPicks = [...asxPicks, ...glbPicks].slice(0, 6);
 
   grid.innerHTML = allPicks.map(([ticker, v]) => {
@@ -538,7 +545,7 @@ function renderPicksPanel() {
         <span style="font-size:11px;font-weight:bold;color:${m.color};background:${m.bg};border:1px solid ${m.border};padding:2px 8px;border-radius:10px;">${m.icon} ${m.label}</span>
         ${v.score ? `<span style="font-size:10px;color:#888;">${v.score}/5</span>` : ''}
       </div>
-      <div style="font-size:20px;font-weight:bold;color:#1a2332;">${ticker}</div>
+      <div style="font-size:20px;font-weight:bold;color:#1a2332;">${ticker} <span style="font-size:10px;font-weight:normal;color:#888;">${isASX(ticker,v)?'🇦🇺 ASX':'🌏 Global'}</span></div>
       <div style="font-size:13px;font-weight:bold;color:#333;margin-top:1px;">${v.price || '—'} <span style="color:${chgColor};font-size:12px;">${chg}</span></div>
       <div style="font-size:11px;color:#555;margin-top:4px;line-height:1.3;">${(v.note||'').replace(/^[⚡📅📈👁]\s*[A-Z]+\s*[—–]\s*/,'')}</div>
     </div>`;
