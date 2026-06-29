@@ -70,7 +70,7 @@
     display: inline-flex; align-items: center; gap: 5px;
     background: #eef6ff; border: 1.5px solid #bee3f8; border-radius: 20px;
     padding: 6px 10px 6px 14px; font-size: 13px; font-weight: bold; color: #1a4a7a;
-    cursor: default; transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
   }
   .chip:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
   .chip .exchange { font-size: 10px; color: #666; font-weight: normal; }
@@ -108,11 +108,43 @@
   .help-btn { display: inline-block; background: #2980b9; color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-left: 12px; vertical-align: middle; }
   .help-btn:hover { background: #2471a3; }
 
-  /* Inline price on chip */
-  .chip-price-line { display: block; font-size: 10px; font-weight: normal; color: #666; margin-top: 1px; line-height: 1.3; }
-  .chip-change-pos { color: #007a55; font-weight: bold; }
-  .chip-change-neg { color: #c53030; font-weight: bold; }
-  .chip-change-neu { color: #888; }
+  /* Collapsible eToro header */
+  .wl-section-header { cursor: pointer; border-radius: 4px; padding-left: 4px; margin-left: -4px; transition: background 0.15s; }
+  .wl-section-header:hover { background: #f5f7fa; }
+  .etoro-chevron { font-size: 10px; color: #999; transition: transform 0.2s; display: inline-block; margin-left: 6px; }
+  .etoro-chevron.open { transform: rotate(90deg); }
+
+  /* Ticker modal */
+  .ticker-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    z-index: 1000; align-items: center; justify-content: center;
+  }
+  .ticker-overlay.open { display: flex; }
+  .ticker-modal {
+    background: #fff; border-radius: 12px; width: 400px; max-width: 95vw;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25); overflow: hidden; animation: modalIn 0.18s ease;
+  }
+  @keyframes modalIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .ticker-modal-hd {
+    background: #1a2332; color: #fff; padding: 14px 18px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+  }
+  .ticker-modal-hd .ex-label { font-size: 10px; color: #8ab4cc; margin-bottom: 2px; }
+  .ticker-modal-hd h3 { font-size: 18px; font-weight: bold; line-height: 1.2; }
+  .ticker-modal-hd .close-btn { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; opacity: 0.6; padding: 0; line-height: 1; margin-top: 2px; }
+  .ticker-modal-hd .close-btn:hover { opacity: 1; }
+  .ticker-modal-bd { padding: 16px 18px 18px; }
+  .ticker-company { font-size: 12px; color: #666; margin-bottom: 8px; min-height: 16px; }
+  .ticker-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .ticker-price { font-size: 26px; font-weight: bold; color: #1a2332; }
+  .ticker-change { font-size: 13px; font-weight: bold; }
+  .ticker-change.pos { color: #27ae60; }
+  .ticker-change.neg { color: #c53030; }
+  .ticker-52w { font-size: 11px; color: #aaa; margin-bottom: 10px; min-height: 14px; }
+  .ticker-chart-wrap { border-radius: 8px; overflow: hidden; margin-bottom: 8px; background: #f8f9fa; }
+  .ticker-modal-foot { text-align: right; }
+  .ticker-modal-foot a { font-size: 11px; color: #2980b9; text-decoration: none; }
+  .ticker-modal-foot a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -123,18 +155,6 @@
 </div>
 
 <div class="container">
-
-  <!-- ========== THIS HOUR'S PICKS ========== -->
-  <div id="picks-panel" class="report-list" style="display:none;margin-bottom:24px;">
-    <div style="background:#1a2332;color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;">⚡ This Hour's Picks</span>
-      <span id="picks-run-label" style="font-size:11px;color:#aabbcc;"></span>
-    </div>
-    <div id="picks-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;"></div>
-    <div style="padding:8px 20px;font-size:10px;color:#aaa;border-top:1px solid #f0f0f0;">
-      Auto-generated research · Not financial advice · Verify prices before trading
-    </div>
-  </div>
 
   <!-- Latest report -->
   <div class="latest" id="latest-report">
@@ -177,15 +197,15 @@
 
       <!-- eToro section -->
       <div id="etoro-section" style="display:none">
-        <div class="wl-section-header">
-          <h3>📊 eToro Watchlists</h3>
+        <div class="wl-section-header" onclick="toggleEtoro()">
+          <h3>📊 eToro Watchlists <span class="etoro-chevron" id="etoro-chevron">▶</span></h3>
           <span class="sync-note" id="etoro-sync-note">Loading…</span>
         </div>
-        <div id="etoro-lists">
+        <div id="etoro-lists" style="display:none">
           <span class="empty-msg">Loading eToro data…</span>
         </div>
-        <div style="font-size:10px;color:#aaa;margin-top:8px;">
-          Read-only · Run <code>etoro-watchlist-sync.py --publish</code> to refresh
+        <div id="etoro-footer" style="font-size:10px;color:#aaa;margin-top:8px;display:none;">
+          Read-only · Synced daily
         </div>
       </div>
 
@@ -227,6 +247,31 @@
   </div>
 </div>
 
+<!-- ── TICKER MODAL ── -->
+<div class="ticker-overlay" id="ticker-overlay" onclick="closeTickerModal(event)">
+  <div class="ticker-modal" id="ticker-modal">
+    <div class="ticker-modal-hd">
+      <div>
+        <div class="ex-label" id="modal-exchange"></div>
+        <h3 id="modal-ticker">—</h3>
+      </div>
+      <button class="close-btn" onclick="closeTickerModal()">×</button>
+    </div>
+    <div class="ticker-modal-bd">
+      <div class="ticker-company" id="modal-company">Loading…</div>
+      <div class="ticker-price-row">
+        <span class="ticker-price" id="modal-price">—</span>
+        <span class="ticker-change" id="modal-change"></span>
+      </div>
+      <div class="ticker-52w" id="modal-52w"></div>
+      <div class="ticker-chart-wrap" id="modal-chart"></div>
+      <div class="ticker-modal-foot">
+        <a id="modal-tv-link" href="#" target="_blank" rel="noopener">View full chart on TradingView →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── CONFIG ────────────────────────────────────────────────────────
 const USER_KEY = 'stock-watchlist-user-v1';
@@ -240,11 +285,12 @@ const TIER = {
 };
 
 // ── STATE ─────────────────────────────────────────────────────────
-let pinnedList   = [];
-let statusMap    = {};
-let statusRun    = null;
-let statusReport = null;
-let etoroData    = null;
+let pinnedList    = [];
+let statusMap     = {};
+let statusRun     = null;
+let statusReport  = null;
+let etoroData     = null;
+let etoroExpanded = false;
 
 // ── USER ADDITIONS ────────────────────────────────────────────────
 function loadUser() {
@@ -283,6 +329,113 @@ function clearUserTickers() {
 document.getElementById('ticker-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') addTicker();
 });
+
+// ── ETORO TOGGLE ─────────────────────────────────────────────────
+function toggleEtoro() {
+  etoroExpanded = !etoroExpanded;
+  const listsEl  = document.getElementById('etoro-lists');
+  const footerEl = document.getElementById('etoro-footer');
+  const chevron  = document.getElementById('etoro-chevron');
+  listsEl.style.display  = etoroExpanded ? 'block' : 'none';
+  footerEl.style.display = etoroExpanded ? 'block' : 'none';
+  chevron.classList.toggle('open', etoroExpanded);
+}
+
+// ── TICKER MODAL ──────────────────────────────────────────────────
+// Map ticker + exchange to Yahoo Finance symbol
+function toYahooSym(ticker, exchange) {
+  const CRYPTO = {BTC:'BTC-USD',ETH:'ETH-USD',ADA:'ADA-USD',SOL:'SOL-USD',
+    DOGE:'DOGE-USD',XRP:'XRP-USD',LTC:'LTC-USD',BCH:'BCH-USD',MANA:'MANA-USD',
+    NEO:'NEO-USD',TRX:'TRX-USD',MIOTA:'MIOTA-USD',ETC:'ETC-USD',XLM:'XLM-USD',
+    DASH:'DASH-USD',BNB:'BNB-USD',LINK:'LINK-USD',DOT:'DOT-USD',
+    ADA:'ADA-USD',AVAX:'AVAX-USD',MATIC:'MATIC-USD'};
+  if (CRYPTO[ticker]) return CRYPTO[ticker];
+  // Forex pairs e.g. AUDUSD → AUDUSD=X
+  if (/^[A-Z]{6}$/.test(ticker) && !exchange) return ticker + '=X';
+  if (exchange === 'ASX') return ticker + '.AX';
+  if (exchange === 'LSE') return ticker + '.L';
+  return ticker;
+}
+
+// Map ticker + exchange to TradingView symbol
+function toTvSym(ticker, exchange) {
+  const CRYPTO_TV = {BTC:'BITSTAMP:BTCUSD',ETH:'BITSTAMP:ETHUSD',ADA:'BINANCE:ADAUSDT',
+    SOL:'BINANCE:SOLUSDT',DOGE:'BINANCE:DOGEUSDT',XRP:'BITSTAMP:XRPUSD',
+    LTC:'BITSTAMP:LTCUSD',BCH:'BITSTAMP:BCHUSD',MANA:'BINANCE:MANAUSDT',
+    NEO:'BINANCE:NEOUSDT',TRX:'BINANCE:TRXUSDT',XLM:'BINANCE:XLMUSDT',
+    DASH:'BINANCE:DASHUSDT',ETC:'BINANCE:ETCUSDT',MIOTA:'BINANCE:IOTAUSDT'};
+  if (CRYPTO_TV[ticker]) return CRYPTO_TV[ticker];
+  if (exchange === 'ASX') return 'ASX:' + ticker;
+  if (exchange === 'NYSE') return 'NYSE:' + ticker;
+  if (exchange === 'NASDAQ') return 'NASDAQ:' + ticker;
+  if (exchange === 'LSE') return 'LSE:' + ticker;
+  return ticker;
+}
+
+async function showTicker(ticker, exchange, event) {
+  if (event) event.stopPropagation();
+  const overlay = document.getElementById('ticker-overlay');
+  overlay.classList.add('open');
+
+  // Reset UI
+  document.getElementById('modal-ticker').textContent  = ticker;
+  document.getElementById('modal-exchange').textContent = exchange;
+  document.getElementById('modal-company').textContent  = 'Loading price…';
+  document.getElementById('modal-price').textContent    = '—';
+  document.getElementById('modal-change').textContent   = '';
+  document.getElementById('modal-change').className     = 'ticker-change';
+  document.getElementById('modal-52w').textContent      = '';
+  document.getElementById('modal-chart').innerHTML      = '';
+
+  // TradingView chart
+  const tvSym  = toTvSym(ticker, exchange);
+  const tvEnc  = encodeURIComponent(tvSym);
+  document.getElementById('modal-tv-link').href = `https://www.tradingview.com/chart/?symbol=${tvEnc}`;
+  document.getElementById('modal-chart').innerHTML =
+    `<iframe src="https://www.tradingview.com/widgetembed/?symbol=${tvEnc}&interval=D&theme=light&style=1&locale=en&toolbar_bg=f8f9fa&enable_publishing=false&hide_top_toolbar=1&hide_legend=0&save_image=false&hotlist=false&calendar=false"
+      width="100%" height="220" frameborder="0" allowtransparency="true" style="display:block"></iframe>`;
+
+  // Yahoo Finance price fetch
+  const ySym = toYahooSym(ticker, exchange);
+  try {
+    const res  = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ySym)}?interval=1d&range=1d`);
+    const json = await res.json();
+    const meta = json?.chart?.result?.[0]?.meta;
+    if (!meta) throw new Error('no meta');
+
+    const name    = meta.longName || meta.shortName || ticker;
+    const price   = meta.regularMarketPrice;
+    const change  = meta.regularMarketChange;
+    const pct     = meta.regularMarketChangePercent;
+    const cur     = meta.currency || '';
+    const lo52    = meta.fiftyTwoWeekLow;
+    const hi52    = meta.fiftyTwoWeekHigh;
+
+    document.getElementById('modal-company').textContent = name;
+    document.getElementById('modal-price').textContent   = `${price?.toFixed(2) ?? '—'} ${cur}`;
+
+    const sign = change >= 0 ? '+' : '';
+    const chEl = document.getElementById('modal-change');
+    chEl.textContent  = `${sign}${change?.toFixed(2)} (${sign}${pct?.toFixed(2)}%)`;
+    chEl.className    = 'ticker-change ' + (change >= 0 ? 'pos' : 'neg');
+
+    if (lo52 && hi52) {
+      document.getElementById('modal-52w').textContent =
+        `52-week range: ${lo52.toFixed(2)} – ${hi52.toFixed(2)} ${cur}`;
+    }
+  } catch {
+    document.getElementById('modal-company').textContent = 'Live price unavailable — check TradingView below';
+  }
+}
+
+function closeTickerModal(event) {
+  if (event && event.target !== document.getElementById('ticker-overlay')) return;
+  document.getElementById('ticker-overlay').classList.remove('open');
+  document.getElementById('modal-chart').innerHTML = ''; // kill iframe
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTickerModal(); });
 
 // ── CHIP HELPERS ──────────────────────────────────────────────────
 function exClass(ex) {
@@ -350,9 +503,9 @@ function renderFixed() {
     const title  = chipTip(item.ticker, item.exchange);
     const border = tierBorder(item.ticker);
     const action = item.pinned
-      ? `<span class="pinned-icon" title="Fixed monitoring list — always researched">📌</span>`
-      : `<button class="remove" onclick="removeTicker('${item.ticker}','${item.exchange}')" title="Remove">×</button>`;
-    return `<span class="chip ${cls}" style="${border}" title="${title}">${item.ticker}<span class="exchange">${item.exchange}</span>${badge}${action}</span>`;
+      ? `<span class="pinned-icon" onclick="event.stopPropagation()" title="Fixed monitoring list — always researched">📌</span>`
+      : `<button class="remove" onclick="event.stopPropagation();removeTicker('${item.ticker}','${item.exchange}')" title="Remove">×</button>`;
+    return `<span class="chip ${cls}" style="${border}" title="Click for live quote" onclick="showTicker('${item.ticker}','${item.exchange}',event)">${item.ticker}<span class="exchange">${item.exchange}</span>${badge}${action}</span>`;
   }).join('');
 }
 
@@ -389,17 +542,7 @@ function renderEtoro() {
       const tip = item.name
         ? `${item.ticker} (${ex}) · ${item.name}${statusMap[item.ticker] ? ' · ' + chipTip(item.ticker, ex).split(' · ').slice(1).join(' · ') : ''}`
         : chipTip(item.ticker, ex);
-      const est = statusMap[item.ticker];
-      let ePriceLine = '';
-      if (est && est.price && est.price !== '—' && est.price !== '') {
-        const echg = est.change || '';
-        let echgClass = 'chip-change-neu';
-        if (echg.startsWith('-')) echgClass = 'chip-change-neg';
-        else if (echg.startsWith('+')) echgClass = 'chip-change-pos';
-        const echgSpan = echg && echg !== '—' ? ` <span class="${echgClass}">${echg}</span>` : '';
-        ePriceLine = `<span class="chip-price-line">${est.price}${echgSpan}</span>`;
-      }
-      return `<span class="chip etoro ${cls}" style="${border}" title="${tip}">${item.ticker}<span class="exchange">${ex}</span>${ePriceLine}${badge}</span>`;
+      return `<span class="chip etoro ${cls}" style="${border}" title="Click for live quote" onclick="showTicker('${item.ticker}','${ex}',event)">${item.ticker}<span class="exchange">${ex}</span>${badge}</span>`;
     }).join('');
     return `<div class="etoro-group"><div class="etoro-group-label">${wl.name} (${wl.items.length})</div><div class="chips">${chips}</div></div>`;
   }).join('');
@@ -503,61 +646,11 @@ fetch('reports/report-index.json')
       '<div class="report-item"><span style="color:#888;font-size:13px;padding:8px 0;">No reports yet.</span></div>';
   });
 
-
-// ── PICKS PANEL ──────────────────────────────────────────────────
-const TIER_META = {
-  day:     { icon:'⚡', label:'DAY',   border:'#c53030', bg:'#fff0f0', color:'#c53030' },
-  week:    { icon:'📅', label:'WEEK',  border:'#c05621', bg:'#fff5ee', color:'#c05621' },
-  long:    { icon:'📈', label:'LONG',  border:'#276749', bg:'#f0fff4', color:'#276749' },
-};
-
-function renderPicksPanel() {
-  const panel  = document.getElementById('picks-panel');
-  const grid   = document.getElementById('picks-grid');
-  const runLbl = document.getElementById('picks-run-label');
-  const picks  = Object.entries(statusMap).filter(([,v]) => ['day','week','long'].includes(v.tier));
-  if (!picks.length) { panel.style.display = 'none'; return; }
-
-  panel.style.display = 'block';
-  if (statusRun) runLbl.textContent = statusRun;
-
-  // Sort all picks by tier (day → week → long), then by market (ASX first, then global).
-  // market field is optional — if absent, ASX tickers are ≤4 chars, global are ≥4 all-caps.
-  const order = { day:0, week:1, long:2 };
-  function isASX(ticker, v) {
-    if (v.market) return v.market === 'ASX';
-    // Heuristic: ASX tickers are 2-4 chars and often contain digits (MP1, ZIP) or are short (VTM, EOS)
-    // US tickers are 4-5 all-caps letters (WDAY, NVDA, QBTS)
-    return !(ticker.length >= 4 && /^[A-Z]{4,5}$/.test(ticker));
-  }
-  const asxPicks = picks.filter(([t,v]) => isASX(t,v)).sort(([,a],[,b]) => order[a.tier]-order[b.tier]);
-  const glbPicks = picks.filter(([t,v]) => !isASX(t,v)).sort(([,a],[,b]) => order[a.tier]-order[b.tier]);
-  const allPicks = [...asxPicks, ...glbPicks].slice(0, 6);
-
-  grid.innerHTML = allPicks.map(([ticker, v]) => {
-    const m = TIER_META[v.tier] || TIER_META.long;
-    const chg = v.change || '';
-    let chgColor = '#888';
-    if (chg.startsWith('-')) chgColor = '#c53030';
-    else if (chg.startsWith('+')) chgColor = '#007a55';
-    return `<div style="padding:14px 16px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;background:${m.bg};">
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-        <span style="font-size:11px;font-weight:bold;color:${m.color};background:${m.bg};border:1px solid ${m.border};padding:2px 8px;border-radius:10px;">${m.icon} ${m.label}</span>
-        ${v.score ? `<span style="font-size:10px;color:#888;">${v.score}/5</span>` : ''}
-      </div>
-      <div style="font-size:20px;font-weight:bold;color:#1a2332;">${ticker} <span style="font-size:10px;font-weight:normal;color:#888;">${isASX(ticker,v)?'🇦🇺 ASX':'🌏 Global'}</span></div>
-      <div style="font-size:13px;font-weight:bold;color:#333;margin-top:1px;">${v.price || '—'} <span style="color:${chgColor};font-size:12px;">${chg}</span></div>
-      <div style="font-size:11px;color:#555;margin-top:4px;line-height:1.3;">${(v.note||'').replace(/^[⚡📅📈👁]\s*[A-Z]+\s*[—–]\s*/,'')}</div>
-    </div>`;
-  }).join('');
-}
-
 // ── INIT ──────────────────────────────────────────────────────────
 (async () => {
   await Promise.all([loadWatchlistJson(), loadStatusJson(), loadEtoroJson()]);
   renderFixed();
   renderEtoro();
-  renderPicksPanel();
 })();
 </script>
 </body>
