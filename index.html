@@ -310,7 +310,7 @@
       <!-- Analyst Watchlist section (research status for all tickers) -->
       <div id="aw-section" style="display:none">
         <div class="wl-section-header" onclick="toggleAW()">
-          <h3>🔬 Analyst Research Status <span class="etoro-chevron" id="aw-chevron">▶</span></h3>
+          <h3>🔬 This Run's Research Picks <span class="etoro-chevron" id="aw-chevron">▶</span></h3>
           <span class="sync-note" id="aw-sync-note">Loading…</span>
         </div>
         <div id="aw-chips" style="display:none">
@@ -919,22 +919,23 @@ function renderAnalystWatchlist() {
   const entries = Object.entries(statusMap);
   if (!entries.length) return;
 
-  // Sort: picks first (day→week→long), then monitor; within group by sentiment
+  // Only show independently-researched picks (day/week/long) — not our own watchlist (monitor)
   const SENT_ORDER = {strong_buy:0, buy:1, hold:2, reduce:3, sell:4};
-  const TIER_ORDER = {day:0, week:1, long:2, monitor:3};
-  const sorted = entries.slice().sort(([,a],[,b]) => {
-    const td = (TIER_ORDER[a.tier]||3)-(TIER_ORDER[b.tier]||3);
+  const TIER_ORDER = {day:0, week:1, long:2};
+  const picksOnly = entries.filter(([,st]) => st.tier && st.tier !== 'monitor');
+  if (!picksOnly.length) return;
+  const sorted = picksOnly.slice().sort(([,a],[,b]) => {
+    const td = (TIER_ORDER[a.tier]??3)-(TIER_ORDER[b.tier]??3);
     return td !== 0 ? td : (SENT_ORDER[a.sentiment]||2)-(SENT_ORDER[b.sentiment]||2);
   });
 
-  // Group by tier for labels
-  const groups = {day:[], week:[], long:[], monitor:[]};
+  // Group by tier
+  const groups = {day:[], week:[], long:[]};
   sorted.forEach(([ticker, st]) => {
-    const tier = st.tier || 'monitor';
-    (groups[tier] || groups.monitor).push([ticker, st]);
+    if (groups[st.tier]) groups[st.tier].push([ticker, st]);
   });
 
-  const TIER_LABEL = {day:'⚡ Day Picks', week:'📅 Week Picks', long:'📈 Long Picks', monitor:'👁 Monitor'};
+  const TIER_LABEL = {day:'⚡ Research Picks · Day', week:'📅 Research Picks · Week', long:'📈 Research Picks · Long'};
 
   let html_out = '';
   for (const [tier, items] of Object.entries(groups)) {
@@ -951,9 +952,9 @@ function renderAnalystWatchlist() {
   }
 
   chipsEl.innerHTML = html_out;
-  const total = entries.length;
-  const researched = entries.filter(([,st]) => st.sentiment && st.sentiment !== 'hold').length;
-  syncEl.textContent = `${total} tickers · ${researched} researched this run`;
+  const total = picksOnly.length;
+  const byTier = t => picksOnly.filter(([,st]) => st.tier===t).length;
+  syncEl.textContent = `${byTier('day')} day · ${byTier('week')} week · ${byTier('long')} long`;
   section.style.display = 'block';
   footerEl.style.display = 'none'; // shown on expand
 }
