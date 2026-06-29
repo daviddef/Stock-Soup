@@ -108,6 +108,12 @@
   .tl-dot.reduce      { background: #f97316; }
   .tl-dot.sell        { background: #dc2626; }
   .tl-dot.unresearched { background: #cbd5e1; }
+  /* Traffic-light legend */
+  .tl-legend { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center;
+               background:#f8f9fb; border:1px solid #e5e7eb; border-radius:8px;
+               padding:8px 12px; margin:10px 0 4px 0; font-size:11px; color:#444; }
+  .tl-legend-item { display:flex; align-items:center; gap:5px; white-space:nowrap; }
+  .tl-legend-label { font-size:11px; font-weight:600; color:#555; margin-right:6px; }
 
   /* Research hover card */
   .hover-card {
@@ -289,6 +295,17 @@
       </div>
 
       <!-- Status note -->
+      <!-- Traffic-light legend -->
+      <div class="tl-legend">
+        <span class="tl-legend-label">Traffic light key</span>
+        <span class="tl-legend-item"><span class="tl-dot strong-buy"></span> Strong buy</span>
+        <span class="tl-legend-item"><span class="tl-dot buy"></span> Buy</span>
+        <span class="tl-legend-item"><span class="tl-dot hold"></span> Hold</span>
+        <span class="tl-legend-item"><span class="tl-dot reduce"></span> Reduce</span>
+        <span class="tl-legend-item"><span class="tl-dot sell"></span> Sell</span>
+        <span class="tl-legend-item"><span class="tl-dot unresearched"></span> Not yet researched</span>
+      </div>
+
       <div class="watchlist-note" id="watchlist-note" style="display:none">
         <span>📌 Fixed tickers researched every run · Your additions saved in this browser</span>
         <span id="last-run-note"></span>
