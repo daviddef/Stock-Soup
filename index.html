@@ -950,7 +950,7 @@ fetch('reports/report-index.json')
     card.style.left = '0';
     card.style.transform = 'none';
 
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       const wRect = wrap.getBoundingClientRect();
       const cardH = card.offsetHeight;
       const cardW = card.offsetWidth || 272;
