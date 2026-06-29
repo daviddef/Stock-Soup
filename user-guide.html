@@ -196,7 +196,7 @@
 <div class="card" id="pipeline">
   <div class="card-header"><span class="icon">🗺️</span><h2>The Big Picture — What Happens Every Hour</h2></div>
   <div class="card-body">
-    <p style="margin-bottom:20px;color:#555;font-size:13px;">Two skills run back-to-back every hour. Think of it as a three-stage funnel: cast wide, score everything, deliver the best.</p>
+    <p style="margin-bottom:20px;color:#555;font-size:13px;">Three skills run in sequence every hour across 8 phases. Think of it as a three-stage funnel: cast wide, score everything, deliver the best.</p>
 
     <div class="pipeline">
       <div class="pipe-box">
@@ -212,10 +212,26 @@
       </div>
       <div class="pipe-arrow">▶</div>
       <div class="pipe-box pipe-blue">
-        <div class="label">Delivery</div>
-        <div class="title">📬 Email + GitHub</div>
-        <div class="sub">6 picks delivered</div>
+        <div class="label">Skill 3</div>
+        <div class="title">📬 Publish Report</div>
+        <div class="sub">Email + GitHub + Log</div>
       </div>
+    </div>
+    <div style="margin:12px 0 4px;overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:600px;">
+        <tr style="background:#1a2332;color:#aabbcc;text-align:left;">
+          <th style="padding:6px 10px;">Phase</th><th style="padding:6px 10px;">Skill / Section</th><th style="padding:6px 10px;">What it does</th><th style="padding:6px 10px;white-space:nowrap;">Frequency</th>
+        </tr>
+        <tr style="background:#f8f9fa;"><td style="padding:5px 10px;font-weight:bold;">1 — INIT</td><td style="padding:5px 10px;">STEP 0A</td><td style="padding:5px 10px;">Load <code>watchlist.json</code> + <code>etoro-watchlist.json</code> from GitHub</td><td style="padding:5px 10px;">Every run</td></tr>
+        <tr><td style="padding:5px 10px;font-weight:bold;">2 — GEO</td><td style="padding:5px 10px;">STEP 0A-GEO</td><td style="padding:5px 10px;">3 searches → Geopolitical Briefing above Macro Snapshot</td><td style="padding:5px 10px;">Every run</td></tr>
+        <tr style="background:#f8f9fa;"><td style="padding:5px 10px;font-weight:bold;">3 — DISCOVER</td><td style="padding:5px 10px;">asx-global-discovery</td><td style="padding:5px 10px;">Homepage scrapes + keyword searches → candidate pool</td><td style="padding:5px 10px;">Every run</td></tr>
+        <tr><td style="padding:5px 10px;font-weight:bold;">4 — PRICE DATA</td><td style="padding:5px 10px;">STEP 0, 0B, 0C</td><td style="padding:5px 10px;">Live prices, AUD/USD, BTC/VIX risk signal, RSI/SMA</td><td style="padding:5px 10px;">Every run</td></tr>
+        <tr style="background:#f8f9fa;"><td style="padding:5px 10px;font-weight:bold;">5 — ENRICH</td><td style="padding:5px 10px;">STEP 0B-ii, 0B-iii, 0F</td><td style="padding:5px 10px;">Fundamentals, advanced technicals, global news — <strong>daily cache</strong></td><td style="padding:5px 10px;">Once/day (cached)</td></tr>
+        <tr><td style="padding:5px 10px;font-weight:bold;">5 — FEEDS</td><td style="padding:5px 10px;">STEP 0D (tiered T1/T2/T3)</td><td style="padding:5px 10px;">T1 always · T2 if pool thin · T3 if pool very thin</td><td style="padding:5px 10px;">Every run</td></tr>
+        <tr style="background:#f8f9fa;"><td style="padding:5px 10px;font-weight:bold;">6 — SCORE</td><td style="padding:5px 10px;">STEP 0E + 0I</td><td style="padding:5px 10px;">Score all candidates → ranked ASX + Global pools</td><td style="padding:5px 10px;">Every run</td></tr>
+        <tr><td style="padding:5px 10px;font-weight:bold;">7 — PICK + REPORT</td><td style="padding:5px 10px;">STEP 1, 2, 3</td><td style="padding:5px 10px;">Select 3 ASX + 3 Global picks, write report</td><td style="padding:5px 10px;">Every run</td></tr>
+        <tr style="background:#f8f9fa;"><td style="padding:5px 10px;font-weight:bold;">8 — PUBLISH</td><td style="padding:5px 10px;">publish-report skill</td><td style="padding:5px 10px;">email-builder.py → Gmail → GitHub Pages → watchlist-status.json</td><td style="padding:5px 10px;">Every run</td></tr>
+      </table>
     </div>
 
     <div class="funnel">
@@ -301,6 +317,9 @@
 
     <div style="margin-top:20px;padding:14px 16px;background:#fffbf0;border-left:3px solid #f39c12;border-radius:0 6px 6px 0;font-size:13px;">
       <strong>Why no company names in search queries?</strong> Searching for a stock you already know only confirms what you already believe. Signal-first discovery finds what you <em>don't</em> know yet — the stocks about to move before you heard about them.
+    </div>
+    <div style="margin-top:16px;padding:14px 16px;background:#eef6ff;border-left:3px solid #2980b9;border-radius:0 6px 6px 0;font-size:13px;">
+      <strong>Tiered news feeds (T1 / T2 / T3):</strong> The 32 news feeds now run in priority order. <span style="background:#fff3f3;color:#c53030;font-weight:bold;padding:2px 7px;border-radius:10px;font-size:11px;">T1</span> (Stockhead, SDU, Discovery Alert, ASX Announcements) always runs. <span style="background:#fff3e0;color:#c77d00;font-weight:bold;padding:2px 7px;border-radius:10px;font-size:11px;">T2</span> runs only if the candidate pool is thin (&lt;10 ASX or &lt;4 Global). <span style="background:#f8f8f8;color:#666;font-weight:bold;padding:2px 7px;border-radius:10px;font-size:11px;">T3</span> runs only if the pool is very thin. This skips unnecessary fetches on busy market days.
     </div>
   </div>
 </div>
@@ -479,6 +498,9 @@
         </ul>
       </div>
     </div>
+    <div style="margin-top:14px;padding:12px 16px;background:#f8f9fa;border-radius:6px;font-size:12px;color:#555;">
+      <strong style="color:#1a2332;">⚡ Daily API cache:</strong> Alpha Vantage (25 calls/day), Mediastack (100 calls/month), and Twelve Data (800 credits/month) are called <strong>once per day only</strong>. The first run writes results to <code style="background:#f0f0f0;padding:1px 4px;border-radius:3px;">/tmp/daily-cache-YYYY-MM-DD.json</code>. All subsequent hourly runs read from cache — no wasted quota.
+    </div>
   </div>
 </div>
 
@@ -537,6 +559,7 @@
         Links to the GitHub Pages report for this exact run
       </div>
       <div class="em-sub">🇦🇺 ASX: TICKER · TICKER · TICKER &nbsp;|&nbsp; 🌏 Global: TICKER · TICKER · TICKER</div>
+      <div style="background:#2c3e50;color:#8ab4cc;padding:8px 16px;font-size:11px;">🌐 GEOPOLITICAL BRIEFING — <span style="color:#fff;">Situation summary + commodity table: Oil · Gold · Uranium · Copper · Wheat</span></div>
       <div class="em-macro">📊 MARKET SNAPSHOT &nbsp;·&nbsp; ASX 200 · VIX · Gold · Oil · AUD/USD · BTC · Candidates: N</div>
       <div class="em-section">
         <div class="em-label">🇦🇺 ASX ⚡ Day Pick</div>
@@ -590,18 +613,20 @@
 <div class="card" id="architecture">
   <div class="card-header"><span class="icon">🔧</span><h2>Under the Hood — Skill Architecture</h2></div>
   <div class="card-body">
-    <p style="margin-bottom:16px;font-size:13px;color:#555;">The system is split into 5 modular skill files. Each handles one phase of the pipeline — you can re-run any phase in isolation without affecting the others.</p>
+    <p style="margin-bottom:16px;font-size:13px;color:#555;">The system uses four modular skills. Each handles a distinct phase of the pipeline and can be run or re-run independently.</p>
     <div class="arch">
-      <div class="arch-label">📡 SKILL-ASX.md</div>
-      <div class="arch-detail"><strong>ASX Data Collector</strong> — EODHD live prices, smallcaps RSI/SMA technicals, ASX announcements, volume leaders. Runs first every session.</div>
-      <div class="arch-label">🌏 SKILL-GLOBAL.md</div>
-      <div class="arch-detail"><strong>Global Data Collector</strong> — Finnhub (US quotes, BTC, analyst consensus), Alpha Vantage (US movers), Mediastack (global news), commodity basket, sector ETFs, geopolitical check, options flow &amp; insider buys (daily).</div>
-      <div class="arch-label">📊 SKILL-SCORER.md</div>
-      <div class="arch-detail"><strong>Stock Scorer</strong> — Weighted scoring model, yfinance 5-day history, Twelve Data Supertrend/ADX, FMP screener + economic calendar (mandatory), 30+ web searches, win-rate tracking.</div>
-      <div class="arch-label">📝 SKILL-REPORT.md</div>
-      <div class="arch-detail"><strong>Report Builder</strong> — Writes hourly-stock-watch.md with all sections including full Section 15 audit trail.</div>
-      <div class="arch-label">📬 SKILL-DELIVERY.md</div>
-      <div class="arch-detail"><strong>Delivery Pipeline</strong> — email-builder.py fills email-template.html → Gmail draft. publish-report.py pushes HTML to GitHub Pages. Log entry appended.</div>
+      <div class="arch-label">🔍 asx-global-discovery</div>
+      <div class="arch-detail"><strong>Phase 3 — Discover:</strong> 15 homepage scrapes + 35 keyword searches → candidate pool. Always runs first. Outputs ranked table + sector heat map that feeds directly into scoring. <em>~245 lines.</em></div>
+      <div class="arch-label">📊 hourly-global-stock-picks</div>
+      <div class="arch-detail"><strong>Phases 2, 4, 5, 6, 7:</strong> Geopolitical briefing → price data (EODHD + Finnhub + smallcaps) → enrichment (AV/Mediastack/Twelve Data — daily cache) → tiered news feeds → scoring → pick selection → report writing. <em>~1,735 lines · report structure in report-template.md.</em></div>
+      <div class="arch-label">📬 publish-report</div>
+      <div class="arch-detail"><strong>Phase 8 — Publish:</strong> Reads /tmp/email-data.json → email-builder.py fills email-template.html → Gmail draft → publish-report.py pushes HTML to GitHub Pages → writes watchlist-status.json → SMS (paused). Can be re-run independently to retry a failed send. <em>~148 lines.</em></div>
+      <div class="arch-label">👁️ watchlist-monitor</div>
+      <div class="arch-detail"><strong>Anytime — Quick check:</strong> Fetches live prices, RSI, SMA position, volume, and last-researched tier for every ticker in watchlist.json + etoro-watchlist.json. No pick generation. Runs in under 3 minutes. Use when you say "how is my watchlist doing?" <em>~178 lines.</em></div>
+    </div>
+    <div style="margin-top:14px;background:#f8f9fa;border-radius:6px;padding:14px 16px;font-size:12px;">
+      <strong style="color:#1a2332;">Supporting files:</strong>
+      <span style="color:#555;"> &nbsp;email-template.html (locked layout) · report-template.md (report structure, on GitHub) · email-builder.py (fills template from JSON) · publish-report.py (pushes to GitHub) · watchlist.json (monitoring tickers, GitHub) · etoro-watchlist.json (eToro positions, GitHub) · watchlist-status.json (per-ticker tier/score, written each run)</span>
     </div>
 
     <div style="margin-top:16px;padding:14px 16px;background:#e8f5e9;border-radius:6px;font-size:13px;">
@@ -623,11 +648,11 @@
         <span style="font-size:15px;">1️⃣</span>
         <div>
           <div style="font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">Fixed Monitoring List — checked every run</div>
-          <div style="font-size:11px;color:#8ab4cc;margin-top:2px;">Hardcoded in SKILL.md · EODHD + Yahoo Finance + smallcaps.com.au</div>
+          <div style="font-size:11px;color:#8ab4cc;margin-top:2px;">watchlist.json on GitHub · EODHD + Finnhub + smallcaps.com.au</div>
         </div>
       </div>
       <div style="padding:16px 18px;font-size:13px;">
-        <p style="color:#555;margin-bottom:12px;">A curated list of tickers David holds or actively monitors. Every run, the system fetches live prices, RSI/SMA technicals, and recent news for each. They enter the scoring pool on equal footing with newly discovered candidates — no automatic pick priority.</p>
+        <p style="color:#555;margin-bottom:12px;">A curated list of tickers stored in <code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">watchlist.json</code> in the Stock-Soup GitHub repo — no hardcoded tickers in the skill file. Every run, the system fetches live prices, RSI/SMA technicals, and recent news for each. They enter the scoring pool on equal footing with newly discovered candidates — no automatic pick priority. The watchlist is loaded fresh each run so adding/removing tickers takes effect immediately without editing the skill.</p>
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
           <span class="badge green">VTM</span><span class="badge green">PDN</span><span class="badge green">IEL</span><span class="badge green">TLX</span><span class="badge green">EOS</span><span class="badge green">NTU</span><span class="badge green">DYL</span><span class="badge green">DRO</span><span class="badge green">A2M</span><span class="badge green">SGH</span><span class="badge green">WTC</span><span class="badge blue">PLTR</span>
         </div>
@@ -652,7 +677,7 @@
           </div>
         </div>
         <div style="margin-top:12px;padding:10px 14px;background:#fffbf0;border-left:3px solid #f39c12;border-radius:0 6px 6px 0;font-size:12px;color:#555;">
-          <strong>To add a ticker to the fixed list permanently:</strong> use the "Request Ticker for Research Queue" form on the <a href="index.html" style="color:#c77d00;">archive page</a> — it opens a GitHub issue that David can approve and add to SKILL.md.
+          <strong>To add a ticker to the fixed list:</strong> edit <code style="background:#f0f0f0;padding:1px 4px;border-radius:3px;">watchlist.json</code> in the <a href="https://github.com/daviddef/Stock-Soup" style="color:#c77d00;" target="_blank">Stock-Soup GitHub repo</a>. The next hourly run will pick it up automatically — no skill file changes needed.
         </div>
       </div>
     </div>
@@ -663,11 +688,11 @@
         <span style="font-size:15px;">2️⃣</span>
         <div>
           <div style="font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">eToro Watchlist Sync — run manually to update</div>
-          <div style="font-size:11px;color:#8ab4cc;margin-top:2px;">etoro-watchlist-sync.py · eToro public API · maps instrument IDs to tickers</div>
+          <div style="font-size:11px;color:#8ab4cc;margin-top:2px;">etoro-watchlist.json on GitHub · refreshed via etoro-watchlist-sync.py --publish</div>
         </div>
       </div>
       <div style="padding:16px 18px;font-size:13px;">
-        <p style="color:#555;margin-bottom:12px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">etoro-watchlist-sync.py</code> connects to the eToro public API and pulls every watchlist from David's eToro account — including all instruments, their internal eToro IDs, live ask/bid/last prices, and which watchlist they belong to.</p>
+        <p style="color:#555;margin-bottom:12px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">etoro-watchlist-sync.py --publish</code> pulls your eToro watchlists and writes <code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">etoro-watchlist.json</code> to the Stock-Soup GitHub repo. The skill loads this file at runtime (Phase 1) — no live eToro API calls happen during hourly runs (the eToro API blocks automated requests).</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;margin-bottom:12px;">
           <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
             <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">What it outputs</div>
@@ -702,7 +727,7 @@
         </div>
       </div>
       <div style="padding:16px 18px;font-size:13px;">
-        <p style="color:#555;margin-bottom:12px;">The chip UI on the <a href="index.html" style="color:#2980b9;">archive page</a> lets you save tickers locally in your browser. These are stored in <code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">localStorage</code> — they persist across page refreshes and app restarts but are not synced anywhere or read by Claude.</p>
+        <p style="color:#555;margin-bottom:12px;">The chip UI on the <a href="index.html" style="color:#2980b9;">archive page</a> lets you save tickers locally in your browser. Chips are colour-coded by the tier assigned in the last hourly run (<code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">watchlist-status.json</code> written by publish-report.py). These are stored in <code style="background:#f0f4ff;padding:2px 6px;border-radius:4px;font-size:11px;">localStorage</code> — they persist across refreshes but are not read by Claude.</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;">
           <div style="background:#f8f8f8;border-radius:6px;padding:10px 12px;">
             <div style="font-weight:bold;color:#1a2332;margin-bottom:6px;">What it does</div>
@@ -734,8 +759,8 @@
       <p style="font-size:12px;font-weight:bold;color:#1a2332;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Summary</p>
       <table class="nice">
         <tr><th>Layer</th><th>Where stored</th><th>Fetched by Claude?</th><th>Influences picks?</th><th>How to update</th></tr>
-        <tr><td><strong>1 — Fixed list</strong></td><td>SKILL.md</td><td>✅ Every run</td><td>✅ Competes equally</td><td>GitHub issue → edit SKILL.md</td></tr>
-        <tr><td><strong>2 — eToro sync</strong></td><td>SKILL.md (Feed 21 IDs)</td><td>✅ Via eToro rates API</td><td>✅ If catalyst exists</td><td>Run etoro-watchlist-sync.py</td></tr>
+        <tr><td><strong>1 — Fixed list</strong></td><td>watchlist.json (GitHub)</td><td>✅ Every run</td><td>✅ Competes equally</td><td>Edit watchlist.json in GitHub repo</td></tr>
+        <tr><td><strong>2 — eToro sync</strong></td><td>etoro-watchlist.json (GitHub)</td><td>✅ Loaded in Phase 1</td><td>✅ If catalyst exists</td><td>Run etoro-watchlist-sync.py --publish</td></tr>
         <tr><td><strong>3 — Browser chips</strong></td><td>Browser localStorage</td><td>❌ Not read</td><td>❌ No</td><td>Add/remove on archive page</td></tr>
       </table>
     </div>
@@ -775,7 +800,7 @@
 </div>
 
 <div class="footer">
-  ASX + Global Stock Watch · Auto-generated market research · Not financial advice
+  ASX + Global Stock Watch · Auto-generated market research · Not financial advice · Updated June 2026
 </div>
 
 </div><!-- /container -->
