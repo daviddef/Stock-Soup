@@ -61,5 +61,12 @@
     "label": "Thu 25 Jun 2026 15:50 AEST",
     "picks": "EOS\u00b7TLX\u00b7VTM | PLTR",
     "riskOff": true
+  },
+  {
+    "file": "2026-06-29-etoro-watchlist-preview.html",
+    "timestamp": "2026-06-29-etoro-watchlist-preview",
+    "label": "2026-06-29-etoro-watchlist-preview",
+    "picks": "External Watchlists preview",
+    "riskOff": false
   }
 ]
