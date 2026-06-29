@@ -615,11 +615,13 @@ function hoverCard(ticker, exchange, etoroName) {
     trendHtml = `<div class="hc-trend">${st.trend ? `Trend <span class="hc-trend-badge ${tCls}">${trendMap[st.trend]||st.trend}</span>` : ''}${st.score ? ` &nbsp;Score <strong>${st.score}/5</strong>` : ''}</div>`;
   }
 
-  const sigsHtml = (st.signals && st.signals.length)
-    ? `<div class="hc-signals">${st.signals.map(s=>`<span class="hc-sig">${s}</span>`).join('')}</div>` : '';
+  const _sigArr = Array.isArray(st.signals) ? st.signals : (st.signals ? String(st.signals).split(/\s*\+\s*/).map(s=>s.trim()).filter(Boolean) : []);
+  const sigsHtml = _sigArr.length
+    ? `<div class="hc-signals">${_sigArr.map(s=>`<span class="hc-sig">${s}</span>`).join('')}</div>` : '';
 
-  const newsHtml = (st.news && st.news.length)
-    ? `<div class="hc-news">${st.news.map(h=>`<div class="hc-news-item">· ${h}</div>`).join('')}</div>` : '';
+  const _newsArr = Array.isArray(st.news) ? st.news : (st.news ? [String(st.news)] : []);
+  const newsHtml = _newsArr.length
+    ? `<div class="hc-news">${_newsArr.map(h=>`<div class="hc-news-item">· ${h}</div>`).join('')}</div>` : '';
 
   const noteHtml = (!rsiHtml && !sigsHtml && !newsHtml && st.note && st.note !== 'Not researched this run')
     ? `<div class="hc-note">${st.note}</div>` : '';

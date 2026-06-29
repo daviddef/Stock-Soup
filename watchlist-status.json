@@ -4,68 +4,94 @@
   "tickers": {
     "BC8": {
       "tier": "day",
-      "price": "A\\$1.15",
+      "price": "A$1.15",
       "change": "+0% (upgrade day)",
       "score": "",
       "note": "Black Cat Syndicate (BC8) published a 62% upgrade to its Trojan gold resource (\u2192",
       "market": "ASX",
       "name": "Black Cat Syndicate",
-      "signals": "Resource upgrade 62% + Gold ATH A$5,906 + Analyst target A$1.95",
+      "signals": [
+        "Resource upgrade 62%",
+        "Gold ATH A$5,906",
+        "Analyst target A$1.95"
+      ],
       "sentiment": "strong_buy"
     },
     "BOE": {
       "tier": "week",
-      "price": "A\\$1.05",
+      "price": "A$1.05",
       "change": "+3.96%",
       "score": "",
       "note": "Boss Energy led uranium volume today (+3.96%). With 13.73% short interest (3rd m",
       "market": "ASX",
       "name": "Boss Energy",
-      "signals": "Vol leader + 13.73% short + uranium $85.85/lb + analyst target A$1.58",
+      "signals": [
+        "Vol leader",
+        "13.73% short",
+        "uranium $85.85/lb",
+        "analyst target A$1.58"
+      ],
       "sentiment": "buy"
     },
     "EOS": {
       "tier": "long",
-      "price": "A\\$9.44",
+      "price": "A$9.44",
       "change": "\u22121.67%",
       "score": "",
       "note": "EOS assembled A$726M in orders after acquiring MARSS (UK counter-drone). Active ",
       "market": "ASX",
       "name": "Electro Optic Systems",
-      "signals": "$726M order book + NATO orders + Apollo laser pending",
+      "signals": [
+        "$726M order book",
+        "NATO orders",
+        "Apollo laser pending"
+      ],
       "sentiment": "buy"
     },
     "MRNA": {
       "tier": "day",
-      "price": "\\$69.29",
+      "price": "$69.29",
       "change": "+12.0% Fri",
       "score": "",
       "note": "Moderna: FDA 9-0 unanimous adcom vote for mFLUSIVA (mRNA flu vaccine). Aug 5 PDU",
       "market": "GLOBAL",
       "name": "Moderna",
-      "signals": "FDA 9-0 unanimous + Aug 5 PDUFA + Science Day + 52w high",
+      "signals": [
+        "FDA 9-0 unanimous",
+        "Aug 5 PDUFA",
+        "Science Day",
+        "52w high"
+      ],
       "sentiment": "strong_buy"
     },
     "WDAY": {
       "tier": "week",
-      "price": "\\$122.30",
+      "price": "$122.30",
       "change": "+6.1% Fri",
       "score": "",
       "note": "Workday beat Q1 FY27 on revenue and EPS. Monness Crespi upgraded to Buy (+6.1% F",
       "market": "GLOBAL",
       "name": "Workday",
-      "signals": "Q1 FY27 beat + Monness upgrade + SaaS sector rotation",
+      "signals": [
+        "Q1 FY27 beat",
+        "Monness upgrade",
+        "SaaS sector rotation"
+      ],
       "sentiment": "buy"
     },
     "SLS": {
       "tier": "long",
-      "price": "\\$12.43",
+      "price": "$12.43",
       "change": "+17.66% Fri",
       "score": "",
       "note": "SLS: 33% float short at all-time record. Squeezing Friday after exec severance c",
       "market": "GLOBAL",
       "name": "SELLAS Life Sciences",
-      "signals": "33% short record + AML trial + buyout chatter \u2014 HIGH RISK",
+      "signals": [
+        "33% short record",
+        "AML trial",
+        "buyout chatter \u2014 HIGH RISK"
+      ],
       "sentiment": "buy"
     },
     "VTM": {
