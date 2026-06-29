@@ -108,12 +108,6 @@
   .tl-dot.reduce      { background: #f97316; }
   .tl-dot.sell        { background: #dc2626; }
   .tl-dot.unresearched { background: #cbd5e1; }
-  /* Traffic-light legend */
-  .tl-legend { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center;
-               background:#f8f9fb; border:1px solid #e5e7eb; border-radius:8px;
-               padding:8px 12px; margin:10px 0 4px 0; font-size:11px; color:#444; }
-  .tl-legend-item { display:flex; align-items:center; gap:5px; white-space:nowrap; }
-  .tl-legend-label { font-size:11px; font-weight:600; color:#555; margin-right:6px; }
 
   /* Research hover card */
   .hover-card {
@@ -295,17 +289,6 @@
       </div>
 
       <!-- Status note -->
-      <!-- Traffic-light legend -->
-      <div class="tl-legend">
-        <span class="tl-legend-label">Traffic light key</span>
-        <span class="tl-legend-item"><span class="tl-dot strong-buy"></span> Strong buy</span>
-        <span class="tl-legend-item"><span class="tl-dot buy"></span> Buy</span>
-        <span class="tl-legend-item"><span class="tl-dot hold"></span> Hold</span>
-        <span class="tl-legend-item"><span class="tl-dot reduce"></span> Reduce</span>
-        <span class="tl-legend-item"><span class="tl-dot sell"></span> Sell</span>
-        <span class="tl-legend-item"><span class="tl-dot unresearched"></span> Not yet researched</span>
-      </div>
-
       <div class="watchlist-note" id="watchlist-note" style="display:none">
         <span>📌 Fixed tickers researched every run · Your additions saved in this browser</span>
         <span id="last-run-note"></span>
@@ -592,7 +575,7 @@ function hoverCard(ticker, exchange) {
   const sentLabel = sentLabels[st.sentiment] || (st.tier||'').toUpperCase() || 'HOLD';
 
   const priceHtml = (st.price && st.price !== '—')
-    ? `<div class="hc-price-row"><span class="hc-price">${st.price}</span>${st.change && st.change !== '—' ? `<span class="hc-chg ${st.change.startsWith('-') ? 'neg' : 'pos'}">${st.change}</span>` : ''}</div>`
+    ? `<div class="hc-price-row"><span class="hc-price">${st.price}</span>${st.change && st.change !== '—' ? `<span class="hc-chg ${(st.change[0]==='-'||st.change[0]==='−') ? 'neg' : 'pos'}">${st.change}</span>` : ''}</div>`
     : '';
 
   let rsiHtml = '';
@@ -654,7 +637,6 @@ function renderFixed() {
   container.innerHTML = all.map(item => {
     const cls    = exClass(item.exchange);
     const badge  = statusBadge(item.ticker);
-    const title  = chipTip(item.ticker, item.exchange);
     const border = tierBorder(item.ticker);
     const action = item.pinned
       ? `<span class="pinned-icon" onclick="event.stopPropagation()" title="Fixed monitoring list — always researched">📌</span>`
@@ -694,8 +676,8 @@ function renderEtoro() {
       const badge = statusBadge(item.ticker);
       const border = tierBorder(item.ticker);
       const tip = item.name
-        ? `${item.ticker} (${ex}) · ${item.name}${statusMap[item.ticker] ? ' · ' + chipTip(item.ticker, ex).split(' · ').slice(1).join(' · ') : ''}`
-        : chipTip(item.ticker, ex);
+        ? `${item.ticker} (${ex}) · ${item.name}`
+        : `${item.ticker} · ${ex}`;
       return `<div class="chip-wrap"><span class="chip etoro ${cls}" style="${border}" onclick="showTicker('${item.ticker}','${ex}',event)">${tlDot(item.ticker)}${item.ticker}<span class="exchange">${ex}</span>${badge}</span>${hoverCard(item.ticker,ex)}</div>`;
     }).join('');
     return `<div class="etoro-group"><div class="etoro-group-label">${wl.name} (${wl.items.length})</div><div class="chips">${chips}</div></div>`;
@@ -846,7 +828,7 @@ function renderPicksCards(report) {
     const rawNote = st.note || '';
     const note = rawNote && !rawNote.includes('pick this run') ? rawNote : '';
     const flag = p.market === 'ASX' ? '🇦🇺' : '🌏';
-    const changeNeg = p.change && p.change.startsWith('-');
+    const changeNeg = p.change && (p.change[0]==='-'||p.change[0]==='−');
     const changeEl = p.change ? `<span class="pc-change ${changeNeg ? 'neg' : 'pos'}">${p.change}</span>` : '';
     const exch = p.market === 'ASX' ? 'ASX' : 'NYSE';
     return `<div class="pick-card ${cfg.cls}" onclick="showTicker('${p.ticker}','${exch}',event)" style="cursor:pointer">
