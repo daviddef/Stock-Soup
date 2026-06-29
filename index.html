@@ -221,15 +221,27 @@
   .pb-report-link a { color:#8ab4cc; text-decoration:none; }
   .pb-report-link a:hover { color:#fff; text-decoration:underline; }
   .pb-desc { font-size:10px; color:#6a8ea8; margin-left:6px; }
-  .picks-chips { padding:12px 16px 10px; display:flex; flex-wrap:wrap; gap:8px; }
-  /* Pick chips — extend base chip with tier colours */
-  .chip.pick-day  { background:#fff0f0; border-color:#c53030; color:#c53030; }
-  .chip.pick-week { background:#fff5ee; border-color:#c05621; color:#c05621; }
-  .chip.pick.asx  { } /* already coloured by tier */
-  .pc-price-inline { font-weight:400; color:#555; margin-left:4px; font-size:11px; }
-  .pc-chg-pos { color:#27ae60; margin-left:2px; font-size:11px; }
-  .pc-chg-neg { color:#c53030; margin-left:2px; font-size:11px; }
-  .pc-tier-badge { font-size:9px; font-weight:700; margin-right:3px; opacity:0.75; }
+  /* Pick cards grid */
+  .picks-row { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #eee; }
+  .picks-row:last-child { border-bottom:none; }
+  .pick-card { padding:14px 16px; border-right:1px solid #eee; cursor:pointer; transition:background 0.15s; }
+  .pick-card:nth-child(3n) { border-right:none; }
+  .pick-card:hover { background:rgba(0,0,0,0.02); }
+  .pick-card.day  { background:#fff8f8; }
+  .pick-card.week { background:#fffaf5; }
+  .pick-card.long { background:#f5fff8; }
+  .pc-tier-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+  .pc-badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:bold; padding:3px 10px; border-radius:20px; border:1.5px solid; }
+  .pc-badge.day  { color:#c53030; border-color:#c53030; background:#fff0f0; }
+  .pc-badge.week { color:#c05621; border-color:#c05621; background:#fff5ee; }
+  .pc-badge.long { color:#276749; border-color:#276749; background:#f0fff4; }
+  .pc-score { font-size:11px; color:#aaa; }
+  .pc-ticker { font-size:22px; font-weight:bold; color:#1a2332; line-height:1.2; display:flex; align-items:baseline; gap:6px; margin-bottom:4px; }
+  .pc-market { font-size:11px; color:#888; font-weight:normal; }
+  .pc-price  { font-size:13px; font-weight:bold; color:#333; }
+  .pc-change { font-size:12px; font-weight:bold; margin-left:4px; }
+  .pc-change.pos { color:#27ae60; }
+  .pc-change.neg { color:#c53030; }
   .pc-note { font-size:11px; color:#666; margin-top:4px; line-height:1.4; }
   .picks-banner-ft { padding:8px 16px; font-size:10px; color:#bbb; text-align:center; border-top:1px solid #f0f0f0; }
 
@@ -256,7 +268,7 @@
       <span class="pb-title">⚡ THIS HOUR'S PICKS</span>
       <div class="pb-report-link" id="pb-report-link"></div>
     </div>
-    <div class="picks-chips" id="picks-grid"></div>
+    <div id="picks-grid"></div>
     <div class="picks-banner-ft">Auto-generated research · Not financial advice · Verify prices before trading</div>
   </div>
 
@@ -857,22 +869,31 @@ function renderPicksCards(report) {
   if (!picks.length) return;
 
   const TIER_CFG = {
-    day:  { label:'DAY',  icon:'⚡', chipCls:'pick-day' },
-    week: { label:'WEEK', icon:'📅', chipCls:'pick-week' },
-    long: { label:'LONG', icon:'📈', chipCls:'pick-long' },
+    day:  { label:'DAY',  icon:'⚡', cls:'day' },
+    week: { label:'WEEK', icon:'📅', cls:'week' },
+    long: { label:'LONG', icon:'📈', cls:'long' },
   };
 
-  function chipHtml(p) {
+  function cardHtml(p, fallbackTier) {
+    if (!p) return `<div class="pick-card ${fallbackTier}" style="min-height:90px;opacity:0.3"></div>`;
     const cfg = TIER_CFG[p.tier] || TIER_CFG.day;
-    const exch = p.market === 'ASX' ? 'ASX' : 'GLOBAL';
+    const st = statusMap[p.ticker] || {};
     const flag = p.market === 'ASX' ? '🇦🇺' : '🌏';
-    const neg = p.change && (p.change[0]==='-'||p.change[0]==='−');
-    const chgEl = p.change ? `<span class="${neg?'pc-chg-neg':'pc-chg-pos'}">${p.change}</span>` : '';
-    const priceEl = p.price ? `<span class="pc-price-inline">${p.price}</span>${chgEl}` : '';
-    return `<div class="chip-wrap">
-      <span class="chip ${cfg.chipCls}" onclick="showTicker('${p.ticker}','${exch}',event)" style="cursor:pointer">
-        <span class="pc-tier-badge">${cfg.icon}${cfg.label}</span>${tlDot(p.ticker)}${p.ticker}<span class="exchange">${flag} ${exch}</span>${priceEl}
-      </span>${hoverCard(p.ticker, exch)}
+    const exch = p.market === 'ASX' ? 'ASX' : 'GLOBAL';
+    const changeNeg = p.change && (p.change[0]==='-'||p.change[0]==='−');
+    const changeEl = p.change ? `<span class="pc-change ${changeNeg?'neg':'pos'}">${p.change}</span>` : '';
+    const score = st.score ? `<span class="pc-score">${st.score}/5</span>` : '';
+    const note = (() => {
+      const raw = st.note || '';
+      if (!raw || raw.includes('pick this run') || raw.includes('Not researched')) return '';
+      return raw.length > 90 ? raw.slice(0,90)+'…' : raw;
+    })();
+    return `<div class="pick-card ${cfg.cls} chip-wrap" onclick="showTicker('${p.ticker}','${exch}',event)">
+      <div class="pc-tier-row"><span class="pc-badge ${cfg.cls}">${cfg.icon} ${cfg.label}</span>${score}</div>
+      <div class="pc-ticker">${p.ticker}<span class="pc-market">${flag} ${p.market}</span></div>
+      <div class="pc-price">${p.price||''}${changeEl}</div>
+      ${note ? `<div class="pc-note">${note}</div>` : ''}
+      ${hoverCard(p.ticker, exch)}
     </div>`;
   }
 
@@ -882,21 +903,18 @@ function renderPicksCards(report) {
   const banner = document.getElementById('picks-banner');
   const linkEl = document.getElementById('pb-report-link');
 
-  // Header: link + description
+  // Header link + description
   const label  = report.label || report.timestamp || '';
   const href   = report.file ? 'reports/' + report.file : '#';
   const asxStr = asx.map(p => p.ticker).join(', ') || '—';
   const glbStr = glb.map(p => p.ticker).join(', ') || '—';
   linkEl.innerHTML = `<a href="${href}" target="_blank">⚡ ${label} — View Full Report →</a><span class="pb-desc">ASX: ${asxStr} · Global: ${glbStr}</span>`;
 
-  // Chips: ASX picks then Global picks
-  const asxGroup = asx.length
-    ? `<span style="font-size:10px;color:#8ab4cc;align-self:center;white-space:nowrap;">🇦🇺 ASX</span>${asx.map(chipHtml).join('')}`
-    : '';
-  const glbGroup = glb.length
-    ? `<span style="font-size:10px;color:#8ab4cc;align-self:center;white-space:nowrap;margin-left:8px;">🌏 Global</span>${glb.map(chipHtml).join('')}`
-    : '';
-  grid.innerHTML = asxGroup + glbGroup;
+  // 2×3 card grid (ASX row + Global row)
+  const tiers = ['day','week','long'];
+  grid.innerHTML =
+    `<div class="picks-row">${[0,1,2].map(i => cardHtml(asx[i], tiers[i])).join('')}</div>` +
+    `<div class="picks-row">${[0,1,2].map(i => cardHtml(glb[i], tiers[i])).join('')}</div>`;
   banner.style.display = 'block';
 }
 
