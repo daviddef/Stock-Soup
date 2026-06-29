@@ -97,6 +97,60 @@
 
   /* Pin icon */
   .pinned-icon { font-size: 10px; cursor: default; opacity: 0.45; user-select: none; }
+  /* Hover card wrapper */
+  .chip-wrap { position: relative; display: inline-block; }
+
+  /* Traffic-light dot */
+  .tl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+  .tl-dot.strong-buy  { background: #15803d; }
+  .tl-dot.buy         { background: #22c55e; }
+  .tl-dot.hold        { background: #f59e0b; }
+  .tl-dot.reduce      { background: #f97316; }
+  .tl-dot.sell        { background: #dc2626; }
+  .tl-dot.unresearched { background: #cbd5e1; }
+
+  /* Research hover card */
+  .hover-card {
+    display: none; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+    width: 272px; background: #fff; border: 1px solid #ccc; border-radius: 12px;
+    padding: 12px 14px 10px; z-index: 999; pointer-events: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,.15); text-align: left; font-weight: normal; line-height: 1.4;
+  }
+  .chip-wrap:hover .hover-card { display: block; }
+  .hover-card::after  { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#ccc; }
+  .hover-card::before { content:''; position:absolute; top:calc(100% - 1px); left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#fff; z-index:1; }
+  .hc-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:8px; gap:8px; }
+  .hc-name { font-size:11px; color:#777; margin-bottom:2px; }
+  .hc-ticker { font-size:15px; font-weight:600; color:#1a2332; }
+  .hc-sentiment { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:700; padding:3px 8px; border-radius:20px; white-space:nowrap; flex-shrink:0; }
+  .hc-sentiment.strong-buy { background:#dcfce7; color:#15803d; }
+  .hc-sentiment.buy        { background:#dcfce7; color:#166534; }
+  .hc-sentiment.hold       { background:#fef9c3; color:#854d0e; }
+  .hc-sentiment.reduce     { background:#ffedd5; color:#9a3412; }
+  .hc-sentiment.sell       { background:#fee2e2; color:#991b1b; }
+  .hc-price-row { display:flex; align-items:baseline; gap:8px; margin-bottom:8px; }
+  .hc-price { font-size:16px; font-weight:600; color:#1a2332; }
+  .hc-chg   { font-size:12px; font-weight:600; }
+  .hc-chg.pos { color:#16a34a; } .hc-chg.neg { color:#dc2626; }
+  .hc-trend { display:flex; align-items:center; gap:6px; font-size:10px; color:#777; margin-bottom:8px; flex-wrap:wrap; }
+  .hc-trend-badge { font-size:10px; padding:1px 7px; border-radius:8px; font-weight:600; }
+  .hc-trend-badge.above { background:#dcfce7; color:#166534; }
+  .hc-trend-badge.below { background:#fee2e2; color:#991b1b; }
+  .rsi-wrap { margin-bottom:8px; }
+  .rsi-label { display:flex; justify-content:space-between; font-size:10px; color:#888; margin-bottom:3px; }
+  .rsi-track { height:5px; background:#e5e7eb; border-radius:3px; position:relative; }
+  .rsi-fill  { height:100%; border-radius:3px; position:absolute; left:0; top:0; }
+  .rsi-m30   { width:1px; height:9px; background:#9ca3af; position:absolute; left:30%; top:-2px; }
+  .rsi-m70   { width:1px; height:9px; background:#9ca3af; position:absolute; left:70%; top:-2px; }
+  .hc-signals { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
+  .hc-sig { font-size:10px; padding:1px 7px; border-radius:10px; background:#f3f4f6; color:#374151; font-weight:500; }
+  .hc-news { font-size:11px; color:#555; }
+  .hc-news-item { padding:3px 0; border-top:1px solid #f0f0f0; }
+  .hc-news-item:first-child { border-top:none; }
+  .hc-note { font-size:11px; color:#555; border-top:1px solid #f0f0f0; padding-top:6px; margin-top:2px; }
+  .hc-footer { font-size:10px; color:#bbb; margin-top:6px; padding-top:6px; border-top:1px solid #f0f0f0; }
+
+
 
   /* Watchlist note */
   .watchlist-note { margin-top: 12px; font-size: 11px; color: #888; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
@@ -506,15 +560,49 @@ function tierBorder(ticker) {
   return `border-color:${TIER[st.tier].border};`;
 }
 
-function chipTip(ticker, exchange) {
+function tlDot(ticker) {
   const st = statusMap[ticker];
-  if (!st) return `${ticker} (${exchange}) — not researched yet`;
-  const p = [`${ticker} ${exchange}`];
-  if (st.price)  p.push(st.price);
-  if (st.change) p.push(st.change);
-  if (st.score)  p.push(`Score: ${st.score}/5`);
-  if (st.note)   p.push(st.note);
-  return p.join(' · ');
+  const cls = (st && st.sentiment) ? st.sentiment.replace(/_/g,'-') : 'unresearched';
+  return `<span class="tl-dot ${cls}"></span>`;
+}
+
+function hoverCard(ticker, exchange) {
+  const st = statusMap[ticker];
+  if (!st) return `<div class="hover-card"><div class="hc-name">${ticker} · ${exchange}</div><div style="font-size:11px;color:#888;margin-top:4px;">Not yet researched — check back after the next run.</div><div class="hc-footer">click chip for live chart</div></div>`;
+
+  const sentCls   = (st.sentiment || 'hold').replace(/_/g,'-');
+  const sentLabels = {strong_buy:'STRONG BUY', buy:'BUY', hold:'HOLD', reduce:'REDUCE', sell:'SELL'};
+  const sentLabel = sentLabels[st.sentiment] || (st.tier||'').toUpperCase() || 'HOLD';
+
+  const priceHtml = (st.price && st.price !== '—')
+    ? `<div class="hc-price-row"><span class="hc-price">${st.price}</span>${st.change && st.change !== '—' ? `<span class="hc-chg ${st.change.startsWith('-') ? 'neg' : 'pos'}">${st.change}</span>` : ''}</div>`
+    : '';
+
+  let rsiHtml = '';
+  if (st.rsi) {
+    const rsi = parseFloat(st.rsi), rsiPct = Math.min(100, Math.max(0, rsi));
+    const rsiColor = rsi < 30 ? '#22c55e' : rsi > 70 ? '#ef4444' : '#3b82f6';
+    const rsiLbl   = rsi < 30 ? 'oversold' : rsi > 70 ? 'overbought' : 'neutral';
+    rsiHtml = `<div class="rsi-wrap"><div class="rsi-label"><span>RSI 14</span><span>${rsi} — ${rsiLbl}</span></div><div class="rsi-track"><div class="rsi-fill" style="width:${rsiPct}%;background:${rsiColor};"></div><div class="rsi-m30"></div><div class="rsi-m70"></div></div></div>`;
+  }
+
+  let trendHtml = '';
+  if (st.trend || st.score) {
+    const trendMap = {above_200sma:'Above 200-day SMA', above_50sma:'Above 50-day SMA', below_50sma:'Below 50-day SMA', below_200sma:'Below 200-day SMA'};
+    const tCls = (st.trend||'').startsWith('above') ? 'above' : 'below';
+    trendHtml = `<div class="hc-trend">${st.trend ? `Trend <span class="hc-trend-badge ${tCls}">${trendMap[st.trend]||st.trend}</span>` : ''}${st.score ? ` &nbsp;Score <strong>${st.score}/5</strong>` : ''}</div>`;
+  }
+
+  const sigsHtml = (st.signals && st.signals.length)
+    ? `<div class="hc-signals">${st.signals.map(s=>`<span class="hc-sig">${s}</span>`).join('')}</div>` : '';
+
+  const newsHtml = (st.news && st.news.length)
+    ? `<div class="hc-news">${st.news.map(h=>`<div class="hc-news-item">· ${h}</div>`).join('')}</div>` : '';
+
+  const noteHtml = (!rsiHtml && !sigsHtml && !newsHtml && st.note && st.note !== 'Not researched this run')
+    ? `<div class="hc-note">${st.note}</div>` : '';
+
+  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}<div class="hc-footer">Last researched this run · click for live chart</div></div>`;
 }
 
 // ── RENDER: FIXED + USER CHIPS ────────────────────────────────────
@@ -554,7 +642,7 @@ function renderFixed() {
     const action = item.pinned
       ? `<span class="pinned-icon" onclick="event.stopPropagation()" title="Fixed monitoring list — always researched">📌</span>`
       : `<button class="remove" onclick="event.stopPropagation();removeTicker('${item.ticker}','${item.exchange}')" title="Remove">×</button>`;
-    return `<span class="chip ${cls}" style="${border}" title="Click for live quote" onclick="showTicker('${item.ticker}','${item.exchange}',event)">${item.ticker}<span class="exchange">${item.exchange}</span>${badge}${action}</span>`;
+    return `<div class="chip-wrap"><span class="chip ${cls}" style="${border}" onclick="showTicker('${item.ticker}','${item.exchange}',event)">${tlDot(item.ticker)}${item.ticker}<span class="exchange">${item.exchange}</span>${badge}${action}</span>${hoverCard(item.ticker,item.exchange)}</div>`;
   }).join('');
 }
 
@@ -591,7 +679,7 @@ function renderEtoro() {
       const tip = item.name
         ? `${item.ticker} (${ex}) · ${item.name}${statusMap[item.ticker] ? ' · ' + chipTip(item.ticker, ex).split(' · ').slice(1).join(' · ') : ''}`
         : chipTip(item.ticker, ex);
-      return `<span class="chip etoro ${cls}" style="${border}" title="Click for live quote" onclick="showTicker('${item.ticker}','${ex}',event)">${item.ticker}<span class="exchange">${ex}</span>${badge}</span>`;
+      return `<div class="chip-wrap"><span class="chip etoro ${cls}" style="${border}" onclick="showTicker('${item.ticker}','${ex}',event)">${tlDot(item.ticker)}${item.ticker}<span class="exchange">${ex}</span>${badge}</span>${hoverCard(item.ticker,ex)}</div>`;
     }).join('');
     return `<div class="etoro-group"><div class="etoro-group-label">${wl.name} (${wl.items.length})</div><div class="chips">${chips}</div></div>`;
   }).join('');
