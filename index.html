@@ -134,6 +134,10 @@
   .hc-sentiment.hold       { background:#fef9c3; color:#854d0e; }
   .hc-sentiment.reduce     { background:#ffedd5; color:#9a3412; }
   .hc-sentiment.sell       { background:#fee2e2; color:#991b1b; }
+  .hc-ets { display:flex; gap:6px; margin:4px 0 2px 0; }
+  .hc-ets-item { flex:1; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:3px 6px; font-size:11px; color:#333; text-align:center; }
+  .hc-ets-item.hc-stop { border-color:#fecaca; background:#fff5f5; color:#b91c1c; }
+  .hc-ets-lbl { display:block; font-size:9px; color:#888; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; }
   .hc-price-row { display:flex; align-items:baseline; gap:8px; margin-bottom:8px; }
   .hc-price { font-size:16px; font-weight:600; color:#1a2332; }
   .hc-chg   { font-size:12px; font-weight:600; }
@@ -608,6 +612,10 @@ function hoverCard(ticker, exchange, etoroName) {
     rsiHtml = `<div class="rsi-wrap"><div class="rsi-label"><span>RSI 14</span><span>${rsi} — ${rsiLbl}</span></div><div class="rsi-track"><div class="rsi-fill" style="width:${rsiPct}%;background:${rsiColor};"></div><div class="rsi-m30"></div><div class="rsi-m70"></div></div></div>`;
   }
 
+  const etsHtml = (st.entry || st.target || st.stop)
+    ? `<div class="hc-ets"><span class="hc-ets-item" title="Entry zone"><span class="hc-ets-lbl">Entry</span>${st.entry||'—'}</span><span class="hc-ets-item" title="Target"><span class="hc-ets-lbl">Target</span>${st.target||'—'}</span><span class="hc-ets-item hc-stop" title="Stop loss"><span class="hc-ets-lbl">Stop</span>${st.stop||'—'}</span></div>`
+    : '';
+
   let trendHtml = '';
   if (st.trend || st.score) {
     const trendMap = {above_200sma:'Above 200-day SMA', above_50sma:'Above 50-day SMA', below_50sma:'Below 50-day SMA', below_200sma:'Below 200-day SMA'};
@@ -626,7 +634,7 @@ function hoverCard(ticker, exchange, etoroName) {
   const noteHtml = (!rsiHtml && !sigsHtml && !newsHtml && st.note && st.note !== 'Not researched this run')
     ? `<div class="hc-note">${st.note}</div>` : '';
 
-  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}${`<div class="hc-chart" data-symbol="${toTvSym(ticker,exchange)}"></div>`}<div class="hc-footer">Last researched this run · click for full chart</div></div>`;
+  return `<div class="hover-card"><div class="hc-top"><div><div class="hc-name">${st.name||''}</div><div class="hc-ticker">${ticker} · ${exchange}</div></div><div class="hc-sentiment ${sentCls}">● ${sentLabel}</div></div>${priceHtml}${etsHtml}${trendHtml}${rsiHtml}${sigsHtml}${newsHtml}${noteHtml}${`<div class="hc-chart" data-symbol="${toTvSym(ticker,exchange)}"></div>`}<div class="hc-footer">Last researched this run · click for full chart</div></div>`;
 }
 
 // ── RENDER: FIXED + USER CHIPS ────────────────────────────────────
