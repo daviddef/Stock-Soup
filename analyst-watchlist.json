@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-30T01:43:47Z",
+  "last_updated": "2026-06-30T01:46:49Z",
   "update_cadence": "daily",
   "sources_used": [
     "YF_UPGRADES",
@@ -47,47 +47,6 @@
           "from_grade": "Buy",
           "to_grade": "Buy",
           "date": "2026-06-23",
-          "major_firm": true,
-          "source": "yfinance"
-        }
-      ],
-      "source_tags": [
-        "FINNHUB_CONSENSUS",
-        "YF_UPGRADE",
-        "MAJOR_FIRM_UPGRADE"
-      ],
-      "source_count": 3,
-      "added_date": "2026-06-30"
-    },
-    {
-      "ticker": "AMD",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 4.12,
-      "consensus_label": "Buy",
-      "strong_buy": 14,
-      "buy": 32,
-      "hold": 11,
-      "sell": 0,
-      "strong_sell": 0,
-      "total_analysts": 57,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [
-        {
-          "firm": "Cantor Fitzgerald",
-          "action": "main",
-          "from_grade": "Overweight",
-          "to_grade": "Overweight",
-          "date": "2026-06-29",
-          "major_firm": false,
-          "source": "yfinance"
-        },
-        {
-          "firm": "UBS",
-          "action": "main",
-          "from_grade": "Buy",
-          "to_grade": "Buy",
-          "date": "2026-06-24",
           "major_firm": true,
           "source": "yfinance"
         }
@@ -332,8 +291,8 @@
       "ticker": "XOM",
       "exchange": "NASDAQ",
       "name": "",
-      "analyst_score": 0.3,
-      "consensus_label": "Strong Sell",
+      "analyst_score": 2.5,
+      "consensus_label": "N/A",
       "strong_buy": 0,
       "buy": 0,
       "hold": 0,
@@ -986,6 +945,26 @@
       "sell": 0,
       "strong_sell": 0,
       "total_analysts": 27,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [],
+      "source_tags": [
+        "FINNHUB_CONSENSUS"
+      ],
+      "source_count": 1,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "AMD",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.82,
+      "consensus_label": "Buy",
+      "strong_buy": 14,
+      "buy": 32,
+      "hold": 11,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 57,
       "consensus_period": "2026-06-01",
       "recent_upgrades": [],
       "source_tags": [
