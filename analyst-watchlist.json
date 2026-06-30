@@ -1,14 +1,599 @@
 {
-  "last_updated": "2026-06-29T09:43:14Z",
+  "last_updated": "2026-06-30T01:43:47Z",
   "update_cadence": "daily",
   "sources_used": [
-    "FMP_UPGRADES",
+    "YF_UPGRADES",
     "FINNHUB_CONSENSUS"
   ],
   "lookback_days": 7,
   "min_score": 3.0,
-  "ticker_count": 55,
+  "ticker_count": 57,
   "tickers": [
+    {
+      "ticker": "BAC",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 4.14,
+      "consensus_label": "Buy",
+      "strong_buy": 7,
+      "buy": 17,
+      "hold": 5,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 29,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Morgan Stanley",
+          "action": "main",
+          "from_grade": "Overweight",
+          "to_grade": "Overweight",
+          "date": "2026-06-29",
+          "major_firm": true,
+          "source": "yfinance"
+        },
+        {
+          "firm": "Truist Securities",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-26",
+          "major_firm": false,
+          "source": "yfinance"
+        },
+        {
+          "firm": "Citigroup",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-23",
+          "major_firm": true,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "AMD",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 4.12,
+      "consensus_label": "Buy",
+      "strong_buy": 14,
+      "buy": 32,
+      "hold": 11,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 57,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Cantor Fitzgerald",
+          "action": "main",
+          "from_grade": "Overweight",
+          "to_grade": "Overweight",
+          "date": "2026-06-29",
+          "major_firm": false,
+          "source": "yfinance"
+        },
+        {
+          "firm": "UBS",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-24",
+          "major_firm": true,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "HOOD",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 4.09,
+      "consensus_label": "Buy",
+      "strong_buy": 8,
+      "buy": 18,
+      "hold": 5,
+      "sell": 1,
+      "strong_sell": 0,
+      "total_analysts": 32,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Goldman Sachs",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-29",
+          "major_firm": true,
+          "source": "yfinance"
+        },
+        {
+          "firm": "BTIG",
+          "action": "init",
+          "from_grade": "",
+          "to_grade": "Buy",
+          "date": "2026-06-26",
+          "major_firm": true,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "ABBV",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 4.05,
+      "consensus_label": "Buy",
+      "strong_buy": 9,
+      "buy": 22,
+      "hold": 9,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 40,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Piper Sandler",
+          "action": "reit",
+          "from_grade": "Overweight",
+          "to_grade": "Overweight",
+          "date": "2026-06-23",
+          "major_firm": true,
+          "source": "yfinance"
+        },
+        {
+          "firm": "Canaccord Genuity",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-23",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "CVX",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.97,
+      "consensus_label": "Buy",
+      "strong_buy": 7,
+      "buy": 16,
+      "hold": 7,
+      "sell": 1,
+      "strong_sell": 0,
+      "total_analysts": 31,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Morgan Stanley",
+          "action": "main",
+          "from_grade": "Overweight",
+          "to_grade": "Overweight",
+          "date": "2026-06-29",
+          "major_firm": true,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "ARM",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.65,
+      "consensus_label": "Hold",
+      "strong_buy": 5,
+      "buy": 23,
+      "hold": 14,
+      "sell": 1,
+      "strong_sell": 1,
+      "total_analysts": 44,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "TD Cowen",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-24",
+          "major_firm": false,
+          "source": "yfinance"
+        },
+        {
+          "firm": "UBS",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-24",
+          "major_firm": true,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "GS",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.58,
+      "consensus_label": "Hold",
+      "strong_buy": 6,
+      "buy": 9,
+      "hold": 16,
+      "sell": 1,
+      "strong_sell": 0,
+      "total_analysts": 32,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Wells Fargo",
+          "action": "main",
+          "from_grade": "Overweight",
+          "to_grade": "Overweight",
+          "date": "2026-06-24",
+          "major_firm": true,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "TGT",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.34,
+      "consensus_label": "Hold",
+      "strong_buy": 7,
+      "buy": 8,
+      "hold": 26,
+      "sell": 3,
+      "strong_sell": 0,
+      "total_analysts": 44,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Jefferies",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-26",
+          "major_firm": true,
+          "source": "yfinance"
+        },
+        {
+          "firm": "Wolfe Research",
+          "action": "up",
+          "from_grade": "Peer Perform",
+          "to_grade": "Outperform",
+          "date": "2026-06-23",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 3,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "XOM",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 0.3,
+      "consensus_label": "Strong Sell",
+      "strong_buy": 0,
+      "buy": 0,
+      "hold": 0,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 0,
+      "consensus_period": "",
+      "recent_upgrades": [
+        {
+          "firm": "Morgan Stanley",
+          "action": "main",
+          "from_grade": "Overweight",
+          "to_grade": "Overweight",
+          "date": "2026-06-29",
+          "major_firm": true,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "YF_UPGRADE",
+        "MAJOR_FIRM_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "TSM",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 4.02,
+      "consensus_label": "Buy",
+      "strong_buy": 11,
+      "buy": 29,
+      "hold": 2,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 42,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "B of A Securities",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-24",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "LLY",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.81,
+      "consensus_label": "Buy",
+      "strong_buy": 11,
+      "buy": 20,
+      "hold": 7,
+      "sell": 1,
+      "strong_sell": 0,
+      "total_analysts": 39,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Leerink Partners",
+          "action": "main",
+          "from_grade": "Outperform",
+          "to_grade": "Outperform",
+          "date": "2026-06-25",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "MRK",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.68,
+      "consensus_label": "Buy",
+      "strong_buy": 9,
+      "buy": 16,
+      "hold": 11,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 36,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "CICC",
+          "action": "init",
+          "from_grade": "",
+          "to_grade": "Outperform",
+          "date": "2026-06-24",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "AAPL",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.64,
+      "consensus_label": "Buy",
+      "strong_buy": 14,
+      "buy": 24,
+      "hold": 15,
+      "sell": 2,
+      "strong_sell": 0,
+      "total_analysts": 55,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Evercore ISI Group",
+          "action": "reit",
+          "from_grade": "Outperform",
+          "to_grade": "Outperform",
+          "date": "2026-06-25",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "JNJ",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.63,
+      "consensus_label": "Buy",
+      "strong_buy": 7,
+      "buy": 14,
+      "hold": 10,
+      "sell": 0,
+      "strong_sell": 0,
+      "total_analysts": 31,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Guggenheim",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-26",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "MCD",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 3.47,
+      "consensus_label": "Hold",
+      "strong_buy": 8,
+      "buy": 16,
+      "hold": 15,
+      "sell": 1,
+      "strong_sell": 0,
+      "total_analysts": 40,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "Keybanc",
+          "action": "main",
+          "from_grade": "Overweight",
+          "to_grade": "Overweight",
+          "date": "2026-06-29",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
+    {
+      "ticker": "QCOM",
+      "exchange": "NASDAQ",
+      "name": "",
+      "analyst_score": 2.96,
+      "consensus_label": "Hold",
+      "strong_buy": 4,
+      "buy": 14,
+      "hold": 27,
+      "sell": 4,
+      "strong_sell": 0,
+      "total_analysts": 49,
+      "consensus_period": "2026-06-01",
+      "recent_upgrades": [
+        {
+          "firm": "TD Cowen",
+          "action": "reit",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-25",
+          "major_firm": false,
+          "source": "yfinance"
+        },
+        {
+          "firm": "Rosenblatt",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-25",
+          "major_firm": false,
+          "source": "yfinance"
+        },
+        {
+          "firm": "Benchmark",
+          "action": "main",
+          "from_grade": "Buy",
+          "to_grade": "Buy",
+          "date": "2026-06-25",
+          "major_firm": false,
+          "source": "yfinance"
+        }
+      ],
+      "source_tags": [
+        "FINNHUB_CONSENSUS",
+        "YF_UPGRADE"
+      ],
+      "source_count": 2,
+      "added_date": "2026-06-30"
+    },
     {
       "ticker": "SE",
       "exchange": "NASDAQ",
@@ -27,7 +612,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "MSFT",
@@ -47,7 +632,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "NVDA",
@@ -67,7 +652,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "AVGO",
@@ -87,7 +672,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "AMZN",
@@ -107,27 +692,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "TSM",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 4.02,
-      "consensus_label": "Buy",
-      "strong_buy": 11,
-      "buy": 29,
-      "hold": 2,
-      "sell": 0,
-      "strong_sell": 0,
-      "total_analysts": 42,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "META",
@@ -147,7 +712,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "WMT",
@@ -167,7 +732,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "GOLD",
@@ -187,7 +752,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "MA",
@@ -207,7 +772,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "JD",
@@ -227,7 +792,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "GOOGL",
@@ -247,7 +812,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "ORCL",
@@ -267,7 +832,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "BABA",
@@ -287,7 +852,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "V",
@@ -307,7 +872,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "NEM",
@@ -327,7 +892,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "GE",
@@ -347,7 +912,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "MSTR",
@@ -367,7 +932,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "SPOT",
@@ -387,7 +952,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "GILD",
@@ -407,27 +972,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "BAC",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.84,
-      "consensus_label": "Buy",
-      "strong_buy": 7,
-      "buy": 17,
-      "hold": 5,
-      "sell": 0,
-      "strong_sell": 0,
-      "total_analysts": 29,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "RKLB",
@@ -447,27 +992,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "AMD",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.82,
-      "consensus_label": "Buy",
-      "strong_buy": 14,
-      "buy": 32,
-      "hold": 11,
-      "sell": 0,
-      "strong_sell": 0,
-      "total_analysts": 57,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "IONQ",
@@ -487,67 +1012,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "LLY",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.81,
-      "consensus_label": "Buy",
-      "strong_buy": 11,
-      "buy": 20,
-      "hold": 7,
-      "sell": 1,
-      "strong_sell": 0,
-      "total_analysts": 39,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "HOOD",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.79,
-      "consensus_label": "Buy",
-      "strong_buy": 8,
-      "buy": 18,
-      "hold": 5,
-      "sell": 1,
-      "strong_sell": 0,
-      "total_analysts": 32,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "ABBV",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.75,
-      "consensus_label": "Buy",
-      "strong_buy": 9,
-      "buy": 22,
-      "hold": 9,
-      "sell": 0,
-      "strong_sell": 0,
-      "total_analysts": 40,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "COST",
@@ -567,47 +1032,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "MRK",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.68,
-      "consensus_label": "Buy",
-      "strong_buy": 9,
-      "buy": 16,
-      "hold": 11,
-      "sell": 0,
-      "strong_sell": 0,
-      "total_analysts": 36,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "CVX",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.67,
-      "consensus_label": "Buy",
-      "strong_buy": 7,
-      "buy": 16,
-      "hold": 7,
-      "sell": 1,
-      "strong_sell": 0,
-      "total_analysts": 31,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "SHOP",
@@ -627,7 +1052,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "ASML",
@@ -647,7 +1072,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "PLTR",
@@ -667,47 +1092,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "AAPL",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.64,
-      "consensus_label": "Buy",
-      "strong_buy": 14,
-      "buy": 24,
-      "hold": 15,
-      "sell": 2,
-      "strong_sell": 0,
-      "total_analysts": 55,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "JNJ",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.63,
-      "consensus_label": "Buy",
-      "strong_buy": 7,
-      "buy": 14,
-      "hold": 10,
-      "sell": 0,
-      "strong_sell": 0,
-      "total_analysts": 31,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "CRM",
@@ -727,7 +1112,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "FCX",
@@ -747,7 +1132,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "NOC",
@@ -767,7 +1152,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "COIN",
@@ -787,7 +1172,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "MS",
@@ -807,27 +1192,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "MCD",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.47,
-      "consensus_label": "Hold",
-      "strong_buy": 8,
-      "buy": 16,
-      "hold": 15,
-      "sell": 1,
-      "strong_sell": 0,
-      "total_analysts": 40,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "CAT",
@@ -847,7 +1212,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "RTX",
@@ -867,27 +1232,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "ARM",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.35,
-      "consensus_label": "Hold",
-      "strong_buy": 5,
-      "buy": 23,
-      "hold": 14,
-      "sell": 1,
-      "strong_sell": 1,
-      "total_analysts": 44,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "JPM",
@@ -907,27 +1252,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "GS",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.28,
-      "consensus_label": "Hold",
-      "strong_buy": 6,
-      "buy": 9,
-      "hold": 16,
-      "sell": 1,
-      "strong_sell": 0,
-      "total_analysts": 32,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "RIO",
@@ -947,7 +1272,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "ADBE",
@@ -967,7 +1292,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "AMGN",
@@ -987,7 +1312,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "LMT",
@@ -1007,7 +1332,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "SBUX",
@@ -1027,7 +1352,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "TSLA",
@@ -1047,7 +1372,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "SOFI",
@@ -1067,7 +1392,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     },
     {
       "ticker": "OXY",
@@ -1087,27 +1412,7 @@
         "FINNHUB_CONSENSUS"
       ],
       "source_count": 1,
-      "added_date": "2026-06-29"
-    },
-    {
-      "ticker": "TGT",
-      "exchange": "NASDAQ",
-      "name": "",
-      "analyst_score": 3.04,
-      "consensus_label": "Hold",
-      "strong_buy": 7,
-      "buy": 8,
-      "hold": 26,
-      "sell": 3,
-      "strong_sell": 0,
-      "total_analysts": 44,
-      "consensus_period": "2026-06-01",
-      "recent_upgrades": [],
-      "source_tags": [
-        "FINNHUB_CONSENSUS"
-      ],
-      "source_count": 1,
-      "added_date": "2026-06-29"
+      "added_date": "2026-06-30"
     }
   ]
 }
