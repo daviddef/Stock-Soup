@@ -1,204 +1,258 @@
 {
-  "run": "Mon 29 Jun 2026 17:30 AEST",
-  "report": "reports/2026-06-29-1730.html",
+  "run": "Tue 30 Jun 2026 11:28 AEST",
+  "report": "reports/2026-06-30-1128.html",
   "tickers": {
-    "BC8": {
+    "GGP": {
       "tier": "day",
-      "price": "A$1.15",
-      "change": "+0% (upgrade day)",
+      "price": "A$A$12.01 \u26a0\ufe0f verify",
+      "change": "\u2014",
       "score": "",
-      "note": "62% Trojan resource upgrade + new 84koz Imperial today. Gold at AUD$5,906/oz ATH drives NPV re-rating.",
+      "note": "Greatland Resources announced a 62% group ore reserve upgrade to 5.0Moz gold this week \u2014 the type of 'pre-move' catalyst where the announcement is fresh and the",
       "market": "ASX",
-      "name": "Black Cat Syndicate",
+      "sentiment": "strong_buy",
+      "name": "Greatland Resources",
+      "narrative": "Greatland Resources announced a 62% group ore reserve upgrade to 5.0Moz gold this week \u2014 the type of 'pre-move' catalyst where the announcement is fresh and the gold sector is rallying. Macquarie maintains Outperform with A$14.00 target vs current ~A$12.01 = 16.6% upside. Gold recovering above $4,000 after Q2's record quarterly drop provides sector tailwind. Company has $1.2B cash. Havieron FID approval confirms the production ramp is on track.",
+      "entry": "A$11.80\u201312.30",
+      "target": "A$14.00",
+      "stop": "A$10.80",
       "signals": [
-        "Resource upgrade 62%",
-        "Gold ATH A$5,906",
-        "Analyst target A$1.95"
-      ],
-      "entry": "A$1.10\u20131.20",
-      "target": "A$1.45\u20131.65",
-      "stop": "A$0.98",
-      "sentiment": "strong_buy"
+        "ORE RESERVE +62%",
+        "UPGRADE",
+        "HAVIERON FID"
+      ]
     },
-    "BOE": {
+    "KCN": {
       "tier": "week",
-      "price": "A$1.05",
-      "change": "+3.96%",
+      "price": "A$A$5.87 \u26a0\ufe0f verify",
+      "change": "+4.5% (Fri)",
       "score": "",
-      "note": "Uranium vol leader with 13.73% short squeeze fuel. Analyst target A$1.58 (+56%).",
+      "note": "Kingsgate Consolidated led the entire ASX 200 with a +4.5% gain on Friday as gold miners dominated the top-10 list. Gold is recovering above $4,000 after its st",
       "market": "ASX",
-      "name": "Boss Energy",
+      "sentiment": "buy",
+      "name": "Kingsgate Consolidated",
+      "narrative": "Kingsgate Consolidated led the entire ASX 200 with a +4.5% gain on Friday as gold miners dominated the top-10 list. Gold is recovering above $4,000 after its steepest quarterly drop on record in Q2 2026. End-of-quarter selling pressure is now complete \u2014 Q3 should see systematic re-rating of gold miners. KCN as an ASX 200 member benefits from index rebalancing flows too.",
+      "entry": "A$5.70\u20136.00",
+      "target": "A$7.50",
+      "stop": "A$5.20",
       "signals": [
-        "Vol leader",
-        "13.73% short",
-        "uranium $85.85/lb",
-        "analyst target A$1.58"
-      ],
-      "entry": "A$1.00\u20131.08",
-      "target": "A$1.25\u20131.40",
-      "stop": "A$0.88",
-      "sentiment": "buy"
-    },
-    "EOS": {
-      "tier": "long",
-      "price": "A$9.44",
-      "change": "\u22121.67%",
-      "score": "",
-      "note": "$726M combined orders post-MARSS. Apollo 300kW laser signing expected 2026.",
-      "market": "ASX",
-      "name": "Electro Optic Systems",
-      "signals": [
-        "$726M order book",
-        "NATO orders",
-        "Apollo laser pending"
-      ],
-      "entry": "A$9.20\u20139.80",
-      "target": "A$11.00\u201312.00",
-      "stop": "A$8.20",
-      "sentiment": "buy"
-    },
-    "MRNA": {
-      "tier": "day",
-      "price": "$69.29",
-      "change": "+12.0% Fri",
-      "score": "",
-      "note": "FDA AdCom 9-0 unanimous for mFLUSIVA flu vaccine. Aug 5 PDUFA = near-certain approval.",
-      "market": "GLOBAL",
-      "name": "Moderna",
-      "signals": [
-        "FDA 9-0 unanimous",
-        "Aug 5 PDUFA",
-        "Science Day",
-        "52w high"
-      ],
-      "entry": "$65\u201368",
-      "target": "$72\u201375",
-      "stop": "$62",
-      "sentiment": "strong_buy"
-    },
-    "WDAY": {
-      "tier": "week",
-      "price": "$122.30",
-      "change": "+6.1% Fri",
-      "score": "",
-      "note": "Q1 FY27: EPS $2.66 vs $2.52 est. Monness Crespi Buy upgrade. SaaS rotation underway.",
-      "market": "GLOBAL",
-      "name": "Workday",
-      "signals": [
-        "Q1 FY27 beat",
-        "Monness upgrade",
-        "SaaS sector rotation"
-      ],
-      "entry": "$119\u2013123",
-      "target": "$130\u2013135",
-      "stop": "$115",
-      "sentiment": "buy"
-    },
-    "SLS": {
-      "tier": "long",
-      "price": "$12.43",
-      "change": "+17.66% Fri",
-      "score": "",
-      "note": "33% float short at ATH + exec contract changes (pre-M&A signal) + AML data pending. HALF POSITION only.",
-      "market": "GLOBAL",
-      "name": "SELLAS Life Sciences",
-      "signals": [
-        "33% short record",
-        "AML trial",
-        "buyout chatter \u2014 HIGH RISK"
-      ],
-      "entry": "$11.50\u201312.50",
-      "target": "$15\u201318",
-      "stop": "$10.00",
-      "sentiment": "buy"
-    },
-    "VTM": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
-    },
-    "PDN": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
-    },
-    "IEL": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+        "ASX 200 LEADER",
+        "GOLD RECOVERY",
+        "SECTOR"
+      ]
     },
     "TLX": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
+      "tier": "long",
+      "price": "A$A$16.04",
+      "change": "+0.2%",
       "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "note": "Telix Pharmaceuticals holds an unchanged thesis: the ARTMS deal locks in isotope supply security for 5 years, the 12.92% short position creates squeeze potentia",
+      "market": "ASX",
+      "sentiment": "buy",
+      "name": "Telix Pharmaceuticals",
+      "narrative": "Telix Pharmaceuticals holds an unchanged thesis: the ARTMS deal locks in isotope supply security for 5 years, the 12.92% short position creates squeeze potential, and the August 2026 earnings event approaches. Analyst target of $23.73 represents 48% upside from current levels. No fresh catalyst today \u2014 maintain and accumulate on dips.",
+      "entry": "A$15.50\u201316.50",
+      "target": "A$21.00",
+      "stop": "A$14.20",
+      "signals": [
+        "DEAL",
+        "SHORT SQUEEZE",
+        "EARNINGS"
+      ]
     },
-    "NTU": {
-      "tier": "monitor",
-      "price": "\u2014",
+    "NEM": {
+      "tier": "day",
+      "price": "$~$94 \u26a0\ufe0f verify",
       "change": "\u2014",
       "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "note": "Newmont is the world's largest gold producer and the purest large-cap instrument for a gold recovery trade. With 30 analysts maintaining a Buy consensus and ave",
+      "market": "GLOBAL",
+      "sentiment": "strong_buy",
+      "name": "Newmont Corporation",
+      "narrative": "Newmont is the world's largest gold producer and the purest large-cap instrument for a gold recovery trade. With 30 analysts maintaining a Buy consensus and average target of $140.65 (45% upside from ~$94), NEM is deeply undervalued relative to sell-side consensus. Gold recovering from Q2's record quarterly drop into Q3 is the direct catalyst. Last confirmed price June 24 \u2014 verify live.",
+      "entry": "$92\u201397",
+      "target": "$115",
+      "stop": "$84",
+      "signals": [
+        "GOLD RECOVERY",
+        "ANALYST CONSENSUS",
+        "SECTOR"
+      ]
     },
-    "DYL": {
-      "tier": "monitor",
-      "price": "\u2014",
+    "MU": {
+      "tier": "week",
+      "price": "$$1,132.33",
+      "change": "flat",
+      "score": "",
+      "note": "Micron's Q3 earnings beat was one of the strongest in semiconductor history: EPS +24.3% above estimates, and Q4 guidance $50B versus $43.58B analyst estimate \u2014 ",
+      "market": "GLOBAL",
+      "sentiment": "buy",
+      "name": "Micron Technology",
+      "narrative": "Micron's Q3 earnings beat was one of the strongest in semiconductor history: EPS +24.3% above estimates, and Q4 guidance $50B versus $43.58B analyst estimate \u2014 a guide-up that eliminates the bear case. US market is open today (Tuesday). This is an earnings-driven momentum play with a clear target.",
+      "entry": "$1,100\u20131,150",
+      "target": "$1,350",
+      "stop": "$1,020",
+      "signals": [
+        "EARNINGS BEAT",
+        "GUIDE-UP",
+        "AI HBM"
+      ]
+    },
+    "AVGO": {
+      "tier": "long",
+      "price": "$$374.51",
       "change": "\u2014",
       "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "note": "Broadcom is the critical infrastructure layer for AI compute \u2014 ASIC chips for hyperscalers, AI accelerators, networking silicon. The analyst consensus is near-u",
+      "market": "GLOBAL",
+      "sentiment": "buy",
+      "name": "Broadcom Inc",
+      "narrative": "Broadcom is the critical infrastructure layer for AI compute \u2014 ASIC chips for hyperscalers, AI accelerators, networking silicon. The analyst consensus is near-unanimous (score 4.04 from 56 analysts). At $374.51, this is a multi-year AI infrastructure play. Target $460 with stop at $335.",
+      "entry": "$365\u2013380",
+      "target": "$460",
+      "stop": "$335",
+      "signals": [
+        "ANALYST CONSENSUS",
+        "AI INFRASTRUCTURE"
+      ]
     },
     "DRO": {
       "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "price": "A$2.28",
+      "change": "-5.4%",
+      "score": "1.5",
+      "note": "Defence retreat \u2014 stopped out. Sector-wide pull-back.",
+      "sentiment": "sell",
+      "market": "ASX",
+      "signals": [
+        "NONE",
+        "SECTOR RETREAT"
+      ],
+      "narrative": "Defence sector retreating broadly today. DRO -5.4% to A$2.28. Stopped out of prior Day pick. ASIC investigation risk. Rotate away from defence into gold."
     },
-    "A2M": {
+    "EOS": {
       "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "price": "A$8.97",
+      "change": "-4.97%",
+      "score": "1.5",
+      "note": "Defence retreat \u2014 stopped out. Sector pull-back.",
+      "sentiment": "sell",
+      "market": "ASX",
+      "signals": [
+        "NONE",
+        "SECTOR RETREAT"
+      ],
+      "narrative": "EOS Defence Systems down 4.97% in broad defence sector retreat. Stopped out of prior Week pick. No fresh catalyst \u2014 wait for stabilisation."
     },
-    "SGH": {
+    "RMS": {
       "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "price": "A$3.07",
+      "change": "+2.33%",
+      "score": "4.0",
+      "note": "Gold sector runner-up. Analyst target A$4.22 (+38%).",
+      "sentiment": "buy",
+      "market": "ASX",
+      "signals": [
+        "SECTOR (gold recovery)",
+        "ANALYST TARGET"
+      ],
+      "entry": "A$2.90\u20133.10",
+      "target": "A$4.22",
+      "narrative": "Ramelius Resources up 2.33% to A$3.07. Gold sector runner-up. Analyst target upgraded to A$4.22 (+38%). If GGP/KCN not available, RMS is next best ASX gold play for Q3 re-rating."
     },
-    "WTC": {
+    "PRU": {
       "tier": "monitor",
-      "price": "\u2014",
+      "price": "A$3.00",
+      "change": "+3.6%",
+      "score": "3.5",
+      "note": "Gold sector +3.6% Friday. Perseus Mining.",
+      "sentiment": "buy",
+      "market": "ASX",
+      "signals": [
+        "SECTOR (gold)"
+      ],
+      "narrative": "Perseus Mining up 3.6% Friday in gold sector rally. Pure-play gold miner with assets in Africa. Monitor for Q3 gold sector re-rating."
+    },
+    "MP1": {
+      "tier": "monitor",
+      "price": "A$20.74",
       "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "score": "2.5",
+      "note": "BofA $27 target but RSI ~78 overbought. Wait for reset.",
+      "sentiment": "hold",
+      "market": "ASX",
+      "signals": [
+        "UPGRADE (BofA $27)",
+        "OVERBOUGHT RSI ~78"
+      ],
+      "narrative": "Megaport \u2014 BofA upgraded with $27 target. Up 67% this month. RSI ~78 = overbought. Do not chase. Wait for RSI reset below 60 before entry."
+    },
+    "BOE": {
+      "tier": "monitor",
+      "price": "A$1.05",
+      "change": "~+4%",
+      "score": "2.5",
+      "note": "Uranium $85.85/lb flat. No fresh catalyst today.",
+      "sentiment": "hold",
+      "market": "ASX",
+      "signals": [
+        "SECTOR uranium",
+        "NO CATALYST"
+      ],
+      "narrative": "Boss Energy \u2014 uranium at $85.85/lb consolidating. AI datacenter nuclear demand building structural floor. No acute catalyst today. Monitor for break above $1.15."
+    },
+    "BC8": {
+      "tier": "monitor",
+      "price": "A$1.15",
+      "change": "\u2014",
+      "score": "3.0",
+      "note": "62% JORC resource upgrade June 29. Gold sector.",
+      "sentiment": "hold",
+      "market": "ASX",
+      "signals": [
+        "JORC UPGRADE +62%"
+      ],
+      "narrative": "Black Cat Syndicate \u2014 62% JORC resource upgrade announced June 29. Gold sector positioning. Monitor for follow-through."
+    },
+    "NVDA": {
+      "tier": "monitor",
+      "price": "$192.53",
+      "change": "flat",
+      "score": "4.0",
+      "note": "Runner-up global. 68 analysts Buy. AI sector leader.",
+      "sentiment": "buy",
+      "market": "GLOBAL",
+      "signals": [
+        "ANALYST CONSENSUS (68 Buy)",
+        "AI SECTOR"
+      ],
+      "narrative": "Nvidia \u2014 runner-up global pick. 68 analysts Buy. AI sector leader. US market open today. Hold prior position. Score 4.0."
+    },
+    "RKLB": {
+      "tier": "monitor",
+      "price": "$84.54",
+      "change": "flat",
+      "score": "3.5",
+      "note": "Iridium $8B acquisition. NASA 3 launches. -44% from ATH.",
+      "sentiment": "buy",
+      "market": "GLOBAL",
+      "signals": [
+        "DEAL (Iridium $8B)",
+        "NASA CONTRACTS"
+      ],
+      "narrative": "Rocket Lab \u2014 Iridium $8B acquisition announced. NASA 3 Electron launches contracted. Currently $84.54 vs ATH $150.23 (May 27). Runner-up global pick. Hold prior position."
     },
     "PLTR": {
       "tier": "monitor",
-      "price": "\u2014",
+      "price": "$118.08",
       "change": "\u2014",
       "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "note": "Risk indicator. 52w range $106\u2013$207.",
+      "sentiment": "hold",
+      "market": "GLOBAL",
+      "signals": [
+        "RISK INDICATOR"
+      ],
+      "narrative": "Palantir \u2014 used as broad market risk indicator. June 29 close $118.08. 52w range $106\u2013$207. Watching for signal on market direction."
     }
   }
 }
