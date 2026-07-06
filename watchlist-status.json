@@ -1,122 +1,136 @@
 {
-  "run": "Tue 30 Jun 2026 12:25 AEST",
-  "report": "reports/2026-06-30-1225.html",
+  "run": "Mon 6 Jul 2026 10:00 AEST",
+  "report": "reports/2026-07-06-1000.html",
   "tickers": {
-    "MP1": {
+    "DRO": {
       "tier": "day",
-      "price": "A$A20.74",
-      "change": "+3.48%",
+      "price": "A$2.565",
+      "change": "+6.4%",
       "score": "",
-      "note": "BofA upgrade to A22.57 target (+8.8%). AI compute networking pivot. 459M contracted pipeline. ASX 200 best performer 2026. Q2 end institutional repositioning ca",
+      "note": "DroneShield is one of ASX's most-shorted stocks (11.74% float) \u2014 counter-drone tech with direct NATO/AUKUS exposure. Today's +6.4% move on defence sector rotati",
       "market": "ASX",
-      "name": "Megaport Ltd",
-      "entry": "A20.40-20.90",
-      "target": "A22.57",
-      "stop": "A19.50",
+      "name": "DroneShield",
+      "entry": "A$2.45-2.55",
+      "target": "A$2.85",
+      "stop": "A$2.35",
       "signals": [
-        "ANALYST_UPGRADE",
-        "AI_COMPUTE",
-        "ASX200_LEADER"
+        "DAY PICK",
+        "Short Squeeze",
+        "NATO Defence"
       ],
-      "narrative": "BofA upgrade to A22.57 target (+8.8%). AI compute networking pivot. 459M contracted pipeline. ASX 200 best performer 2026. Q2 end institutional repositioning catalyst. Entry on any pullback to 20.40-20.90.",
-      "sentiment": "strong_buy"
+      "narrative": "Day pick: defence sector heat + 11.74% short interest. Analyst PT A$3.726 = +45%.",
+      "sentiment": "strong_buy",
+      "rsi": 58,
+      "trend": "above_50sma"
     },
-    "TLX": {
+    "CYL": {
       "tier": "week",
-      "price": "A$A16.04",
-      "change": "+0.2% Jun29",
+      "price": "A$6.43",
+      "change": "+13.8% on FY26 output",
       "score": "",
-      "note": "12.92% short interest (top 5 ASX most shorted). ARTMS 125.9M isotope supply deal (5-year). 14 analysts Strong Buy, target A23.73 (+48%). August 2026 earnings ap",
+      "note": "Catalyst Metals smashed FY26 gold output records \u2014 104,000oz from the Plutonic Gold Belt, doubling prior year production. A$323M cash + A$100M undrawn facility ",
       "market": "ASX",
-      "name": "Telix Pharmaceuticals",
-      "entry": "A15.80-16.40",
-      "target": "A21.00",
-      "stop": "A14.80",
+      "name": "Catalyst Metals",
+      "entry": "A$6.20-6.50",
+      "target": "A$8.00",
+      "stop": "A$5.80",
       "signals": [
-        "SHORT_SQUEEZE",
-        "ARTMS_DEAL",
-        "STRONG_BUY_x14",
-        "EARNINGS"
+        "WEEK PICK",
+        "Record FY26 Output",
+        "SDU Featured",
+        "Strong Buy +101%"
       ],
-      "narrative": "12.92% short interest (top 5 ASX most shorted). ARTMS 125.9M isotope supply deal (5-year). 14 analysts Strong Buy, target A23.73 (+48%). August 2026 earnings approaching. Short squeeze + catalyst trifecta.",
-      "sentiment": "buy"
+      "narrative": "Week pick: 104koz gold record, SDU Jul 6, analyst PT A$12.98 = +101.9%.",
+      "sentiment": "strong_buy",
+      "rsi": 55,
+      "trend": "above_50sma"
     },
-    "PDN": {
+    "ASB": {
       "tier": "long",
-      "price": "A$A6.88 VERIFY",
-      "change": "-28% week, -70% from 52w high",
+      "price": "A$4.19",
+      "change": "+2.44% (Jul 4)",
       "score": "",
-      "note": "HIGH RISK contrarian. Down 70% from 52w high (15.10), -28% this week. 11.35% short interest. Atlas U3O8 discovery 4.25% grade. Uranium spot 85.85/lb LT contract",
+      "note": "Austal is Australia's premier naval shipbuilder \u2014 the AUKUS nuclear submarine programme provides decade-long contract visibility. Analyst consensus target A$6.5",
       "market": "ASX",
-      "name": "Paladin Energy",
-      "entry": "A6.60-7.10",
-      "target": "A9.50",
-      "stop": "A5.90",
+      "name": "Austal",
+      "entry": "A$4.00-4.30",
+      "target": "A$6.50",
+      "stop": "A$3.60",
       "signals": [
-        "SHORT_SQUEEZE",
-        "U3O8_DISCOVERY",
-        "ENERGY_TAILWIND"
+        "LONG PICK",
+        "AUKUS",
+        "US Navy",
+        "PT +55%"
       ],
-      "narrative": "HIGH RISK contrarian. Down 70% from 52w high (15.10), -28% this week. 11.35% short interest. Atlas U3O8 discovery 4.25% grade. Uranium spot 85.85/lb LT contracts 94/lb. Hormuz driving alt-energy/nuclear interest. Size position small.",
-      "sentiment": "buy"
+      "narrative": "Long: AUKUS submarine programme + US Navy. Analyst PT A$6.50 = +55%.",
+      "sentiment": "buy",
+      "rsi": 45,
+      "trend": "above_50sma"
     },
-    "RKLB": {
+    "PLTR": {
       "tier": "day",
-      "price": "$88-93 TODAY",
-      "change": "+16.08% Jun29",
+      "price": "$129.70",
+      "change": "+3.16%",
       "score": "",
-      "note": "IRDM 8B acquisition announced Jun29 \u2014 catalyst of the week. Transforms RKLB into vertically integrated satellite platform with massive constellation reach. Toda",
+      "note": "Palantir is the standout GLOBAL signal \u2014 showing exceptional relative strength at +3.16% on a day when Nasdaq futures are -1.18%. When a stock rises against the",
       "market": "GLOBAL",
-      "name": "Rocket Lab Corporation",
-      "entry": "88-92",
-      "target": "108",
-      "stop": "82",
+      "name": "Palantir Technologies",
+      "entry": "$126-132",
+      "target": "$140",
+      "stop": "$122",
       "signals": [
-        "IRDM_8B_ACQUISITION",
-        "SECTOR_LEADER",
-        "MOMENTUM"
+        "GLOBAL DAY",
+        "DA Davidson Buy",
+        "US Gov AI",
+        "+3.16% in risk-off"
       ],
-      "narrative": "IRDM 8B acquisition announced Jun29 \u2014 catalyst of the week. Transforms RKLB into vertically integrated satellite platform with massive constellation reach. Today range 84.85-94.30 (open 93.85). Whole space sector lifted.",
-      "sentiment": "strong_buy"
+      "narrative": "Global day: +3.16% vs Nasdaq -1.18%. DA Davidson Buy $175 PT (Jul 2).",
+      "sentiment": "strong_buy",
+      "rsi": 62,
+      "trend": "above_50sma"
     },
-    "VSAT": {
+    "AVAV": {
       "tier": "week",
-      "price": "$76.69 Jun29",
-      "change": "+23.79% Jun29",
+      "price": "$172.00",
+      "change": "~-3.4% pre-mkt",
       "score": "",
-      "note": "Oppenheimer called VSAT the last major global satellite spectrum play. Initiated Outperform 140 PT (83% upside). Deutsche Bank doubled target to 97. Needham rai",
+      "note": "AeroVironment secured a $500M US Army contract for Switchblade tactical missile systems \u2014 the same system proving lethal effectiveness in multiple conflicts. Re",
       "market": "GLOBAL",
-      "name": "Viasat Inc",
-      "entry": "72-78",
-      "target": "97",
-      "stop": "67",
+      "name": "AeroVironment",
+      "entry": "$165-178",
+      "target": "$210",
+      "stop": "$155",
       "signals": [
-        "OPP_140_PT",
-        "DB_97_PT",
-        "NEEDHAM_90",
-        "SPACE_FORCE"
+        "GLOBAL WEEK",
+        "$500M Army Contract",
+        "133% Rev Beat",
+        "PT $309"
       ],
-      "narrative": "Oppenheimer called VSAT the last major global satellite spectrum play. Initiated Outperform 140 PT (83% upside). Deutsche Bank doubled target to 97. Needham raised to 90. Space Force contracts confirmed. RKLB-IRDM consolidation making spectrum assets scarce/valuable.",
-      "sentiment": "buy"
+      "narrative": "Global week: Army Switchblade $500M + massive analyst upside to $310.",
+      "sentiment": "buy",
+      "rsi": 50,
+      "trend": "above_50sma"
     },
-    "ALAB": {
+    "COIN": {
       "tier": "long",
-      "price": "$455.96 Jun29",
-      "change": "+16.39% Jun29",
+      "price": "$149.06",
+      "change": "BTC -2.37% headwind",
       "score": "",
-      "note": "AI data center PCIe/CXL connectivity leader. Essential infrastructure for AI training clusters. As hyperscalers pour billions into AI infra, ALAB addresses the ",
+      "note": "Coinbase carries the strongest analyst consensus of the global pool: 11 Strong Buy + 19 Buy ratings. BTC at $61,264 (-2.37% today) creates a LONG accumulation o",
       "market": "GLOBAL",
-      "name": "Astera Labs",
-      "entry": "440-468",
-      "target": "560",
-      "stop": "420",
+      "name": "Coinbase Global",
+      "entry": "$140-155",
+      "target": "$200",
+      "stop": "$128",
       "signals": [
-        "AI_DATA_CENTER",
-        "PCIE_CXL",
-        "HYPERSCALER_CAPEX"
+        "GLOBAL LONG",
+        "11SB+19Buy",
+        "Accumulate BTC dip"
       ],
-      "narrative": "AI data center PCIe/CXL connectivity leader. Essential infrastructure for AI training clusters. As hyperscalers pour billions into AI infra, ALAB addresses the critical interconnect bottleneck. AI capex supercycle positions ALAB for sustained appreciation.",
-      "sentiment": "buy"
+      "narrative": "Global long: strongest analyst consensus. Accumulate on BTC weakness below $155.",
+      "sentiment": "buy",
+      "rsi": 48,
+      "trend": "below_50sma"
     },
     "VTM": {
       "tier": "monitor",
@@ -126,7 +140,23 @@
       "note": "Not researched this run",
       "sentiment": "hold"
     },
+    "PDN": {
+      "tier": "monitor",
+      "price": "\u2014",
+      "change": "\u2014",
+      "score": "",
+      "note": "Not researched this run",
+      "sentiment": "hold"
+    },
     "IEL": {
+      "tier": "monitor",
+      "price": "\u2014",
+      "change": "\u2014",
+      "score": "",
+      "note": "Not researched this run",
+      "sentiment": "hold"
+    },
+    "TLX": {
       "tier": "monitor",
       "price": "\u2014",
       "change": "\u2014",
@@ -158,14 +188,6 @@
       "note": "Not researched this run",
       "sentiment": "hold"
     },
-    "DRO": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
-    },
     "A2M": {
       "tier": "monitor",
       "price": "\u2014",
@@ -190,13 +212,31 @@
       "note": "Not researched this run",
       "sentiment": "hold"
     },
-    "PLTR": {
+    "BOE": {
       "tier": "monitor",
       "price": "\u2014",
       "change": "\u2014",
       "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "note": "Halted today \u2014 await announcement before any new position.",
+      "name": "Boss Energy",
+      "sentiment": "hold",
+      "signals": [
+        "TRADING HALT \u2014 monitor",
+        "Uranium structural"
+      ]
+    },
+    "MSTR": {
+      "tier": "monitor",
+      "price": "\u2014",
+      "change": "\u2014",
+      "score": "",
+      "note": "BTC proxy \u2014 hold existing. BTC -2.37% today = avoid new entry.",
+      "name": "MicroStrategy",
+      "sentiment": "hold",
+      "signals": [
+        "BTC proxy",
+        "6SB+16Buy"
+      ]
     }
   }
 }
