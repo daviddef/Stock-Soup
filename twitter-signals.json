@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-07-10T10:21:35.328379+00:00",
+  "generated_at": "2026-07-11T22:54:02.057150+00:00",
   "tickers": {
     "EOS": {
       "status": "error",
-      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+      "error": "HTTP 402: {\"detail\":\"credits depleted\",\"status\":402,\"title\":\"Payment Required\",\"type\":\"https://api.x.com/2/problems/credits-depleted\"}"
     },
     "4DX": {
       "status": "error",
-      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+      "error": "HTTP 402: {\"detail\":\"credits depleted\",\"status\":402,\"title\":\"Payment Required\",\"type\":\"https://api.x.com/2/problems/credits-depleted\"}"
     },
     "TLX": {
       "status": "error",
-      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+      "error": "HTTP 402: {\"detail\":\"credits depleted\",\"status\":402,\"title\":\"Payment Required\",\"type\":\"https://api.x.com/2/problems/credits-depleted\"}"
     },
     "DRO": {
       "status": "error",
-      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+      "error": "HTTP 402: {\"detail\":\"credits depleted\",\"status\":402,\"title\":\"Payment Required\",\"type\":\"https://api.x.com/2/problems/credits-depleted\"}"
     },
     "PLTR": {
       "status": "error",
-      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+      "error": "HTTP 402: {\"detail\":\"credits depleted\",\"status\":402,\"title\":\"Payment Required\",\"type\":\"https://api.x.com/2/problems/credits-depleted\"}"
     },
     "NVDA": {
       "status": "error",
-      "error": "HTTP 402: {\"account_id\":2070286528115322880,\"title\":\"CreditsDepleted\",\"detail\":\"Your enrolled account [2070286528115322880] does not have any credits to fulfill this request.\",\"type\":\"https://api.twitter.com/2/"
+      "error": "HTTP 402: {\"detail\":\"credits depleted\",\"status\":402,\"title\":\"Payment Required\",\"type\":\"https://api.x.com/2/problems/credits-depleted\"}"
     }
   },
   "broad": {},
