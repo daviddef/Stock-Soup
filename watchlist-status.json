@@ -1,146 +1,110 @@
 {
-  "run": "Mon 6 Jul 2026 10:00 AEST",
-  "report": "reports/2026-07-06-1000.html",
+  "run": "Tue 14 Jul 2026 13:18 AEST",
+  "report": "reports/2026-07-14-1318.html",
   "tickers": {
-    "DRO": {
+    "DYL": {
       "tier": "day",
-      "price": "A$2.565",
-      "change": "+6.4%",
+      "price": "A$1.45",
+      "change": "+7.43%",
       "score": "",
-      "note": "DroneShield is one of ASX's most-shorted stocks (11.74% float) \u2014 counter-drone tech with direct NATO/AUKUS exposure. Today's +6.4% move on defence sector rotati",
+      "note": "Uranium sector leader surges on Australia-India supply deal (Jul 10) \u2014 the largest new buyer market entering. DYL is the highest-beta pure-play uranium develope",
       "market": "ASX",
-      "name": "DroneShield",
-      "entry": "A$2.45-2.55",
-      "target": "A$2.85",
-      "stop": "A$2.35",
+      "name": "Deep Yellow Ltd",
+      "entry": "1.40\u20131.50",
+      "target": "1.65",
+      "stop": "1.33",
       "signals": [
-        "DAY PICK",
-        "Short Squeeze",
-        "NATO Defence"
+        "SECTOR \u00b7 VOLUME \u00b7 CATALYST"
       ],
-      "narrative": "Day pick: defence sector heat + 11.74% short interest. Analyst PT A$3.726 = +45%.",
-      "sentiment": "strong_buy",
-      "rsi": 58,
-      "trend": "above_50sma"
-    },
-    "CYL": {
-      "tier": "week",
-      "price": "A$6.43",
-      "change": "+13.8% on FY26 output",
-      "score": "",
-      "note": "Catalyst Metals smashed FY26 gold output records \u2014 104,000oz from the Plutonic Gold Belt, doubling prior year production. A$323M cash + A$100M undrawn facility ",
-      "market": "ASX",
-      "name": "Catalyst Metals",
-      "entry": "A$6.20-6.50",
-      "target": "A$8.00",
-      "stop": "A$5.80",
-      "signals": [
-        "WEEK PICK",
-        "Record FY26 Output",
-        "SDU Featured",
-        "Strong Buy +101%"
-      ],
-      "narrative": "Week pick: 104koz gold record, SDU Jul 6, analyst PT A$12.98 = +101.9%.",
-      "sentiment": "strong_buy",
-      "rsi": 55,
-      "trend": "above_50sma"
-    },
-    "ASB": {
-      "tier": "long",
-      "price": "A$4.19",
-      "change": "+2.44% (Jul 4)",
-      "score": "",
-      "note": "Austal is Australia's premier naval shipbuilder \u2014 the AUKUS nuclear submarine programme provides decade-long contract visibility. Analyst consensus target A$6.5",
-      "market": "ASX",
-      "name": "Austal",
-      "entry": "A$4.00-4.30",
-      "target": "A$6.50",
-      "stop": "A$3.60",
-      "signals": [
-        "LONG PICK",
-        "AUKUS",
-        "US Navy",
-        "PT +55%"
-      ],
-      "narrative": "Long: AUKUS submarine programme + US Navy. Analyst PT A$6.50 = +55%.",
-      "sentiment": "buy",
-      "rsi": 45,
-      "trend": "above_50sma"
-    },
-    "PLTR": {
-      "tier": "day",
-      "price": "$129.70",
-      "change": "+3.16%",
-      "score": "",
-      "note": "Palantir is the standout GLOBAL signal \u2014 showing exceptional relative strength at +3.16% on a day when Nasdaq futures are -1.18%. When a stock rises against the",
-      "market": "GLOBAL",
-      "name": "Palantir Technologies",
-      "entry": "$126-132",
-      "target": "$140",
-      "stop": "$122",
-      "signals": [
-        "GLOBAL DAY",
-        "DA Davidson Buy",
-        "US Gov AI",
-        "+3.16% in risk-off"
-      ],
-      "narrative": "Global day: +3.16% vs Nasdaq -1.18%. DA Davidson Buy $175 PT (Jul 2).",
-      "sentiment": "strong_buy",
-      "rsi": 62,
-      "trend": "above_50sma"
-    },
-    "AVAV": {
-      "tier": "week",
-      "price": "$172.00",
-      "change": "~-3.4% pre-mkt",
-      "score": "",
-      "note": "AeroVironment secured a $500M US Army contract for Switchblade tactical missile systems \u2014 the same system proving lethal effectiveness in multiple conflicts. Re",
-      "market": "GLOBAL",
-      "name": "AeroVironment",
-      "entry": "$165-178",
-      "target": "$210",
-      "stop": "$155",
-      "signals": [
-        "GLOBAL WEEK",
-        "$500M Army Contract",
-        "133% Rev Beat",
-        "PT $309"
-      ],
-      "narrative": "Global week: Army Switchblade $500M + massive analyst upside to $310.",
-      "sentiment": "buy",
-      "rsi": 50,
-      "trend": "above_50sma"
-    },
-    "COIN": {
-      "tier": "long",
-      "price": "$149.06",
-      "change": "BTC -2.37% headwind",
-      "score": "",
-      "note": "Coinbase carries the strongest analyst consensus of the global pool: 11 Strong Buy + 19 Buy ratings. BTC at $61,264 (-2.37% today) creates a LONG accumulation o",
-      "market": "GLOBAL",
-      "name": "Coinbase Global",
-      "entry": "$140-155",
-      "target": "$200",
-      "stop": "$128",
-      "signals": [
-        "GLOBAL LONG",
-        "11SB+19Buy",
-        "Accumulate BTC dip"
-      ],
-      "narrative": "Global long: strongest analyst consensus. Accumulate on BTC weakness below $155.",
-      "sentiment": "buy",
-      "rsi": 48,
-      "trend": "below_50sma"
-    },
-    "VTM": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "narrative": "Uranium sector leader surges on Australia-India supply deal (Jul 10) \u2014 the largest new buyer market entering. DYL is the highest-beta pure-play uranium developer on ASX. Sector momentum typically runs 2-3 sessions post policy deal. LOT returning from halt Jul 16 creates urgency: enter DYL before the noise.",
+      "sentiment": "strong_buy"
     },
     "PDN": {
+      "tier": "week",
+      "price": "A$10.06",
+      "change": "+4.14%",
+      "score": "",
+      "note": "Paladin is ASX's largest listed uranium producer (Langer Heinrich mine, Namibia, in production). The Australia-India deal (Jul 10) adds 1.4B potential buyers to",
+      "market": "ASX",
+      "name": "Paladin Energy Ltd",
+      "entry": "9.80\u201310.40",
+      "target": "11.50",
+      "stop": "9.20",
+      "signals": [
+        "SECTOR \u00b7 PRODUCTION \u00b7 UPGRADE"
+      ],
+      "narrative": "Paladin is ASX's largest listed uranium producer (Langer Heinrich mine, Namibia, in production). The Australia-India deal (Jul 10) adds 1.4B potential buyers to an already supply-constrained market. Better institutional liquidity than DYL \u2014 ideal for a 2-10 day hold. Street: 4 Buys. Uranium spot $85-87/lb vs ~$55-60 break-even = strong margins.",
+      "sentiment": "buy"
+    },
+    "BOE": {
+      "tier": "long",
+      "price": "A$1.23",
+      "change": "+6.5% (recent)",
+      "score": "",
+      "note": "Boss Energy's Honeymoon ISR uranium project (South Australia) generates ~$25/lb margin at current $85-87/lb spot. Macquarie upgraded to Outperform, $1.75 target",
+      "market": "ASX",
+      "name": "Boss Energy Ltd",
+      "entry": "1.15\u20131.28",
+      "target": "1.75",
+      "stop": "1.00",
+      "signals": [
+        "UPGRADE \u00b7 SHORT-COVER \u00b7 SECTOR"
+      ],
+      "narrative": "Boss Energy's Honeymoon ISR uranium project (South Australia) generates ~$25/lb margin at current $85-87/lb spot. Macquarie upgraded to Outperform, $1.75 target, citing well field confidence. Short interest falling -1.61% = bears covering. Australia-India deal Jul10 expands medium-term buyer pool. 52w high A$3.92 suggests material recovery potential.",
+      "sentiment": "buy"
+    },
+    "COIN": {
+      "tier": "day",
+      "price": "$159.07",
+      "change": "+6.70%",
+      "score": "",
+      "note": "Coinbase +6.7% this week. BTC stable ~$60K \u2014 crypto market recovering. Finnhub analyst consensus: 11 StrongBuy + 19 Buy (68% bullish) vs 11 Hold + 3 Sell. Highe",
+      "market": "GLOBAL",
+      "name": "Coinbase Global",
+      "entry": "155\u2013163",
+      "target": "175",
+      "stop": "148",
+      "signals": [
+        "VOL \u00b7 ANALYST \u00b7 BTC-STABLE"
+      ],
+      "narrative": "Coinbase +6.7% this week. BTC stable ~$60K \u2014 crypto market recovering. Finnhub analyst consensus: 11 StrongBuy + 19 Buy (68% bullish) vs 11 Hold + 3 Sell. Highest-liquidity pure-play crypto exchange on NASDAQ. US market opens Mon 14 Jul 09:30 ET \u2014 pre-market set-up is key for follow-through.",
+      "sentiment": "strong_buy"
+    },
+    "VLO": {
+      "tier": "week",
+      "price": "$290.00",
+      "change": "+6.15%",
+      "score": "",
+      "note": "Valero is the world's largest independent refiner. Hormuz effectively closed (US-Iran conflict Jul10 re-escalation) \u2192 crude differentials surge \u2192 crack spreads ",
+      "market": "GLOBAL",
+      "name": "Valero Energy Corporation",
+      "entry": "285\u2013298",
+      "target": "320",
+      "stop": "272",
+      "signals": [
+        "SECTOR \u00b7 ANALYST-UPGRADE \u00b7 HORMUZ"
+      ],
+      "narrative": "Valero is the world's largest independent refiner. Hormuz effectively closed (US-Iran conflict Jul10 re-escalation) \u2192 crude differentials surge \u2192 crack spreads at multi-year highs \u2192 direct refiner margin expansion. Multiple analysts raced to raise targets Jul13 (StocksToTrade). Structural trade: crack spread squeeze persists as long as Hormuz remains disrupted.",
+      "sentiment": "buy"
+    },
+    "TEAM": {
+      "tier": "long",
+      "price": "$88.86",
+      "change": "+3.50%",
+      "score": "",
+      "note": "Atlassian Q4 FY2026 beat drove a street-wide target reset mid-July. Yahoo Finance: &#34;Atlassian and Shopify Shares Are Soaring&#34; (Jul 2026). StockStory: &#",
+      "market": "GLOBAL",
+      "name": "Atlassian Corporation",
+      "entry": "86\u201393",
+      "target": "108",
+      "stop": "80",
+      "signals": [
+        "COVERAGE \u00b7 UPGRADE \u00b7 CLOUD-AI"
+      ],
+      "narrative": "Atlassian Q4 FY2026 beat drove a street-wide target reset mid-July. Yahoo Finance: &#34;Atlassian and Shopify Shares Are Soaring&#34; (Jul 2026). StockStory: &#34;Atlassian Stock Grinds Higher As Street Resets Targets&#34; (Jul 13). AI-enhanced features (Atlassian Intelligence) driving enterprise upsell and pricing power upgrades. Australian HQ = AUD/USD tailwind if USD softens.",
+      "sentiment": "buy"
+    },
+    "VTM": {
       "tier": "monitor",
       "price": "\u2014",
       "change": "\u2014",
@@ -180,7 +144,7 @@
       "note": "Not researched this run",
       "sentiment": "hold"
     },
-    "DYL": {
+    "DRO": {
       "tier": "monitor",
       "price": "\u2014",
       "change": "\u2014",
@@ -212,31 +176,13 @@
       "note": "Not researched this run",
       "sentiment": "hold"
     },
-    "BOE": {
+    "PLTR": {
       "tier": "monitor",
       "price": "\u2014",
       "change": "\u2014",
       "score": "",
-      "note": "Halted today \u2014 await announcement before any new position.",
-      "name": "Boss Energy",
-      "sentiment": "hold",
-      "signals": [
-        "TRADING HALT \u2014 monitor",
-        "Uranium structural"
-      ]
-    },
-    "MSTR": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "BTC proxy \u2014 hold existing. BTC -2.37% today = avoid new entry.",
-      "name": "MicroStrategy",
-      "sentiment": "hold",
-      "signals": [
-        "BTC proxy",
-        "6SB+16Buy"
-      ]
+      "note": "Not researched this run",
+      "sentiment": "hold"
     }
   }
 }
