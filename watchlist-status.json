@@ -1,116 +1,130 @@
 {
-  "run": "Tue 14 Jul 2026 13:18 AEST",
-  "report": "reports/2026-07-14-1318.html",
+  "run": "Wed 15 Jul 2026 12:30 AEST",
+  "report": "reports/2026-07-15-1230.html",
   "tickers": {
-    "DYL": {
+    "DTR": {
       "tier": "day",
-      "price": "A$1.45",
-      "change": "+7.43%",
+      "price": "A$A$0.170",
+      "change": "+6.25%",
       "score": "",
-      "note": "Uranium sector leader surges on Australia-India supply deal (Jul 10) \u2014 the largest new buyer market entering. DYL is the highest-beta pure-play uranium develope",
+      "note": "Dateline Resources is riding the US-China critical minerals trade war with its U",
       "market": "ASX",
-      "name": "Deep Yellow Ltd",
-      "entry": "1.40\u20131.50",
-      "target": "1.65",
-      "stop": "1.33",
+      "name": "Dateline Resources",
+      "sentiment": "strong_buy",
+      "rsi": 56,
+      "trend": "above_50sma",
       "signals": [
-        "SECTOR \u00b7 VOLUME \u00b7 CATALYST"
-      ],
-      "narrative": "Uranium sector leader surges on Australia-India supply deal (Jul 10) \u2014 the largest new buyer market entering. DYL is the highest-beta pure-play uranium developer on ASX. Sector momentum typically runs 2-3 sessions post policy deal. LOT returning from halt Jul 16 creates urgency: enter DYL before the noise.",
-      "sentiment": "strong_buy"
-    },
-    "PDN": {
-      "tier": "week",
-      "price": "A$10.06",
-      "change": "+4.14%",
-      "score": "",
-      "note": "Paladin is ASX's largest listed uranium producer (Langer Heinrich mine, Namibia, in production). The Australia-India deal (Jul 10) adds 1.4B potential buyers to",
-      "market": "ASX",
-      "name": "Paladin Energy Ltd",
-      "entry": "9.80\u201310.40",
-      "target": "11.50",
-      "stop": "9.20",
-      "signals": [
-        "SECTOR \u00b7 PRODUCTION \u00b7 UPGRADE"
-      ],
-      "narrative": "Paladin is ASX's largest listed uranium producer (Langer Heinrich mine, Namibia, in production). The Australia-India deal (Jul 10) adds 1.4B potential buyers to an already supply-constrained market. Better institutional liquidity than DYL \u2014 ideal for a 2-10 day hold. Street: 4 Buys. Uranium spot $85-87/lb vs ~$55-60 break-even = strong margins.",
-      "sentiment": "buy"
+        "Music Valley TREO 7.1%",
+        "US DOJ Confirmed",
+        "OTCQB Listing",
+        "US-China REE"
+      ]
     },
     "BOE": {
-      "tier": "long",
-      "price": "A$1.23",
-      "change": "+6.5% (recent)",
-      "score": "",
-      "note": "Boss Energy's Honeymoon ISR uranium project (South Australia) generates ~$25/lb margin at current $85-87/lb spot. Macquarie upgraded to Outperform, $1.75 target",
-      "market": "ASX",
-      "name": "Boss Energy Ltd",
-      "entry": "1.15\u20131.28",
-      "target": "1.75",
-      "stop": "1.00",
-      "signals": [
-        "UPGRADE \u00b7 SHORT-COVER \u00b7 SECTOR"
-      ],
-      "narrative": "Boss Energy's Honeymoon ISR uranium project (South Australia) generates ~$25/lb margin at current $85-87/lb spot. Macquarie upgraded to Outperform, $1.75 target, citing well field confidence. Short interest falling -1.61% = bears covering. Australia-India deal Jul10 expands medium-term buyer pool. 52w high A$3.92 suggests material recovery potential.",
-      "sentiment": "buy"
-    },
-    "COIN": {
-      "tier": "day",
-      "price": "$159.07",
-      "change": "+6.70%",
-      "score": "",
-      "note": "Coinbase +6.7% this week. BTC stable ~$60K \u2014 crypto market recovering. Finnhub analyst consensus: 11 StrongBuy + 19 Buy (68% bullish) vs 11 Hold + 3 Sell. Highe",
-      "market": "GLOBAL",
-      "name": "Coinbase Global",
-      "entry": "155\u2013163",
-      "target": "175",
-      "stop": "148",
-      "signals": [
-        "VOL \u00b7 ANALYST \u00b7 BTC-STABLE"
-      ],
-      "narrative": "Coinbase +6.7% this week. BTC stable ~$60K \u2014 crypto market recovering. Finnhub analyst consensus: 11 StrongBuy + 19 Buy (68% bullish) vs 11 Hold + 3 Sell. Highest-liquidity pure-play crypto exchange on NASDAQ. US market opens Mon 14 Jul 09:30 ET \u2014 pre-market set-up is key for follow-through.",
-      "sentiment": "strong_buy"
-    },
-    "VLO": {
       "tier": "week",
-      "price": "$290.00",
-      "change": "+6.15%",
+      "price": "A$A$1.275",
+      "change": "+1.92%",
       "score": "",
-      "note": "Valero is the world's largest independent refiner. Hormuz effectively closed (US-Iran conflict Jul10 re-escalation) \u2192 crude differentials surge \u2192 crack spreads ",
-      "market": "GLOBAL",
-      "name": "Valero Energy Corporation",
-      "entry": "285\u2013298",
-      "target": "320",
-      "stop": "272",
+      "note": "Macquarie upgraded BOE from Neutral to Outperform last week with a target of $1.",
+      "market": "ASX",
+      "name": "Boss Energy",
+      "sentiment": "strong_buy",
+      "rsi": 44,
+      "trend": "below_50sma",
       "signals": [
-        "SECTOR \u00b7 ANALYST-UPGRADE \u00b7 HORMUZ"
-      ],
-      "narrative": "Valero is the world's largest independent refiner. Hormuz effectively closed (US-Iran conflict Jul10 re-escalation) \u2192 crude differentials surge \u2192 crack spreads at multi-year highs \u2192 direct refiner margin expansion. Multiple analysts raced to raise targets Jul13 (StocksToTrade). Structural trade: crack spread squeeze persists as long as Hormuz remains disrupted.",
-      "sentiment": "buy"
-    },
-    "TEAM": {
-      "tier": "long",
-      "price": "$88.86",
-      "change": "+3.50%",
-      "score": "",
-      "note": "Atlassian Q4 FY2026 beat drove a street-wide target reset mid-July. Yahoo Finance: &#34;Atlassian and Shopify Shares Are Soaring&#34; (Jul 2026). StockStory: &#",
-      "market": "GLOBAL",
-      "name": "Atlassian Corporation",
-      "entry": "86\u201393",
-      "target": "108",
-      "stop": "80",
-      "signals": [
-        "COVERAGE \u00b7 UPGRADE \u00b7 CLOUD-AI"
-      ],
-      "narrative": "Atlassian Q4 FY2026 beat drove a street-wide target reset mid-July. Yahoo Finance: &#34;Atlassian and Shopify Shares Are Soaring&#34; (Jul 2026). StockStory: &#34;Atlassian Stock Grinds Higher As Street Resets Targets&#34; (Jul 13). AI-enhanced features (Atlassian Intelligence) driving enterprise upsell and pricing power upgrades. Australian HQ = AUD/USD tailwind if USD softens.",
-      "sentiment": "buy"
+        "Macquarie Outperform $1.75",
+        "Uranium Deficit",
+        "AI Data Centre Demand",
+        "$211M Cash"
+      ]
     },
     "VTM": {
+      "tier": "long",
+      "price": "A$A$1.645",
+      "change": "+3.24%",
+      "score": "",
+      "note": "Victory Metals is one of Australia's highest-grade heavy rare earth discoveries ",
+      "market": "ASX",
+      "name": "Victory Metals",
+      "sentiment": "buy",
+      "rsi": 58,
+      "trend": "above_200sma",
+      "signals": [
+        "218ppm Dysprosium",
+        "PFS Q2 2026",
+        "US-China Thematic",
+        "Above SMA50+200"
+      ]
+    },
+    "NEM": {
+      "tier": "day",
+      "price": "$$94.75",
+      "change": "+1.77%",
+      "score": "",
+      "note": "With gold at $4,053/oz \u2014 a record level driven by the 2026 Iran War, delayed pea",
+      "market": "GLOBAL",
+      "name": "Newmont Mining",
+      "sentiment": "strong_buy",
+      "rsi": 55,
+      "trend": "above_50sma",
+      "signals": [
+        "Gold $4,053 +1.29%",
+        "26/31 Bullish",
+        "Iran War Safe Haven",
+        "Top Analyst Call"
+      ]
+    },
+    "GS": {
+      "tier": "week",
+      "price": "$$1,140",
+      "change": "+9.00%",
+      "score": "",
+      "note": "Goldman Sachs delivered a blowout Q2 earnings result, pushing the stock up 9% on",
+      "market": "GLOBAL",
+      "name": "Goldman Sachs",
+      "sentiment": "strong_buy",
+      "rsi": null,
+      "trend": "above_50sma",
+      "signals": [
+        "Q2 Blowout +9%",
+        "Financials Sector",
+        "Earnings Season",
+        "BAC+MS Also Beat"
+      ]
+    },
+    "PLTR": {
+      "tier": "long",
+      "price": "$$116.70",
+      "change": "-2.34%",
+      "score": "",
+      "note": "DA Davidson upgraded Palantir to Buy with a $175 price target today \u2014 representi",
+      "market": "GLOBAL",
+      "name": "Palantir Technologies",
+      "sentiment": "buy",
+      "rsi": null,
+      "trend": "above_50sma",
+      "signals": [
+        "DA Davidson Buy $175 TODAY",
+        "AI/Defense Platform",
+        "Iran War Tailwind",
+        "26/38 Analysts Bullish"
+      ]
+    },
+    "PDN": {
       "tier": "monitor",
       "price": "\u2014",
       "change": "\u2014",
       "score": "",
       "note": "Not researched this run",
-      "sentiment": "hold"
+      "name": "Paladin Energy",
+      "sentiment": "hold",
+      "rsi": 44,
+      "trend": "below_50sma",
+      "signals": [
+        "News Release Today",
+        "Vol 3x Spike",
+        "Uranium Sector"
+      ]
     },
     "IEL": {
       "tier": "monitor",
@@ -134,9 +148,26 @@
       "change": "\u2014",
       "score": "",
       "note": "Not researched this run",
-      "sentiment": "hold"
+      "name": "Electro Optic Systems",
+      "sentiment": "hold",
+      "rsi": 47,
+      "trend": "below_50sma",
+      "signals": [
+        "MARSS Acquisition",
+        "\u00a385m Order",
+        "\u20ac135m Backlog",
+        "Defence Sector"
+      ]
     },
     "NTU": {
+      "tier": "monitor",
+      "price": "\u2014",
+      "change": "\u2014",
+      "score": "",
+      "note": "Not researched this run",
+      "sentiment": "hold"
+    },
+    "DYL": {
       "tier": "monitor",
       "price": "\u2014",
       "change": "\u2014",
@@ -150,7 +181,16 @@
       "change": "\u2014",
       "score": "",
       "note": "Not researched this run",
-      "sentiment": "hold"
+      "name": "DroneShield",
+      "sentiment": "hold",
+      "rsi": 29,
+      "trend": "below_200sma",
+      "signals": [
+        "RSI 28 OVERSOLD",
+        "$6.2m Contract",
+        "Defence Sector",
+        "Low Volume Warning"
+      ]
     },
     "A2M": {
       "tier": "monitor",
@@ -174,15 +214,14 @@
       "change": "\u2014",
       "score": "",
       "note": "Not researched this run",
-      "sentiment": "hold"
-    },
-    "PLTR": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "sentiment": "hold"
+      "name": "WiseTech Global",
+      "sentiment": "buy",
+      "rsi": null,
+      "trend": "above_50sma",
+      "signals": [
+        "Motley Fool Featured Today",
+        "Logistics Tech"
+      ]
     }
   }
 }
