@@ -1,114 +1,116 @@
 {
-  "run": "Wed 15 Jul 2026 12:30 AEST",
-  "report": "reports/2026-07-15-1230.html",
+  "run": "Wed 22 Jul 2026 9:45 AEST",
+  "report": "reports/2026-07-22-0945.html",
   "tickers": {
-    "DTR": {
+    "WDS": {
       "tier": "day",
-      "price": "A$A$0.170",
-      "change": "+6.25%",
+      "price": "A$A$28.67",
+      "change": "+0.17%",
       "score": "",
-      "note": "Dateline Resources is riding the US-China critical minerals trade war with its U",
+      "note": "Woodside is the purest large-cap play on Brent crude's 27% rally since July 1. Morgan Stanley's Buy upgrade on Santos validates the sector thesis. Scarborough L",
       "market": "ASX",
-      "name": "Dateline Resources",
-      "sentiment": "strong_buy",
-      "rsi": 56,
-      "trend": "above_50sma",
+      "name": "Woodside Energy Group",
+      "entry": "A$28.30",
+      "target": "A$30.50",
+      "stop": "A$27.50",
       "signals": [
-        "Music Valley TREO 7.1%",
-        "US DOJ Confirmed",
-        "OTCQB Listing",
-        "US-China REE"
-      ]
+        "<span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>ENERGY_RALLY</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>OIL_$86/bbl</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>SCARBOROUGH_Q4</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;'>STO_PEER_UPGRADED</span>"
+      ],
+      "narrative": "Woodside is the purest large-cap play on Brent crude's 27% rally since July 1. Morgan Stanley's Buy upgrade on Santos validates the sector thesis. Scarborough LNG first cargo targeted Q4 2026 \u2014 a major production milestone. Energy sector +10% vs materials -14% since July 1.",
+      "sentiment": "strong_buy"
     },
-    "BOE": {
+    "EOS": {
       "tier": "week",
-      "price": "A$A$1.275",
-      "change": "+1.92%",
+      "price": "A$A$7.72",
+      "change": "+7.74%",
       "score": "",
-      "note": "Macquarie upgraded BOE from Neutral to Outperform last week with a target of $1.",
+      "note": "EOS is the standout discovery of this run. +7.74% today on 3.66M shares while the market is only +0.34%. The analyst consensus of A$11.12 from 4 analysts all ra",
       "market": "ASX",
-      "name": "Boss Energy",
-      "sentiment": "strong_buy",
-      "rsi": 44,
-      "trend": "below_50sma",
+      "name": "Electro Optic Systems Holdings",
+      "entry": "A$7.55",
+      "target": "A$9.20",
+      "stop": "A$7.00",
       "signals": [
-        "Macquarie Outperform $1.75",
-        "Uranium Deficit",
-        "AI Data Centre Demand",
-        "$211M Cash"
-      ]
+        "<span style='background:#c05621;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>VOLUME_SURGE</span><span style='background:#c05621;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>STRONG_BUY_x4</span><span style='background:#c05621;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>CONSENSUS_$11.12</span><span style='background:#c05621;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;'>DEFENCE_DEMAND</span>"
+      ],
+      "narrative": "EOS is the standout discovery of this run. +7.74% today on 3.66M shares while the market is only +0.34%. The analyst consensus of A$11.12 from 4 analysts all rated Strong Buy implies 44% upside. EOS makes optronics and remote weapon systems \u2014 direct beneficiaries of AUKUS, Hormuz escalation, and global defence budget expansion.",
+      "sentiment": "buy"
     },
-    "VTM": {
+    "ILU": {
       "tier": "long",
-      "price": "A$A$1.645",
-      "change": "+3.24%",
+      "price": "A$A$6.05",
+      "change": "+1.51%",
       "score": "",
-      "note": "Victory Metals is one of Australia's highest-grade heavy rare earth discoveries ",
+      "note": "Iluka signed a take-or-pay offtake agreement for rare earth oxides commencing 2028, locking in US$155 million in minimum revenue over 4 years. This transforms I",
       "market": "ASX",
-      "name": "Victory Metals",
-      "sentiment": "buy",
-      "rsi": 58,
-      "trend": "above_200sma",
+      "name": "Iluka Resources",
+      "entry": "A$5.90",
+      "target": "A$8.00",
+      "stop": "A$5.20",
       "signals": [
-        "218ppm Dysprosium",
-        "PFS Q2 2026",
-        "US-China Thematic",
-        "Above SMA50+200"
-      ]
+        "<span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>OFFTAKE_US$155M</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>TAKE-OR-PAY</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>AUSTRALIA-INDIA</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;'>SECTOR_UPGRADE</span>"
+      ],
+      "narrative": "Iluka signed a take-or-pay offtake agreement for rare earth oxides commencing 2028, locking in US$155 million in minimum revenue over 4 years. This transforms ILU's risk profile \u2014 guaranteed revenue underpins the thesis. The Australia-India critical minerals framework (July 2026) adds structural tailwinds.",
+      "sentiment": "buy"
     },
-    "NEM": {
+    "COIN": {
       "tier": "day",
-      "price": "$$94.75",
-      "change": "+1.77%",
+      "price": "$$149.06",
+      "change": "+4.59%",
       "score": "",
-      "note": "With gold at $4,053/oz \u2014 a record level driven by the 2026 Iran War, delayed pea",
+      "note": "Coinbase moved +4.59% while BTC holds at $59,971 (+1.23%) \u2014 stable floor. COIN is the cleanest US-listed crypto exposure play without the direct leverage of MST",
       "market": "GLOBAL",
-      "name": "Newmont Mining",
-      "sentiment": "strong_buy",
-      "rsi": 55,
-      "trend": "above_50sma",
+      "name": "Coinbase Global",
+      "entry": "$146",
+      "target": "$163",
+      "stop": "$138",
       "signals": [
-        "Gold $4,053 +1.29%",
-        "26/31 Bullish",
-        "Iran War Safe Haven",
-        "Top Analyst Call"
-      ]
-    },
-    "GS": {
-      "tier": "week",
-      "price": "$$1,140",
-      "change": "+9.00%",
-      "score": "",
-      "note": "Goldman Sachs delivered a blowout Q2 earnings result, pushing the stock up 9% on",
-      "market": "GLOBAL",
-      "name": "Goldman Sachs",
-      "sentiment": "strong_buy",
-      "rsi": null,
-      "trend": "above_50sma",
-      "signals": [
-        "Q2 Blowout +9%",
-        "Financials Sector",
-        "Earnings Season",
-        "BAC+MS Also Beat"
-      ]
+        "<span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>CRYPTO_SIGNAL</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>BTC_STABLE_$59,971</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;'>+4.59%_MOMENTUM</span>"
+      ],
+      "narrative": "Coinbase moved +4.59% while BTC holds at $59,971 (+1.23%) \u2014 stable floor. COIN is the cleanest US-listed crypto exposure play without the direct leverage of MSTR (down 3.54%) or operational risk of miners like RIOT (down 7.72%). US market reopens today \u2014 watch for continuation.",
+      "sentiment": "strong_buy"
     },
     "PLTR": {
-      "tier": "long",
+      "tier": "week",
       "price": "$$116.70",
       "change": "-2.34%",
       "score": "",
-      "note": "DA Davidson upgraded Palantir to Buy with a $175 price target today \u2014 representi",
+      "note": "Palantir pulled back -2.34% to $116.70 \u2014 a pullback entry opportunity from the $129.70 recent high (10% cheaper). PLTR AI Platform (AIP) is the leading AI opera",
       "market": "GLOBAL",
       "name": "Palantir Technologies",
-      "sentiment": "buy",
-      "rsi": null,
-      "trend": "above_50sma",
+      "entry": "$114",
+      "target": "$133",
+      "stop": "$106",
       "signals": [
-        "DA Davidson Buy $175 TODAY",
-        "AI/Defense Platform",
-        "Iran War Tailwind",
-        "26/38 Analysts Bullish"
-      ]
+        "<span style='background:#c05621;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>DEFENCE_AI</span><span style='background:#c05621;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>PULLBACK_ENTRY</span><span style='background:#c05621;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;'>AUKUS_TAILWIND</span>"
+      ],
+      "narrative": "Palantir pulled back -2.34% to $116.70 \u2014 a pullback entry opportunity from the $129.70 recent high (10% cheaper). PLTR AI Platform (AIP) is the leading AI operating system for defence and government intelligence. AUKUS and NATO 5% GDP spending continue to build.",
+      "sentiment": "buy"
+    },
+    "NVDA": {
+      "tier": "long",
+      "price": "$$207.29",
+      "change": "~flat",
+      "score": "",
+      "note": "Nvidia is the clearest long-term AI infrastructure play. MSFT, META, Google and Amazon all confirmed sustained AI capex in July 13 earnings. Deutsche Bank raise",
+      "market": "GLOBAL",
+      "name": "Nvidia Corporation",
+      "entry": "$203",
+      "target": "$240",
+      "stop": "$185",
+      "signals": [
+        "<span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>AI_CAPEX_BOOM</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:4px;'>DB_$220_TARGET</span><span style='background:#276749;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px;'>Q2_EARNINGS_AUG26</span>"
+      ],
+      "narrative": "Nvidia is the clearest long-term AI infrastructure play. MSFT, META, Google and Amazon all confirmed sustained AI capex in July 13 earnings. Deutsche Bank raised its target to $220. NVDA Q2 earnings due August 26. Current $207.29 is 14% below the 52-week high of $236.54.",
+      "sentiment": "buy"
+    },
+    "VTM": {
+      "tier": "monitor",
+      "price": "\u2014",
+      "change": "\u2014",
+      "score": "",
+      "note": "Not researched this run",
+      "sentiment": "hold"
     },
     "PDN": {
       "tier": "monitor",
@@ -116,15 +118,7 @@
       "change": "\u2014",
       "score": "",
       "note": "Not researched this run",
-      "name": "Paladin Energy",
-      "sentiment": "hold",
-      "rsi": 44,
-      "trend": "below_50sma",
-      "signals": [
-        "News Release Today",
-        "Vol 3x Spike",
-        "Uranium Sector"
-      ]
+      "sentiment": "hold"
     },
     "IEL": {
       "tier": "monitor",
@@ -141,23 +135,6 @@
       "score": "",
       "note": "Not researched this run",
       "sentiment": "hold"
-    },
-    "EOS": {
-      "tier": "monitor",
-      "price": "\u2014",
-      "change": "\u2014",
-      "score": "",
-      "note": "Not researched this run",
-      "name": "Electro Optic Systems",
-      "sentiment": "hold",
-      "rsi": 47,
-      "trend": "below_50sma",
-      "signals": [
-        "MARSS Acquisition",
-        "\u00a385m Order",
-        "\u20ac135m Backlog",
-        "Defence Sector"
-      ]
     },
     "NTU": {
       "tier": "monitor",
@@ -181,16 +158,7 @@
       "change": "\u2014",
       "score": "",
       "note": "Not researched this run",
-      "name": "DroneShield",
-      "sentiment": "hold",
-      "rsi": 29,
-      "trend": "below_200sma",
-      "signals": [
-        "RSI 28 OVERSOLD",
-        "$6.2m Contract",
-        "Defence Sector",
-        "Low Volume Warning"
-      ]
+      "sentiment": "hold"
     },
     "A2M": {
       "tier": "monitor",
@@ -214,14 +182,7 @@
       "change": "\u2014",
       "score": "",
       "note": "Not researched this run",
-      "name": "WiseTech Global",
-      "sentiment": "buy",
-      "rsi": null,
-      "trend": "above_50sma",
-      "signals": [
-        "Motley Fool Featured Today",
-        "Logistics Tech"
-      ]
+      "sentiment": "hold"
     }
   }
 }
